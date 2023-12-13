@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import BoxLayout from './box.layout'
-import HeaderBackButton from '../components/HeaderBackButton'
+import HeaderBackButton from '../components/header-back-button'
 import { useNavigation } from '@react-navigation/native'
 import { StatusBar } from '@gluestack-ui/themed'
 
