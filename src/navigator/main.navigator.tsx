@@ -6,7 +6,7 @@ const MainStack = createNativeStackNavigator()
 
 function MainNavigator() {
   return (
-    <MainStack.Navigator>
+    <MainStack.Navigator screenOptions={{ headerShown: false }}>
       <MainStack.Screen name={'Welcome'} component={WelcomeScreen} />
     </MainStack.Navigator>
   )
