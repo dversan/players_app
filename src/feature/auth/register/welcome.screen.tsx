@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { View, Text } from 'react-native'
+import ScreenLayout from '../../../ui/layout/screen.layout'
 
-function WelcomeScreen() {
+export default function WelcomeScreen() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Welcome Screen</Text>
-    </View>
+    <ScreenLayout>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Welcome Screen</Text>
+      </View>
+    </ScreenLayout>
   )
 }
-
-export default WelcomeScreen
