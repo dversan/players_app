@@ -3,6 +3,7 @@ import BoxLayout from './box.layout'
 import HeaderBackButton from '../components/header-back-button'
 import { useNavigation } from '@react-navigation/native'
 import { StatusBar } from '@gluestack-ui/themed'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 interface ScreenProps {
   fullscreen?: boolean
@@ -16,6 +17,8 @@ export default function ScreenLayout(props: ScreenProps) {
   const navigation = useNavigation()
   const [showBack, setShowBack] = useState<boolean>(false)
 
+  const insets = useSafeAreaInsets()
+
   useEffect(() => {
     return navigation.addListener('focus', () => {
       setShowBack(navigation.canGoBack)
@@ -28,14 +31,14 @@ export default function ScreenLayout(props: ScreenProps) {
       <BoxLayout
         height={'100%'}
         backgroundColor={backgroundColor}
-        safeAreaTop={!fullscreen}
+        paddingTop={!fullscreen ? insets.top + 10 : 0}
+        paddingBottom={!fullscreen ? insets.bottom : 0}
       >
         <BoxLayout
           position={'absolute'}
           left={5}
-          top={5}
+          top={insets.top + 10}
           zIndex={100}
-          safeAreaTop
         >
           {showBack && <HeaderBackButton isModal={props.isModal || false} />}
         </BoxLayout>
