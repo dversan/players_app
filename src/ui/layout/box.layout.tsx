@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box } from '@gluestack-ui/themed'
+import { Box as GSBox } from '@gluestack-ui/themed'
 
 export default function BoxLayout(props) {
-  return <Box {...props}>{props.children}</Box>
+  return <GSBox {...props}>{props.children}</GSBox>
 }
