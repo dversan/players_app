@@ -23,6 +23,25 @@ export default function RegisterScreen({ navigation }) {
   const [errors, setErrors] = useState<{ [id: string]: string }>({})
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
+  function onSubmit() {
+    console.log(formData)
+    // if (validate()) {
+    //   setIsLoading(true)
+    //   const { email, name, lastName, password } = formData
+    //   signUp(email, name, lastName, password).catch(reason => {
+    //     setIsLoading(false)
+    //     setErrors({ email: reason.message })
+    //     logError(
+    //       new Error(
+    //         reason.message +
+    //           ` email: ${email}, name: ${name}, lastName: ${lastName}, pass: ${password}`
+    //       ),
+    //       'registerScreen'
+    //     )
+    //   })
+    // }
+  }
+
   return (
     <ScreenLayout backgroundColor={colors.backgrounds.dark}>
       <KeyboardAvoidingView>
@@ -37,9 +56,8 @@ export default function RegisterScreen({ navigation }) {
                 isRequired
                 label={'Email'}
                 value={formData.email}
-                onChangeText={text =>
-                  // setFormData({ ...formData, email: value.trim() })
-                  console.log(text)
+                onChangeText={value =>
+                  setFormData({ ...formData, email: value })
                 }
                 error={errors.email}
                 isDisabled={isLoading}
@@ -49,44 +67,40 @@ export default function RegisterScreen({ navigation }) {
                 isRequired
                 label={'Name'}
                 onChangeText={value =>
-                  // setFormData({ ...formData, email: value.trim() })
-                  console.log('input onChange pressed')
+                  setFormData({ ...formData, name: value })
                 }
-                // error={errors.email}
-                // isDisabled={isLoading}
+                error={errors.email}
+                isDisabled={isLoading}
                 autoCapitalize={'none'}
               />
               <Input
                 isRequired
                 label={'Last Name'}
                 onChangeText={value =>
-                  // setFormData({ ...formData, email: value.trim() })
-                  console.log('input onChange pressed')
+                  setFormData({ ...formData, lastName: value })
                 }
-                // error={errors.email}
-                // isDisabled={isLoading}
+                error={errors.email}
+                isDisabled={isLoading}
                 autoCapitalize={'none'}
               />
               <Input
                 isRequired
                 label={'Password'}
                 onChangeText={value =>
-                  // setFormData({ ...formData, email: value.trim() })
-                  console.log('input onChange pressed')
+                  setFormData({ ...formData, password: value })
                 }
-                // error={errors.email}
-                // isDisabled={isLoading}
+                error={errors.email}
+                isDisabled={isLoading}
                 autoCapitalize={'none'}
               />
               <Input
                 isRequired
                 label={'Confirm Password'}
                 onChangeText={value =>
-                  // setFormData({ ...formData, email: value.trim() })
-                  console.log('input onChange pressed')
+                  setFormData({ ...formData, confirmPassword: value })
                 }
-                // error={errors.email}
-                // isDisabled={isLoading}
+                error={errors.email}
+                isDisabled={isLoading}
                 autoCapitalize={'none'}
               />
               <HStackLayout flexWrap={'wrap'}>
@@ -95,22 +109,15 @@ export default function RegisterScreen({ navigation }) {
                     'Creando esta cuenta estás aceptando nuestros términos y condiciones y política de privacidad'
                   }
                 </Text>
-                {/*<Link onPress={() => Linking.openURL(links.terms)}>*/}
-                {/*  {i18n.t('registerScreen.terms')}*/}
-                {/*</Link>*/}
-                {/*<Text fontSize={'sm'}>{i18n.t('registerScreen.and')}</Text>*/}
-                {/*<Link onPress={() => Linking.openURL(links.privacy)}>*/}
-                {/*  {i18n.t('registerScreen.privacy')}*/}
-                {/*</Link>*/}
               </HStackLayout>
             </VStackLayout>
             <Button
               variant={'solid'}
               bg={colors.action.base}
-              // isLoading={isLoading}
+              isLoading={isLoading}
               // _loading={{ bg: colors.blue.base }}
               // _pressed={{ bg: colors.blue.base }}
-              onPress={console.log('onSubmit')}
+              onPress={onSubmit}
             >
               {'Registrarse'}
             </Button>
