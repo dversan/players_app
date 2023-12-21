@@ -1113,6 +1113,8 @@ PODS:
     - React-jsi (= 0.73.0)
     - React-logger (= 0.73.0)
     - React-perflogger (= 0.73.0)
+  - RNLocalize (3.0.4):
+    - React-Core
   - RNScreens (3.29.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -1196,6 +1198,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNLocalize (from `../node_modules/react-native-localize`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -1314,6 +1317,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNLocalize:
+    :path: "../node_modules/react-native-localize"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSVG:
@@ -1382,10 +1387,11 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 77543c74df984ce56c09d49d427149c53784aaf6
   React-utils: 42708ea436853045ef1eaff29996813d9fbbe209
   ReactCommon: 851280fb976399ca1aabc74cc2c3612069ea70a2
+  RNLocalize: 1ce4263770515f53d3de442ce7657b3661b16a37
   RNScreens: b582cb834dc4133307562e930e8fa914b8c04ef2
   RNSVG: 07dbd870b0dcdecc99b3a202fa37c8ca163caec2
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  Yoga: 44003f970aa541b79dfdd59cf236fda41bd5890f
+  Yoga: 20d6a900dcc8d61d5e3b799bbf627cc34474a8c4
 
 PODFILE CHECKSUM: d045fa30ff548b2e28d750ab4d08f2178051b276
 
