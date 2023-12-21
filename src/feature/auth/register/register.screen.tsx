@@ -11,6 +11,8 @@ import HStackLayout from '../../../ui/layout/hstack.layout'
 import Link from '../../../ui/components/link'
 import Button from '../../../ui/components/button'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { validate } from '../../../lib/data/helpers'
 
 export default function RegisterScreen({ navigation }) {
   const [formData, setFormData] = useState({
@@ -23,24 +25,30 @@ export default function RegisterScreen({ navigation }) {
   const [errors, setErrors] = useState<{ [id: string]: string }>({})
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
+  const { t } = useTranslation()
+
   function onSubmit() {
-    console.log(formData)
-    // if (validate()) {
-    //   setIsLoading(true)
-    //   const { email, name, lastName, password } = formData
-    //   signUp(email, name, lastName, password).catch(reason => {
-    //     setIsLoading(false)
-    //     setErrors({ email: reason.message })
-    //     logError(
-    //       new Error(
-    //         reason.message +
-    //           ` email: ${email}, name: ${name}, lastName: ${lastName}, pass: ${password}`
-    //       ),
-    //       'registerScreen'
-    //     )
-    //   })
-    // }
+    if (validate(formData, t).validationOk) {
+      console.log('validation OK')
+      setIsLoading(true)
+      // const { email, name, lastName, password } = formData
+      // signUp(email, name, lastName, password).catch(reason => {
+      //   setIsLoading(false)
+      //   setErrors({ email: reason.message })
+      // logError(
+      //   new Error(
+      //     reason.message +
+      //       ` email: ${email}, name: ${name}, lastName: ${lastName}, pass: ${password}`
+      //   ),
+      //   'registerScreen'
+      // )
+      // })
+    } else {
+      setErrors(validate(formData, t).validationErrors)
+    }
   }
+
+  console.log(errors)
 
   return (
     <ScreenLayout backgroundColor={colors.backgrounds.dark}>
@@ -69,7 +77,7 @@ export default function RegisterScreen({ navigation }) {
                 onChangeText={value =>
                   setFormData({ ...formData, name: value })
                 }
-                error={errors.email}
+                error={errors.name}
                 isDisabled={isLoading}
                 autoCapitalize={'none'}
               />
@@ -79,7 +87,7 @@ export default function RegisterScreen({ navigation }) {
                 onChangeText={value =>
                   setFormData({ ...formData, lastName: value })
                 }
-                error={errors.email}
+                error={errors.lastName}
                 isDisabled={isLoading}
                 autoCapitalize={'none'}
               />
@@ -89,7 +97,7 @@ export default function RegisterScreen({ navigation }) {
                 onChangeText={value =>
                   setFormData({ ...formData, password: value })
                 }
-                error={errors.email}
+                error={errors.password}
                 isDisabled={isLoading}
                 autoCapitalize={'none'}
               />
@@ -99,7 +107,7 @@ export default function RegisterScreen({ navigation }) {
                 onChangeText={value =>
                   setFormData({ ...formData, confirmPassword: value })
                 }
-                error={errors.email}
+                error={errors.confirmPassword}
                 isDisabled={isLoading}
                 autoCapitalize={'none'}
               />

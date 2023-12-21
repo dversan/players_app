@@ -3613,6 +3613,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/i18next@^13.0.0":
+  "integrity" "sha512-gp/SIShAuf4WOqi8ey0nuI7qfWaVpMNCcs/xLygrh/QTQIXmlDC1E0TtVejweNW+7SGDY7g0lyxyKZIJuCKIJw=="
+  "resolved" "https://registry.npmjs.org/@types/i18next/-/i18next-13.0.0.tgz"
+  "version" "13.0.0"
+  dependencies:
+    "i18next" "*"
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   "integrity" "sha512-2QF/t/auWm0lsy8XtKVPG19v3sSOQlJe/YHZgfjb/KBBHOGSV+J2q/S671rcq9uTBrLAXmZpqJiaQbMT+zNU1w=="
   "resolved" "https://registry.npmjs.org/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.6.tgz"
@@ -3653,6 +3660,13 @@
   "integrity" "sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng=="
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.11.tgz"
   "version" "15.7.11"
+
+"@types/react-i18next@^8.1.0":
+  "integrity" "sha512-d4xhcjX5b3roNMObRNMfb1HinHQlQLPo8xlDj60dnHeeAw2bBymR2cy/l1giJpHzo/ZFgSvgVUvIWr4kCrenCg=="
+  "resolved" "https://registry.npmjs.org/@types/react-i18next/-/react-i18next-8.1.0.tgz"
+  "version" "8.1.0"
+  dependencies:
+    "react-i18next" "*"
 
 "@types/react-native@>=0.72":
   "integrity" "sha512-St6xA7+EoHN5mEYfdWnfYt0e8u6k2FR0P9s2arYgakQGFgU1f9FlPrIEcj0X24pLCF5c5i3WVuLCUdiCYHmOoA=="
@@ -6497,7 +6511,7 @@
   "resolved" "https://registry.npmjs.org/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz"
   "version" "1.0.4"
 
-"i18next@^23.7.11", "i18next@>= 23.2.3":
+"i18next@*", "i18next@^23.7.11", "i18next@>= 23.2.3":
   "integrity" "sha512-A/vOkw8vY99YHU9A1Td3I1dcTiYaPnwBWzrpVzfXUXSYgogK3cmBcmop/0cnXPc6QpUWIyqaugKNxRUEZVk9Nw=="
   "resolved" "https://registry.npmjs.org/i18next/-/i18next-23.7.11.tgz"
   "version" "23.7.11"
@@ -9041,7 +9055,7 @@
   "resolved" "https://registry.npmjs.org/react-freeze/-/react-freeze-1.0.3.tgz"
   "version" "1.0.3"
 
-"react-i18next@^13.5.0":
+"react-i18next@*", "react-i18next@^13.5.0":
   "integrity" "sha512-CFJ5NDGJ2MUyBohEHxljOq/39NQ972rh1ajnadG9BjTk+UXbHLq4z5DKEbEQBDoIhUmmbuS/fIMJKo6VOax1HA=="
   "resolved" "https://registry.npmjs.org/react-i18next/-/react-i18next-13.5.0.tgz"
   "version" "13.5.0"
