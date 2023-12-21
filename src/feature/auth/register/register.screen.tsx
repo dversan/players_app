@@ -10,8 +10,19 @@ import BoxLayout from '../../../ui/layout/box.layout'
 import HStackLayout from '../../../ui/layout/hstack.layout'
 import Link from '../../../ui/components/link'
 import Button from '../../../ui/components/button'
+import { useState } from 'react'
 
 export default function RegisterScreen({ navigation }) {
+  const [formData, setFormData] = useState({
+    email: '',
+    name: '',
+    lastName: '',
+    password: '',
+    confirmPassword: ''
+  })
+  const [errors, setErrors] = useState<{ [id: string]: string }>({})
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
   return (
     <ScreenLayout backgroundColor={colors.backgrounds.dark}>
       <KeyboardAvoidingView>
@@ -25,12 +36,13 @@ export default function RegisterScreen({ navigation }) {
               <Input
                 isRequired
                 label={'Email'}
-                onChangeText={value =>
+                value={formData.email}
+                onChangeText={text =>
                   // setFormData({ ...formData, email: value.trim() })
-                  console.log('input onChange pressed')
+                  console.log(text)
                 }
-                // error={errors.email}
-                // isDisabled={isLoading}
+                error={errors.email}
+                isDisabled={isLoading}
                 autoCapitalize={'none'}
               />
               <Input
@@ -103,7 +115,7 @@ export default function RegisterScreen({ navigation }) {
               {'Registrarse'}
             </Button>
             <HStackLayout alignSelf={'center'} flexWrap={'wrap'}>
-              <Text size={'sm'}>{'Ya tienes una cuenta?'}</Text>
+              <Text size={'sm'}>{'Ya tienes una cuenta? '}</Text>
               <Link onPress={() => navigation.navigate('LoginScreen')}>
                 <Text>{'Sign in'}</Text>
               </Link>

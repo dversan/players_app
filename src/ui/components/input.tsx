@@ -11,21 +11,14 @@ import { colors } from '../ui-theme.provider'
 interface GSInputCustomProps extends PropsWithChildren {
   label?: string
   error?: string
+  onChangeText: (event: string) => void
 }
 
 export default function Input(props: GSInputCustomProps) {
   return (
     <FormControl w={'100%'} isInvalid={props.error !== undefined}>
       {props.label && (
-        <FormControlLabelText
-          _labelText={{
-            fontSize: 12,
-            fontWeight: 'normal',
-            color: colors.text.base
-          }}
-        >
-          {props.label}
-        </FormControlLabelText>
+        <FormControlLabelText>{props.label}</FormControlLabelText>
       )}
 
       <GSInput
@@ -37,7 +30,7 @@ export default function Input(props: GSInputCustomProps) {
         color={colors.button.base}
         placeholderTextColor={colors.action.base}
       >
-        <InputField type={'text'} />
+        <InputField type={'text'} onChangeText={props.onChangeText} />
       </GSInput>
       {props.error && (
         <FormControlErrorText>{props.error}</FormControlErrorText>
