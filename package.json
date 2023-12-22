@@ -13,6 +13,8 @@
     "@gluestack-style/react": "^1.0.28",
     "@gluestack-ui/config": "^1.0.8",
     "@gluestack-ui/themed": "^1.0.25",
+    "@react-native-firebase/app": "^18.7.3",
+    "@react-native-firebase/auth": "^18.7.3",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
     "@types/i18next": "^13.0.0",

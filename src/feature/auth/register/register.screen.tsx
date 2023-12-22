@@ -13,8 +13,10 @@ import Button from '../../../ui/components/button'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { validate } from '../../../lib/data/helpers'
+import { useAuth } from '../../../lib/auth/auth.context'
 
 export default function RegisterScreen({ navigation }) {
+  const { signUp } = useAuth()
   const [formData, setFormData] = useState({
     email: '',
     name: '',
@@ -31,18 +33,21 @@ export default function RegisterScreen({ navigation }) {
     if (validate(formData, t).validationOk) {
       console.log('validation OK')
       setIsLoading(true)
-      // const { email, name, lastName, password } = formData
-      // signUp(email, name, lastName, password).catch(reason => {
-      //   setIsLoading(false)
-      //   setErrors({ email: reason.message })
-      // logError(
-      //   new Error(
-      //     reason.message +
-      //       ` email: ${email}, name: ${name}, lastName: ${lastName}, pass: ${password}`
-      //   ),
-      //   'registerScreen'
-      // )
-      // })
+      const { email, name, lastName, password } = formData
+      signUp(email, name, lastName, password)
+        .then(res => console.log(res))
+        .catch(reason => {
+          setIsLoading(false)
+          setErrors({ email: reason.message })
+          // ################ Error reporting to analytics ################################
+          // logError(
+          //   new Error(
+          //     reason.message +
+          //       ` email: ${email}, name: ${name}, lastName: ${lastName}, pass: ${password}`
+          //   ),
+          //   'registerScreen'
+          // )
+        })
     } else {
       setErrors(validate(formData, t).validationErrors)
     }
