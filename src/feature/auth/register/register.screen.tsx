@@ -98,6 +98,7 @@ export default function RegisterScreen({ navigation }) {
                 autoCapitalize={'none'}
               />
               <Input
+                type={'password'}
                 isRequired
                 label={t('registerScreen.form.password') as string}
                 onChangeText={value =>
@@ -108,6 +109,7 @@ export default function RegisterScreen({ navigation }) {
                 autoCapitalize={'none'}
               />
               <Input
+                type={'password'}
                 isRequired
                 label={t('registerScreen.form.confirmPassword') as string}
                 onChangeText={value =>

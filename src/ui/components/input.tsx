@@ -12,6 +12,7 @@ interface GSInputCustomProps extends PropsWithChildren {
   label?: string
   error?: string
   onChangeText: (event: string) => void
+  type?: string
 }
 
 export default function Input(props: GSInputCustomProps) {
@@ -24,13 +25,11 @@ export default function Input(props: GSInputCustomProps) {
       <GSInput
         {...props}
         isInvalid={props.error !== undefined}
-        fontSize={14}
         borderColor={colors.text.base}
         borderRadius={4}
-        color={colors.button.base}
         placeholderTextColor={colors.action.base}
       >
-        <InputField type={'text'} onChangeText={props.onChangeText} />
+        <InputField type={props.type} onChangeText={props.onChangeText} />
       </GSInput>
       {props.error && (
         <FormControlErrorText>{props.error}</FormControlErrorText>
