@@ -4,14 +4,14 @@ import { colors } from '../../../ui/ui-theme.provider'
 import KeyboardAvoidingView from '../../../ui/components/keyboard-avoiding-view'
 import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
 import VStackLayout from '../../../ui/layout/vstack.layout'
-import { CloseCircleIcon, Icon, Text } from '@gluestack-ui/themed'
+import { CloseCircleIcon, Icon, Center } from '@gluestack-ui/themed'
+import Text from '../../../ui/components/text'
 import Input from '../../../ui/components/input'
 import BoxLayout from '../../../ui/layout/box.layout'
 import HStackLayout from '../../../ui/layout/hstack.layout'
 import Link from '../../../ui/components/link'
 import Button from '../../../ui/components/button'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { validate } from '../../../lib/data/helpers'
 import { useAuth } from '../../../lib/auth/auth.context'
 import { t } from 'i18next'
@@ -28,8 +28,6 @@ export default function RegisterScreen({ navigation }) {
   const [errors, setErrors] = useState<{ [id: string]: string }>({})
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const { t } = useTranslation()
-
   function onSubmit() {
     if (validate(formData).validationOk) {
       console.log('validation OK')
@@ -40,7 +38,7 @@ export default function RegisterScreen({ navigation }) {
         .catch(reason => {
           setIsLoading(false)
           setErrors({ email: reason.message })
-          // ################ Error reporting to analytics ################################
+          // TODO ################ Error reporting to analytics ################################
           // logError(
           //   new Error(
           //     reason.message +
@@ -57,14 +55,16 @@ export default function RegisterScreen({ navigation }) {
   console.log(errors)
 
   return (
-    <ScreenLayout backgroundColor={colors.backgrounds.dark}>
+    <ScreenLayout backgroundColor={colors.backgrounds.base}>
       <KeyboardAvoidingView>
         <ScrollViewLayout>
           <VStackLayout p={10} space={'xl'}>
             <BoxLayout alignSelf={'center'} mt={3} mb={5}>
               <Icon as={CloseCircleIcon} size={'xl'} />
             </BoxLayout>
-            <Text size={'lg'}>{'Players'}</Text>
+            <Center>
+              <Text size={'xl'}>{'Players'}</Text>
+            </Center>
             <VStackLayout space={'md'}>
               <Input
                 isRequired

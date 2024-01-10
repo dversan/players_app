@@ -11,11 +11,9 @@ import {
 } from '@gluestack-ui/themed'
 import { colors } from '../../../ui/ui-theme.provider'
 import BoxLayout from '../../../ui/layout/box.layout'
-import { useTranslation } from 'react-i18next'
+import { t } from 'i18next'
 
 export default function WelcomeScreen({ navigation }) {
-  const { t } = useTranslation()
-
   return (
     <ScreenLayout backgroundColor={colors.backgrounds.dark}>
       <VStackLayout
