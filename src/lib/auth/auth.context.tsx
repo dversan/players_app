@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState
 } from 'react'
-import auth from '@react-native-firebase/auth'
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import { User } from '../data/models'
 import { useTranslation } from 'react-i18next'
 
@@ -27,6 +27,24 @@ const AuthContext = createContext<Auth>({} as Auth)
 function useFirebaseAuth(t) {
   const [initializing, setInitializing] = useState(true)
   const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    return auth().onAuthStateChanged(onAuthStateChanged)
+  }, [])
+
+  async function onAuthStateChanged(
+    firebaseUser: FirebaseAuthTypes.User | null
+  ) {
+    if (firebaseUser) {
+      const userData = await userApi.getUser(firebaseUser.uid)
+      setUser(userData)
+    } else {
+      setUser(null)
+    }
+    if (initializing) {
+      setInitializing(false)
+    }
+  }
 
   function signUp(
     email: string,
