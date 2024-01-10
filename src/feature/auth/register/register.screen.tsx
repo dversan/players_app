@@ -14,6 +14,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { validate } from '../../../lib/data/helpers'
 import { useAuth } from '../../../lib/auth/auth.context'
+import { t } from 'i18next'
 
 export default function RegisterScreen({ navigation }) {
   const { signUp } = useAuth()
@@ -30,7 +31,7 @@ export default function RegisterScreen({ navigation }) {
   const { t } = useTranslation()
 
   function onSubmit() {
-    if (validate(formData, t).validationOk) {
+    if (validate(formData).validationOk) {
       console.log('validation OK')
       setIsLoading(true)
       const { email, name, lastName, password } = formData
@@ -49,7 +50,7 @@ export default function RegisterScreen({ navigation }) {
           // )
         })
     } else {
-      setErrors(validate(formData, t).validationErrors)
+      setErrors(validate(formData).validationErrors)
     }
   }
 
@@ -67,7 +68,7 @@ export default function RegisterScreen({ navigation }) {
             <VStackLayout space={'md'}>
               <Input
                 isRequired
-                label={'Email'}
+                label={t('registerScreen.form.email') as string}
                 value={formData.email}
                 onChangeText={value =>
                   setFormData({ ...formData, email: value })
@@ -78,7 +79,7 @@ export default function RegisterScreen({ navigation }) {
               />
               <Input
                 isRequired
-                label={'Name'}
+                label={t('registerScreen.form.name') as string}
                 onChangeText={value =>
                   setFormData({ ...formData, name: value })
                 }
@@ -88,7 +89,7 @@ export default function RegisterScreen({ navigation }) {
               />
               <Input
                 isRequired
-                label={'Last Name'}
+                label={t('registerScreen.form.lastName') as string}
                 onChangeText={value =>
                   setFormData({ ...formData, lastName: value })
                 }
@@ -98,7 +99,7 @@ export default function RegisterScreen({ navigation }) {
               />
               <Input
                 isRequired
-                label={'Password'}
+                label={t('registerScreen.form.password') as string}
                 onChangeText={value =>
                   setFormData({ ...formData, password: value })
                 }
@@ -108,7 +109,7 @@ export default function RegisterScreen({ navigation }) {
               />
               <Input
                 isRequired
-                label={'Confirm Password'}
+                label={t('registerScreen.form.confirmPassword') as string}
                 onChangeText={value =>
                   setFormData({ ...formData, confirmPassword: value })
                 }
@@ -132,7 +133,7 @@ export default function RegisterScreen({ navigation }) {
               // _pressed={{ bg: colors.blue.base }}
               onPress={onSubmit}
             >
-              {'Registrarse'}
+              {t('registerScreen.form.signUp')}
             </Button>
             <HStackLayout alignSelf={'center'} flexWrap={'wrap'}>
               <Text size={'sm'}>{'Ya tienes una cuenta? '}</Text>

@@ -1,4 +1,6 @@
-export function validate(formData, t) {
+import { t } from 'i18next'
+
+export function validate(formData) {
   let validationErrors = {}
 
   if (formData.email.trim().length === 0) {
