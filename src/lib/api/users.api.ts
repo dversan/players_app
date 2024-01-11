@@ -16,7 +16,7 @@ function getUser(userId: string): Promise<User> {
 function createUser(
   firebaseUser: FirebaseAuthTypes.User,
   name: string,
-  lastName: string,
+  lastName: string
 ): Promise<any> {
   const creationDate = firebaseUser.metadata.creationTime!
 
@@ -41,6 +41,38 @@ function createUser(
       await firebaseUser.delete()
       throw reason
     })
+}
+
+function savePushToken(userId: string, token: string | null): Promise<void> {
+  return firestore()
+    .collection('users')
+    .doc(userId)
+    .update({ pushToken: token })
+}
+
+function saveUser(
+  userId: string,
+  name: string,
+  lastName: string
+): Promise<void> {
+  return firestore()
+    .collection('users')
+    .doc(userId)
+    .update({ name: name, lastName: lastName })
+}
+
+function updateEmail(userId: string, email: string): Promise<void> {
+  return firestore().collection('users').doc(userId).update({ email: email })
+}
+
+function saveDisabledNotifications(
+  userId: string,
+  options: string[]
+): Promise<void> {
+  return firestore()
+    .collection('users')
+    .doc(userId)
+    .update({ disabledNotifications: options })
 }
 
 function mapUserNotifications(notifications: any): Notification[] {
@@ -92,4 +124,11 @@ function parseUser(
   }
 }
 
-export { getUser }
+export {
+  getUser,
+  createUser,
+  savePushToken,
+  saveUser,
+  updateEmail,
+  saveDisabledNotifications
+}
