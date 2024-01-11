@@ -1,13 +1,8 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState
-} from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { t } from 'i18next'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
+import * as userApi from '../api/users.api'
 import { User } from '../data/models'
-import { useTranslation } from 'react-i18next'
 
 interface Auth {
   user: User
@@ -24,7 +19,7 @@ interface Auth {
 
 const AuthContext = createContext<Auth>({} as Auth)
 
-function useFirebaseAuth(t) {
+function useFirebaseAuth() {
   const [initializing, setInitializing] = useState(true)
   const [user, setUser] = useState<User | null>(null)
 
@@ -52,7 +47,9 @@ function useFirebaseAuth(t) {
     lastName: string,
     password: string
   ): Promise<any> {
-    return auth().createUserWithEmailAndPassword(email, password)
+    return auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(credential => userApi.createUser(credential.user, name, lastName))
   }
 
   function signInWithEmail(email: string, password: string) {
@@ -73,13 +70,7 @@ function useFirebaseAuth(t) {
   }
 
   function signOut() {
-    // return userApi
-    //   .savePushToken(user!.id, null)
-    //   .then(() => auth().signOut())
-    // .then(() => {
-    //   userSubscriptionRef.current?.()
-    //   userSubscriptionRef.current = undefined
-    // })
+    return userApi.savePushToken(user!.id, null).then(() => auth().signOut())
   }
 
   return { user: user!, initializing, signUp, signInWithEmail, signOut }
@@ -90,9 +81,7 @@ export const useAuth = () => {
 }
 
 export default function AuthProvider({ children }: any) {
-  const { t } = useTranslation()
-
-  const firebaseAuth = useFirebaseAuth(t)
+  const firebaseAuth = useFirebaseAuth()
   return (
     <AuthContext.Provider value={firebaseAuth}>{children}</AuthContext.Provider>
   )
