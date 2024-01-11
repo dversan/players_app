@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "616942671687",
+    "project_id": "players-app-e6689",
+    "storage_bucket": "players-app-e6689.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616942671687:android:4e04853607dd1e455b1e62",
+        "android_client_info": {
+          "package_name": "com.players_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd4WtblkaZt9qG2RP299GRvytZTFRwq4w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

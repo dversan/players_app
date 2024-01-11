@@ -9,7 +9,7 @@ export const colors = {
   action: {
     base: '#d9376e'
   },
-  highlight: {
+  button: {
     base: '#ff8e3c'
   }
 }
