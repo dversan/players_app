@@ -9,7 +9,7 @@ import {
   Image,
   Text
 } from '@gluestack-ui/themed'
-import { colors } from '../../../ui/ui-theme.provider'
+import { dummyColors as colors } from '../../../ui/ui-theme.provider'
 import BoxLayout from '../../../ui/layout/box.layout'
 import { t } from 'i18next'
 
@@ -43,7 +43,6 @@ export default function WelcomeScreen({ navigation }) {
           />
         </VStackLayout>
         <Button
-          backgroundColor={colors.action.base}
           variant={'solid'}
           size={'xl'}
           action={colors.action.base}

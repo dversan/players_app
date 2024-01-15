@@ -1,6 +1,6 @@
 import * as React from 'react'
 import ScreenLayout from '../../../ui/layout/screen.layout'
-import { colors } from '../../../ui/ui-theme.provider'
+import { dummyColors as colors } from '../../../ui/ui-theme.provider'
 import KeyboardAvoidingView from '../../../ui/components/keyboard-avoiding-view'
 import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
 import VStackLayout from '../../../ui/layout/vstack.layout'
@@ -129,7 +129,6 @@ export default function RegisterScreen({ navigation }) {
             </VStackLayout>
             <Button
               variant={'solid'}
-              bg={colors.action.base}
               isLoading={isLoading}
               // _loading={{ bg: colors.blue.base }}
               // _pressed={{ bg: colors.blue.base }}

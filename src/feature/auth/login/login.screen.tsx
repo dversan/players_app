@@ -5,7 +5,7 @@ import BoxLayout from '../../../ui/layout/box.layout'
 import VStackLayout from '../../../ui/layout/vstack.layout'
 import Text from '../../../ui/components/text'
 import Link from '../../../ui/components/link'
-import { colors } from '../../../ui/ui-theme.provider'
+import { dummyColors as colors } from '../../../ui/ui-theme.provider'
 import Input from '../../../ui/components/input'
 import HStackLayout from '../../../ui/layout/hstack.layout'
 import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
@@ -102,7 +102,6 @@ export default function LoginScreen({ navigation }: any) {
           <VStackLayout space={8} safeArea>
             <Button
               variant={'solid'}
-              bg={colors.action.base}
               isLoading={isLoading}
               // _loading={{ bg: colors.action.base }}
               // _pressed={{ bg: colors.action.base }}

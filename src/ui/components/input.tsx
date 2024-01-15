@@ -6,7 +6,7 @@ import {
   Input as GSInput,
   InputField
 } from '@gluestack-ui/themed'
-import { colors } from '../ui-theme.provider'
+import { dummyColors as colors } from '../ui-theme.provider'
 
 interface GSInputCustomProps extends PropsWithChildren {
   label?: string
