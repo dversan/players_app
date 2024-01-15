@@ -138,7 +138,7 @@ export default function RegisterScreen({ navigation }) {
               {t('registerScreen.form.signUp')}
             </Button>
             <HStackLayout alignSelf={'center'} flexWrap={'wrap'}>
-              <Text size={'sm'}>{'Ya tienes una cuenta? '}</Text>
+              <Text size={'sm'}>{t('registerScreen.alreadyAccount')}</Text>
               <Link onPress={() => navigation.navigate('LoginScreen')}>
                 <Text>{'Sign in'}</Text>
               </Link>
