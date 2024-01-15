@@ -17,15 +17,15 @@ export const dummyColors = {
 }
 
 export const customColors = {
-  primary400: '#B5CC95',
-  primary500: '#91B25F',
-  primary600: '#86A94B',
-  primary700: '#749240',
-  primary800: '#405321',
+  primary200: '#B5CC95',
+  primary300: '#91B25F',
+  primary400: '#86A94B',
+  primary500: '#749240',
+  primary600: '#405321',
 
   backgroundLight400: '#f5f5f5',
   backgroundLight500: '#F8F8F8',
-  backgroundLight600: '#ffffff',
+  backgroundLight200: '#ffffff',
 
   backgroundDark400: '#A3A3A3',
   backgroundDark500: '#302E2A',
