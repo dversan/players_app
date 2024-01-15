@@ -4,6 +4,7 @@ import HeaderBackButton from '../components/header-back-button'
 import { useNavigation } from '@react-navigation/native'
 import { StatusBar } from '@gluestack-ui/themed'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { customColors } from '../ui-theme.provider'
 
 interface ScreenProps {
   fullscreen?: boolean
@@ -13,7 +14,11 @@ interface ScreenProps {
 }
 
 export default function ScreenLayout(props: ScreenProps) {
-  const { fullscreen, backgroundColor = 'white', children } = props
+  const {
+    fullscreen,
+    backgroundColor = customColors.backgroundDark500,
+    children
+  } = props
   const navigation = useNavigation()
   const [showBack, setShowBack] = useState<boolean>(false)
 
@@ -27,7 +32,7 @@ export default function ScreenLayout(props: ScreenProps) {
 
   return (
     <>
-      <StatusBar backgroundColor={backgroundColor} barStyle={'dark-content'} />
+      <StatusBar backgroundColor={backgroundColor} barStyle={'light-content'} />
       <BoxLayout
         height={'100%'}
         backgroundColor={backgroundColor}

@@ -15,7 +15,7 @@ import { t } from 'i18next'
 
 export default function WelcomeScreen({ navigation }) {
   return (
-    <ScreenLayout backgroundColor={colors.backgrounds.dark}>
+    <ScreenLayout>
       <VStackLayout
         flex={1}
         p={5}
@@ -38,7 +38,7 @@ export default function WelcomeScreen({ navigation }) {
           <Image
             size={'2xl'}
             borderRadius={'$none'}
-            source={require('../../../ui/images/player_logo.png')}
+            source={require('../../../ui/images/players_logo.jpeg')}
             alt={'players welcome image'}
           />
         </VStackLayout>

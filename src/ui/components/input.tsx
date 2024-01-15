@@ -19,13 +19,13 @@ export default function Input(props: GSInputCustomProps) {
   return (
     <FormControl w={'100%'} isInvalid={props.error !== undefined}>
       {props.label && (
-        <FormControlLabelText>{props.label}</FormControlLabelText>
+        <FormControlLabelText color={'white'}>
+          {props.label}
+        </FormControlLabelText>
       )}
-
       <GSInput
         {...props}
         isInvalid={props.error !== undefined}
-        borderColor={colors.text.base}
         borderRadius={4}
         placeholderTextColor={colors.action.base}
       >
