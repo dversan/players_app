@@ -1,11 +1,9 @@
 import * as React from 'react'
 import ScreenLayout from '../../../ui/layout/screen.layout'
 import VStackLayout from '../../../ui/layout/vstack.layout'
-import { CloseCircleIcon, Icon, Image } from '@gluestack-ui/themed'
+import { Image } from '@gluestack-ui/themed'
 import Button from '../../../ui/components/button'
 import Text from '../../../ui/components/text'
-import { dummyColors as colors } from '../../../ui/ui-theme.provider'
-import BoxLayout from '../../../ui/layout/box.layout'
 import { t } from 'i18next'
 
 export default function WelcomeScreen({ navigation }) {
@@ -13,8 +11,7 @@ export default function WelcomeScreen({ navigation }) {
     <ScreenLayout>
       <VStackLayout
         flex={1}
-        p={5}
-        space={'8'}
+        p={24}
         justifyContent={'space-between'}
         safeAreaBottomx
       >
@@ -22,26 +19,30 @@ export default function WelcomeScreen({ navigation }) {
           flex={1}
           alignItems={'center'}
           maxHeight={550}
-          justifyContent={'space-between'}
+          space={'4xl'}
         >
-          <BoxLayout alignSelf={'center'} mt={3}>
-            <Icon as={CloseCircleIcon} size={'xl'} />
-          </BoxLayout>
-          <Text size={'3xl'}>{'Players App'}</Text>
           <Image
-            size={'2xl'}
+            height={185}
+            width={185}
             borderRadius={'$none'}
             source={require('../../../ui/images/players_logo.jpeg')}
             alt={'players welcome image'}
           />
+          <VStackLayout flex={1} alignItems={'center'} space={'xl'} px={16}>
+            <Text size={'2xl'} bold>
+              {t('welcomeScreen.title')}
+            </Text>
+            <Text size={'xd'} textAlign={'center'}>
+              {t('welcomeScreen.appDescription')}
+            </Text>
+          </VStackLayout>
         </VStackLayout>
         <Button
           variant={'solid'}
           size={'xl'}
-          action={colors.action.base}
           onPress={() => navigation.navigate('RegisterScreen')}
         >
-          {t('welcomeScreen.create-player')}
+          {t('welcomeScreen.createPlayer')}
         </Button>
       </VStackLayout>
     </ScreenLayout>

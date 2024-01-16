@@ -22,6 +22,8 @@ export const customColors = {
   primary400: '#86A94B',
   primary500: '#749240',
   primary600: '#405321',
+  primary700: '#2d3a17',
+  primary800: '#202a11',
 
   backgroundLight400: '#f5f5f5',
   backgroundLight500: '#F8F8F8',

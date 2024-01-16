@@ -1,3 +1,45 @@
 {
-  "create-player": "crear jugador"
+  "welcomeScreen": {
+    "createPlayer": "Crear jugador",
+    "title": "Juega al fútbol que quieras",
+    "appDescription": "Juega a fútbol 7 o fútbol sala donde quieras, con quien quieras y al nivel que se ajuste mejor al tuyo.\n\nCrea tu jugador para empezar a jugar partidos amistosos o de competición.\n\nFunda un club con un grupo jugadores y gestiona fácilmente equipos, partidos, alineaciones, cuotas, fichajes y más."
+  },
+  "registerScreen": {
+    "title": "Welcome to the Diamond Energy Journey",
+    "form": {
+      "email": "Email",
+      "name": "First name",
+      "lastName": "Last name",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "signUp": "Sign up"
+    },
+    "termsAndPrivacy": "By creating this account, you are accepting our ",
+    "terms": "Terms and Conditions",
+    "and": " and ",
+    "privacy": "Privacy Policy",
+    "alreadyAccount": "Already have an account? ",
+    "signIn": "Sign in"
+  },
+  "loginScreen": {
+    "title": "Are you ready to play football whenever you want?",
+    "form": {
+      "email": "Email",
+      "password": "Password",
+      "signUp": "Sign in"
+    },
+    "forgotPassword": "Forgot your password?",
+    "noAccount": "Don't have an account? ",
+    "signUp": "Sign up"
+  },
+  "common": {
+    "error": {
+      "generic": "Something went wrong, please try again later.",
+      "requiredField": "{{field}} is required",
+      "minLengthField": "{{field}} must be {{number}} characters or more",
+      "notSamePassword": "Passwords are not the same",
+      "invalidMail": "The email address is badly formatted",
+      "userNotFound": "There is no user with this email or the password is incorrect"
+    }
+  }
 }

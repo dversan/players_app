@@ -1,6 +1,7 @@
 {
   "welcomeScreen": {
-    "create-player": "create player"
+    "createPlayer": "Create player",
+    "title": "Play the soccer you want"
   },
   "registerScreen": {
     "title": "Welcome to the Diamond Energy Journey",

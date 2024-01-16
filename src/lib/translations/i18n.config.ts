@@ -8,11 +8,9 @@ export const languageResources = {
   es: { translation: es }
 }
 
-
-
 i18n.use(initReactI18next).init({
   compatibilityJSON: 'v3',
-  // lng: 'en',
+  // lng: 'es',
   fallbackLng: 'en',
   resources: languageResources
 })
