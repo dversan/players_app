@@ -16,9 +16,9 @@ export default function HeaderBackButton(props: Props) {
   return (
     <Pressable onPress={() => navigation.goBack()}>
       {props.isModal ? (
-        <Icon as={CloseIcon} w={'$10'} h={'$10'} />
+        <Icon color={'white'} as={CloseIcon} w={'$10'} h={'$10'} />
       ) : (
-        <Icon as={ChevronLeftIcon} w={'$10'} h={'$10'} />
+        <Icon color={'white'} as={ChevronLeftIcon} size={'xl'} />
       )}
     </Pressable>
   )
