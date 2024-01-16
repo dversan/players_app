@@ -6,7 +6,7 @@ import {
   Input as GSInput,
   InputField
 } from '@gluestack-ui/themed'
-import { dummyColors as colors } from '../ui-theme.provider'
+import { colors } from '../ui-theme.provider'
 
 interface GSInputCustomProps extends PropsWithChildren {
   label?: string
@@ -19,13 +19,13 @@ export default function Input(props: GSInputCustomProps) {
   return (
     <FormControl w={'100%'} isInvalid={props.error !== undefined}>
       {props.label && (
-        <FormControlLabelText color={'white'}>
-          {props.label}
-        </FormControlLabelText>
+        <FormControlLabelText>{props.label}</FormControlLabelText>
       )}
+
       <GSInput
         {...props}
         isInvalid={props.error !== undefined}
+        borderColor={colors.text.base}
         borderRadius={4}
         placeholderTextColor={colors.action.base}
       >

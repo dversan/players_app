@@ -3,7 +3,7 @@
     "create-player": "create player"
   },
   "registerScreen": {
-    "title": "Welcome to the Diamond Energy Journey",
+    "title": "Are you ready to play football whenever you want?",
     "form": {
       "email": "Email",
       "name": "First name",
@@ -11,13 +11,7 @@
       "password": "Password",
       "confirmPassword": "Confirm password",
       "signUp": "Sign up"
-    },
-    "termsAndPrivacy": "By creating this account, you are accepting our ",
-    "terms": "Terms and Conditions",
-    "and": " and ",
-    "privacy": "Privacy Policy",
-    "alreadyAccount": "Already have an account? ",
-    "signIn": "Sign in"
+    }
   },
   "loginScreen": {
     "title": "Are you ready to play football whenever you want?",

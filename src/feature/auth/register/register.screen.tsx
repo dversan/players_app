@@ -1,16 +1,17 @@
 import * as React from 'react'
-import { useState } from 'react'
 import ScreenLayout from '../../../ui/layout/screen.layout'
+import { colors } from '../../../ui/ui-theme.provider'
 import KeyboardAvoidingView from '../../../ui/components/keyboard-avoiding-view'
 import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
 import VStackLayout from '../../../ui/layout/vstack.layout'
-import { Center, CloseCircleIcon, Icon } from '@gluestack-ui/themed'
+import { CloseCircleIcon, Icon, Center } from '@gluestack-ui/themed'
 import Text from '../../../ui/components/text'
 import Input from '../../../ui/components/input'
 import BoxLayout from '../../../ui/layout/box.layout'
 import HStackLayout from '../../../ui/layout/hstack.layout'
 import Link from '../../../ui/components/link'
 import Button from '../../../ui/components/button'
+import { useState } from 'react'
 import { validate } from '../../../lib/data/helpers'
 import { useAuth } from '../../../lib/auth/auth.context'
 import { t } from 'i18next'
@@ -54,7 +55,7 @@ export default function RegisterScreen({ navigation }) {
   console.log(errors)
 
   return (
-    <ScreenLayout>
+    <ScreenLayout backgroundColor={colors.backgrounds.base}>
       <KeyboardAvoidingView>
         <ScrollViewLayout>
           <VStackLayout p={10} space={'xl'}>
@@ -128,6 +129,7 @@ export default function RegisterScreen({ navigation }) {
             </VStackLayout>
             <Button
               variant={'solid'}
+              bg={colors.action.base}
               isLoading={isLoading}
               // _loading={{ bg: colors.blue.base }}
               // _pressed={{ bg: colors.blue.base }}
@@ -136,7 +138,7 @@ export default function RegisterScreen({ navigation }) {
               {t('registerScreen.form.signUp')}
             </Button>
             <HStackLayout alignSelf={'center'} flexWrap={'wrap'}>
-              <Text size={'sm'}>{t('registerScreen.alreadyAccount')}</Text>
+              <Text size={'sm'}>{'Ya tienes una cuenta? '}</Text>
               <Link onPress={() => navigation.navigate('LoginScreen')}>
                 <Text>{'Sign in'}</Text>
               </Link>
