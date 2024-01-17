@@ -51,8 +51,8 @@ export default function RegisterScreen({ navigation }) {
     <ScreenLayout>
       <KeyboardAvoidingView>
         <ScrollViewLayout>
-          <VStackLayout p={24} space={'md'}>
-            <BoxLayout alignSelf={'center'} mb={5}>
+          <VStackLayout p={24} pt={16} space={'md'}>
+            <BoxLayout alignSelf={'center'}>
               <Image
                 height={45}
                 width={45}

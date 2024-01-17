@@ -41,8 +41,8 @@ export default function ScreenLayout(props: ScreenProps) {
       >
         <BoxLayout
           position={'absolute'}
-          left={16}
-          top={insets.top + 40}
+          left={24}
+          top={insets.top + 30}
           zIndex={100}
         >
           {showBack && <HeaderBackButton isModal={props.isModal || false} />}
