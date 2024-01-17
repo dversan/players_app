@@ -32,6 +32,15 @@
     "noAccount": "Don't have an account? ",
     "signUp": "Sign up"
   },
+  "passwordScreen": {
+    "title": "Recover your password",
+    "description": "Introduce your email and we will send you a link to reset your password.",
+    "cta": "Send me the link",
+    "alert": {
+      "title": "Check your email",
+      "message": "We've sent you a link to reset your password."
+    }
+  },
   "common": {
     "error": {
       "generic": "Something went wrong, please try again later.",
@@ -40,6 +49,9 @@
       "notSamePassword": "Passwords are not the same",
       "invalidMail": "The email address is badly formatted",
       "userNotFound": "There is no user with this email or the password is incorrect"
+    },
+    "text": {
+      "ok": "ok"
     }
   }
 }

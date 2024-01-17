@@ -25,21 +25,33 @@
     "title": "Bienvenido otra vez!",
     "form": {
       "email": "Email",
-      "password": "Password",
-      "signUp": "Sign in"
+      "password": "Contraseña",
+      "signUp": "Iniciar sesión"
     },
-    "forgotPassword": "Forgot your password?",
-    "noAccount": "Don't have an account? ",
-    "signUp": "Sign up"
+    "forgotPassword": "Olvidaste tu contraseña?",
+    "noAccount": "No tienes una cuenta? ",
+    "signUp": "Regístrate"
+  },
+  "passwordScreen": {
+    "title": "Recupera tu contraseña",
+    "description": "Introduce tu email y recibirás un correo con un link para resetear tu contraseña.",
+    "cta": "Enviar link",
+    "alert": {
+      "title": "Comprueba tu email",
+      "message": "Te hemos enviado un link para resetear tu contraseña."
+    }
   },
   "common": {
     "error": {
-      "generic": "Something went wrong, please try again later.",
-      "requiredField": "{{field}} is required",
-      "minLengthField": "{{field}} must be {{number}} characters or more",
-      "notSamePassword": "Passwords are not the same",
-      "invalidMail": "The email address is badly formatted",
-      "userNotFound": "There is no user with this email or the password is incorrect"
+      "generic": "Algo ha ido mal, por favor inténtalo más tarde.",
+      "requiredField": "El {{field}} es requerido",
+      "minLengthField": "{{field}} debe contener {{number}} caracteres o más.",
+      "notSamePassword": "Las contraseñas no coinciden.",
+      "invalidMail": "El formato del email no es correcto.",
+      "userNotFound": "No existe ningún usuario con esta dirección de email o la contraseña es incorrecta."
+    },
+    "text": {
+      "ok": "ok"
     }
   }
 }
