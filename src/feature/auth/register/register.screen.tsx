@@ -4,7 +4,7 @@ import ScreenLayout from '../../../ui/layout/screen.layout'
 import KeyboardAvoidingView from '../../../ui/components/keyboard-avoiding-view'
 import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
 import VStackLayout from '../../../ui/layout/vstack.layout'
-import { Center, CloseCircleIcon, Icon } from '@gluestack-ui/themed'
+import { Center, Image } from '@gluestack-ui/themed'
 import Text from '../../../ui/components/text'
 import Input from '../../../ui/components/input'
 import BoxLayout from '../../../ui/layout/box.layout'
@@ -14,6 +14,8 @@ import Button from '../../../ui/components/button'
 import { validate } from '../../../lib/data/helpers'
 import { useAuth } from '../../../lib/auth/auth.context'
 import { t } from 'i18next'
+import { Linking } from 'react-native'
+import { links } from '../../../lib/data/links.data'
 
 export default function RegisterScreen({ navigation }) {
   const { signUp } = useAuth()
@@ -37,14 +39,6 @@ export default function RegisterScreen({ navigation }) {
         .catch(reason => {
           setIsLoading(false)
           setErrors({ email: reason.message })
-          // TODO ################ Error reporting to analytics ################################
-          // logError(
-          //   new Error(
-          //     reason.message +
-          //       ` email: ${email}, name: ${name}, lastName: ${lastName}, pass: ${password}`
-          //   ),
-          //   'registerScreen'
-          // )
         })
     } else {
       setErrors(validate(formData).validationErrors)
@@ -57,88 +51,100 @@ export default function RegisterScreen({ navigation }) {
     <ScreenLayout>
       <KeyboardAvoidingView>
         <ScrollViewLayout>
-          <VStackLayout p={10} space={'xl'}>
-            <BoxLayout alignSelf={'center'} mt={3} mb={5}>
-              <Icon as={CloseCircleIcon} size={'xl'} />
+          <VStackLayout p={24} space={'md'}>
+            <BoxLayout alignSelf={'center'} mb={5}>
+              <Image
+                height={45}
+                width={45}
+                source={require('../../../ui/images/players_logo.jpeg')}
+                alt={'players logo'}
+              />
             </BoxLayout>
-            <Center>
-              <Text size={'xl'}>{'Players'}</Text>
-            </Center>
-            <VStackLayout space={'md'}>
-              <Input
-                isRequired
-                label={t('registerScreen.form.email') as string}
-                value={formData.email}
-                onChangeText={value =>
-                  setFormData({ ...formData, email: value })
-                }
-                error={errors.email}
-                isDisabled={isLoading}
-                autoCapitalize={'none'}
-              />
-              <Input
-                isRequired
-                label={t('registerScreen.form.name') as string}
-                onChangeText={value =>
-                  setFormData({ ...formData, name: value })
-                }
-                error={errors.name}
-                isDisabled={isLoading}
-                autoCapitalize={'none'}
-              />
-              <Input
-                isRequired
-                label={t('registerScreen.form.lastName') as string}
-                onChangeText={value =>
-                  setFormData({ ...formData, lastName: value })
-                }
-                error={errors.lastName}
-                isDisabled={isLoading}
-                autoCapitalize={'none'}
-              />
-              <Input
-                type={'password'}
-                isRequired
-                label={t('registerScreen.form.password') as string}
-                onChangeText={value =>
-                  setFormData({ ...formData, password: value })
-                }
-                error={errors.password}
-                isDisabled={isLoading}
-                autoCapitalize={'none'}
-              />
-              <Input
-                type={'password'}
-                isRequired
-                label={t('registerScreen.form.confirmPassword') as string}
-                onChangeText={value =>
-                  setFormData({ ...formData, confirmPassword: value })
-                }
-                error={errors.confirmPassword}
-                isDisabled={isLoading}
-                autoCapitalize={'none'}
-              />
-              <HStackLayout flexWrap={'wrap'}>
-                <Text size={'sm'}>
-                  {
-                    'Creando esta cuenta estás aceptando nuestros términos y condiciones y política de privacidad'
-                  }
+            <VStackLayout space={'3xl'}>
+              <Center>
+                <Text size={'2xl'} bold>
+                  {t('registerScreen.title')}
                 </Text>
+              </Center>
+              <VStackLayout space={'md'}>
+                <Input
+                  isRequired
+                  label={t('registerScreen.form.email') as string}
+                  value={formData.email}
+                  onChangeText={value =>
+                    setFormData({ ...formData, email: value })
+                  }
+                  error={errors.email}
+                  isDisabled={isLoading}
+                  autoCapitalize={'none'}
+                />
+                <Input
+                  isRequired
+                  label={t('registerScreen.form.name') as string}
+                  onChangeText={value =>
+                    setFormData({ ...formData, name: value })
+                  }
+                  error={errors.name}
+                  isDisabled={isLoading}
+                  autoCapitalize={'none'}
+                />
+                <Input
+                  isRequired
+                  label={t('registerScreen.form.lastName') as string}
+                  onChangeText={value =>
+                    setFormData({ ...formData, lastName: value })
+                  }
+                  error={errors.lastName}
+                  isDisabled={isLoading}
+                  autoCapitalize={'none'}
+                />
+                <Input
+                  type={'password'}
+                  isRequired
+                  label={t('registerScreen.form.password') as string}
+                  onChangeText={value =>
+                    setFormData({ ...formData, password: value })
+                  }
+                  error={errors.password}
+                  isDisabled={isLoading}
+                  autoCapitalize={'none'}
+                />
+                <Input
+                  type={'password'}
+                  isRequired
+                  label={t('registerScreen.form.confirmPassword') as string}
+                  onChangeText={value =>
+                    setFormData({ ...formData, confirmPassword: value })
+                  }
+                  error={errors.confirmPassword}
+                  isDisabled={isLoading}
+                  autoCapitalize={'none'}
+                />
+              </VStackLayout>
+              <HStackLayout flexWrap={'wrap'}>
+                <Text size={'sm'}>{t('registerScreen.termsAndPrivacy')}</Text>
+                <Link onPress={() => Linking.openURL(links.terms)}>
+                  <Text underline size={'sm'}>
+                    {t('registerScreen.terms')}
+                  </Text>
+                </Link>
+                <Text size={'sm'}>{t('registerScreen.and')}</Text>
+                <Link onPress={() => Linking.openURL(links.privacy)}>
+                  <Text underline size={'sm'}>
+                    {t('registerScreen.privacy')}
+                  </Text>
+                </Link>
               </HStackLayout>
+              <Button size={'xl'} isLoading={isLoading} onPress={onSubmit}>
+                {t('registerScreen.form.signUp')}
+              </Button>
             </VStackLayout>
-            <Button
-              variant={'solid'}
-              isLoading={isLoading}
-              // _loading={{ bg: colors.blue.base }}
-              // _pressed={{ bg: colors.blue.base }}
-              onPress={onSubmit}
-            >
-              {t('registerScreen.form.signUp')}
-            </Button>
             <HStackLayout alignSelf={'center'} flexWrap={'wrap'}>
-              <Text size={'sm'}>{t('registerScreen.alreadyAccount')}</Text>
+              <Text size={'md'}>{t('registerScreen.alreadyAccount')}</Text>
               <Link onPress={() => navigation.navigate('LoginScreen')}>
-                <Text>{'Sign in'}</Text>
+                <Text size={'md'} underline>
+                  {t('registerScreen.signIn')}
+                </Text>
               </Link>
             </HStackLayout>
           </VStackLayout>

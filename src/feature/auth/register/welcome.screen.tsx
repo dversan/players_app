@@ -24,15 +24,14 @@ export default function WelcomeScreen({ navigation }) {
           <Image
             height={185}
             width={185}
-            borderRadius={'$none'}
             source={require('../../../ui/images/players_logo.jpeg')}
-            alt={'players welcome image'}
+            alt={'players logo'}
           />
           <VStackLayout flex={1} alignItems={'center'} space={'xl'} px={16}>
             <Text size={'2xl'} bold>
               {t('welcomeScreen.title')}
             </Text>
-            <Text size={'xd'} textAlign={'center'}>
+            <Text size={'md'} textAlign={'center'}>
               {t('welcomeScreen.appDescription')}
             </Text>
           </VStackLayout>

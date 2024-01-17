@@ -5,21 +5,21 @@
     "appDescription": "Juega a fútbol 7 o fútbol sala donde quieras, con quien quieras y al nivel que se ajuste mejor al tuyo.\n\nCrea tu jugador para empezar a jugar partidos amistosos o de competición.\n\nFunda un club con un grupo jugadores y gestiona fácilmente equipos, partidos, alineaciones, cuotas, fichajes y más."
   },
   "registerScreen": {
-    "title": "Welcome to the Diamond Energy Journey",
+    "title": "Hola! Vamos a crear tu cuenta",
     "form": {
       "email": "Email",
-      "name": "First name",
-      "lastName": "Last name",
-      "password": "Password",
-      "confirmPassword": "Confirm password",
-      "signUp": "Sign up"
+      "name": "Nombre",
+      "lastName": "Apellidos",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "signUp": "Registrarse"
     },
-    "termsAndPrivacy": "By creating this account, you are accepting our ",
-    "terms": "Terms and Conditions",
-    "and": " and ",
-    "privacy": "Privacy Policy",
-    "alreadyAccount": "Already have an account? ",
-    "signIn": "Sign in"
+    "termsAndPrivacy": "Registrándote aceptas nuestros",
+    "terms": "Términos y Condiciones",
+    "and": " y ",
+    "privacy": "Política de Privacidad",
+    "alreadyAccount": "Ya tienes cuenta? ",
+    "signIn": "Inicar sesión"
   },
   "loginScreen": {
     "title": "Are you ready to play football whenever you want?",
