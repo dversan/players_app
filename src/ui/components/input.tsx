@@ -33,6 +33,9 @@ export default function Input(props: GSInputCustomProps) {
             bg: colors.backgroundDark300,
             borderColor: colors.primary300,
             borderWidth: 2
+          },
+          ':invalid': {
+            borderColor: 'red'
           }
         }}
       >
@@ -45,7 +48,7 @@ export default function Input(props: GSInputCustomProps) {
         />
       </GSInput>
       {props.error && (
-        <FormControlErrorText>{props.error}</FormControlErrorText>
+        <FormControlErrorText color={'red'}>{props.error}</FormControlErrorText>
       )}
     </FormControl>
   )
