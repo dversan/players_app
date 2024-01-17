@@ -30,7 +30,9 @@ export default function Input(props: GSInputCustomProps) {
         size={'xl'}
         sx={{
           ':focus': {
-            bg: colors.backgroundDark300
+            bg: colors.backgroundDark300,
+            borderColor: colors.primary300,
+            borderWidth: 2
           }
         }}
       >
