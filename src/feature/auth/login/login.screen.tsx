@@ -9,7 +9,7 @@ import Input from '../../../ui/components/input'
 import HStackLayout from '../../../ui/layout/hstack.layout'
 import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
 import Button from '../../../ui/components/button'
-import { CloseCircleIcon, Icon, Center } from '@gluestack-ui/themed'
+import { Center, Image } from '@gluestack-ui/themed'
 import { t } from 'i18next'
 
 export default function LoginScreen({ navigation }: any) {
@@ -61,13 +61,20 @@ export default function LoginScreen({ navigation }: any) {
   return (
     <ScreenLayout>
       <ScrollViewLayout fullHeight>
-        <VStackLayout flex={1} p={5} space={8} justifyContent={'space-between'}>
-          <VStackLayout p={10} space={'xl'}>
-            <BoxLayout alignSelf={'center'} mt={3} mb={5}>
-              <Icon as={CloseCircleIcon} size={'xl'} />
-            </BoxLayout>
+        <VStackLayout flex={1} p={24} pt={16} space={'md'}>
+          <BoxLayout alignSelf={'center'}>
+            <Image
+              height={45}
+              width={45}
+              source={require('../../../ui/images/players_logo.jpeg')}
+              alt={'players logo'}
+            />
+          </BoxLayout>
+          <VStackLayout space={'3xl'}>
             <Center>
-              <Text size={'lg'}>{'Players'}</Text>
+              <Text size={'2xl'} bold>
+                {t('loginScreen.title')}
+              </Text>
             </Center>
             <VStackLayout space={'md'}>
               <Input
@@ -97,24 +104,18 @@ export default function LoginScreen({ navigation }: any) {
             >
               {<Text>{t('loginScreen.forgotPassword')}</Text>}
             </Link>
-          </VStackLayout>
-          <VStackLayout space={8} safeArea>
-            <Button
-              variant={'solid'}
-              isLoading={isLoading}
-              // _loading={{ bg: colors.action.base }}
-              // _pressed={{ bg: colors.action.base }}
-              onPress={onSubmit}
-            >
+            <Button isLoading={isLoading} onPress={onSubmit}>
               {t('loginScreen.form.signUp')}
             </Button>
-            <HStackLayout alignSelf={'center'} flexWrap={'wrap'}>
-              <Text size={'sm'}>{t('loginScreen.noAccount')}</Text>
-              <Link onPress={() => navigation.navigate('RegisterScreen')}>
-                {<Text>{t('loginScreen.signUp')}</Text>}
-              </Link>
-            </HStackLayout>
           </VStackLayout>
+          <HStackLayout alignSelf={'center'} flexWrap={'wrap'}>
+            <Text size={'md'}>{t('loginScreen.noAccount')}</Text>
+            <Link onPress={() => navigation.navigate('RegisterScreen')}>
+              <Text size={'md'} underline>
+                {t('loginScreen.signUp')}
+              </Text>
+            </Link>
+          </HStackLayout>
         </VStackLayout>
       </ScrollViewLayout>
     </ScreenLayout>

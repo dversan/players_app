@@ -22,7 +22,7 @@
     "signIn": "Inicar sesión"
   },
   "loginScreen": {
-    "title": "Are you ready to play football whenever you want?",
+    "title": "Bienvenido otra vez!",
     "form": {
       "email": "Email",
       "password": "Password",
