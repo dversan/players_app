@@ -29,9 +29,11 @@ export const customColors = {
   backgroundLight500: '#F8F8F8',
   backgroundLight200: '#ffffff',
 
-  backgroundDark400: '#A3A3A3',
+  backgroundDark300: '#595855',
+  backgroundDark400: '#45433f',
   backgroundDark500: '#302E2A',
-  backgroundDark600: '#252322'
+  backgroundDark600: '#252322',
+  backgroundDark700: '#262522'
 }
 
 const gluestackCustomUIConfig = {
