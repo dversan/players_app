@@ -102,9 +102,9 @@ export default function LoginScreen({ navigation }: any) {
               alignSelf={'center'}
               onPress={() => navigation.navigate('PasswordScreen')}
             >
-              {<Text>{t('loginScreen.forgotPassword')}</Text>}
+              {<Text underline>{t('loginScreen.forgotPassword')}</Text>}
             </Link>
-            <Button isLoading={isLoading} onPress={onSubmit}>
+            <Button size={'xl'} isLoading={isLoading} onPress={onSubmit}>
               {t('loginScreen.form.signUp')}
             </Button>
           </VStackLayout>

@@ -15,6 +15,7 @@ interface Auth {
   ) => Promise<any>
   signInWithEmail: (email: string, password: string) => Promise<any>
   signOut: () => Promise<void>
+  recoverPassword: (email: string) => Promise<void>
 }
 
 const AuthContext = createContext<Auth>({} as Auth)
@@ -69,11 +70,35 @@ function useFirebaseAuth() {
       })
   }
 
+  function recoverPassword(email: string) {
+    return auth()
+      .sendPasswordResetEmail(email)
+      .catch(({ message }) => {
+        if (message.includes('auth/invalid-email')) {
+          throw t('common.error.invalidMail')
+        }
+        if (
+          message.includes('auth/user-not-found') ||
+          message.includes('auth/wrong-password')
+        ) {
+          throw t('common.error.userNotFound')
+        }
+        throw t('common.error.generic')
+      })
+  }
+
   function signOut() {
     return userApi.savePushToken(user!.id, null).then(() => auth().signOut())
   }
 
-  return { user: user!, initializing, signUp, signInWithEmail, signOut }
+  return {
+    user: user!,
+    initializing,
+    signUp,
+    signInWithEmail,
+    signOut,
+    recoverPassword
+  }
 }
 
 export const useAuth = () => {
