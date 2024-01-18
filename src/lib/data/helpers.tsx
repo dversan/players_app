@@ -1,9 +1,9 @@
 import { t } from 'i18next'
 
-function registerFormValidation(formData) {
+function formValidation(formData) {
   let validationErrors = {}
 
-  if (formData.email.trim().length === 0) {
+  if (formData.email?.trim().length === 0) {
     validationErrors = {
       ...validationErrors,
       email: t('common.error.requiredField', {
@@ -11,7 +11,7 @@ function registerFormValidation(formData) {
       })
     }
   }
-  if (formData.name.trim().length === 0) {
+  if (formData.name?.trim().length === 0) {
     validationErrors = {
       ...validationErrors,
       name: t('common.error.requiredField', {
@@ -19,7 +19,7 @@ function registerFormValidation(formData) {
       })
     }
   }
-  if (formData.lastName.trim().length === 0) {
+  if (formData.lastName?.trim().length === 0) {
     validationErrors = {
       ...validationErrors,
       lastName: t('common.error.requiredField', {
@@ -27,7 +27,7 @@ function registerFormValidation(formData) {
       })
     }
   }
-  if (formData.password.trim().length < 6) {
+  if (formData.password?.trim().length < 6) {
     validationErrors = {
       ...validationErrors,
       password: t('common.error.minLengthField', {
@@ -49,27 +49,4 @@ function registerFormValidation(formData) {
   }
 }
 
-function loginFormValidation(formData) {
-  let errorsValidation = {}
-  if (formData.email.trim().length === 0) {
-    errorsValidation = {
-      ...errorsValidation,
-      email: t('common.error.requiredField', {
-        field: t('registerScreen.form.email')
-      })
-    }
-  }
-  if (formData.password.trim().length < 6) {
-    errorsValidation = {
-      ...errorsValidation,
-      password: t('common.error.minLengthField', {
-        field: t('registerScreen.form.password'),
-        number: 6
-      })
-    }
-  }
-
-  return { errorsValidation }
-}
-
-export { registerFormValidation, loginFormValidation }
+export { formValidation }
