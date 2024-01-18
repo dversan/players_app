@@ -1,5 +1,4 @@
 import Text from '../../../ui/components/text'
-import BoxLayout from '../../../ui/layout/box.layout'
 import { Center, Image } from '@gluestack-ui/themed'
 import Input from '../../../ui/components/input'
 import React, { useState } from 'react'
@@ -10,29 +9,17 @@ import { t } from 'i18next'
 import { useAuth } from '../../../lib/auth/auth.context'
 import { Alert } from 'react-native'
 import Button from '../../../ui/components/button'
+import { formValidation } from '../../../lib/data/helpers'
 
-const PasswordScreen = ({ navigation }) => {
+const PasswordScreen = ({ route, navigation }) => {
   const { recoverPassword } = useAuth()
   const [formData, setFormData] = useState({ email: '' })
   const [errors, setErrors] = useState<{ [id: string]: string }>({})
   const [isLoading, setIsLoading] = useState<boolean>(false)
-
-  function validate() {
-    let errorsValidation = {}
-    if (formData.email.trim().length === 0) {
-      errorsValidation = {
-        ...errorsValidation,
-        email: t('common.error.requiredField', {
-          field: t('registerScreen.form.email')
-        })
-      }
-    }
-    setErrors(errorsValidation)
-    return Object.keys(errorsValidation).length === 0
-  }
+  const { authLayoutProps } = route.params
 
   function onSubmit() {
-    if (validate()) {
+    if (formValidation(formData).validationOk) {
       setIsLoading(true)
       const { email } = formData
       recoverPassword(email)
@@ -48,21 +35,27 @@ const PasswordScreen = ({ navigation }) => {
           setIsLoading(false)
           setErrors({ email: reason })
         })
+    } else {
+      setErrors(formValidation(formData).validationErrors)
     }
   }
 
   return (
     <ScreenLayout>
       <ScrollViewLayout fullHeight>
-        <VStackLayout flex={1} p={24} pt={16} space={'md'}>
-          <BoxLayout alignSelf={'center'}>
+        <VStackLayout
+          p={authLayoutProps.padding}
+          pt={authLayoutProps.paddingTop}
+          space={authLayoutProps.mainSpacing}
+        >
+          <Center>
             <Image
-              height={45}
-              width={45}
+              height={authLayoutProps.logoH}
+              width={authLayoutProps.logoW}
               source={require('../../../ui/images/players_logo.jpeg')}
               alt={'players logo'}
             />
-          </BoxLayout>
+          </Center>
           <VStackLayout space={'3xl'}>
             <Center>
               <Text size={'2xl'} bold>
@@ -72,7 +65,6 @@ const PasswordScreen = ({ navigation }) => {
             <Text size={'lg'}>{t('passwordScreen.description')}</Text>
             <VStackLayout space={'md'}>
               <Input
-                isRequired
                 label={t('loginScreen.form.email') as string}
                 onChangeText={value =>
                   setFormData({ ...formData, email: value.trim() })

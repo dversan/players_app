@@ -8,6 +8,7 @@ import PasswordScreen from './login/password.screen'
 const AuthStack = createNativeStackNavigator()
 
 interface AuthLayoutProps {
+  padding: number
   paddingTop: number
   mainSpacing: string
   logoH: number
@@ -16,6 +17,7 @@ interface AuthLayoutProps {
 
 export default function AuthNavigator() {
   const authLayoutProps: AuthLayoutProps = {
+    padding: 24,
     paddingTop: 8,
     mainSpacing: 'xl',
     logoH: 55,

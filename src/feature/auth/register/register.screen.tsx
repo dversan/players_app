@@ -47,7 +47,7 @@ export default function RegisterScreen({ route, navigation }) {
       <KeyboardAvoidingView>
         <ScrollViewLayout>
           <VStackLayout
-            p={24}
+            p={authLayoutProps.padding}
             pt={authLayoutProps.paddingTop}
             space={authLayoutProps.mainSpacing}
           >
@@ -69,7 +69,7 @@ export default function RegisterScreen({ route, navigation }) {
                 <Input
                   label={t('registerScreen.form.email') as string}
                   onChangeText={value =>
-                    setFormData({ ...formData, email: value })
+                    setFormData({ ...formData, email: value.trim() })
                   }
                   error={errors.email}
                   isDisabled={isLoading}
@@ -78,7 +78,7 @@ export default function RegisterScreen({ route, navigation }) {
                 <Input
                   label={t('registerScreen.form.name') as string}
                   onChangeText={value =>
-                    setFormData({ ...formData, name: value })
+                    setFormData({ ...formData, name: value.trim() })
                   }
                   error={errors.name}
                   isDisabled={isLoading}
@@ -87,7 +87,7 @@ export default function RegisterScreen({ route, navigation }) {
                 <Input
                   label={t('registerScreen.form.lastName') as string}
                   onChangeText={value =>
-                    setFormData({ ...formData, lastName: value })
+                    setFormData({ ...formData, lastName: value.trim() })
                   }
                   error={errors.lastName}
                   isDisabled={isLoading}
@@ -97,7 +97,7 @@ export default function RegisterScreen({ route, navigation }) {
                   type={'password'}
                   label={t('registerScreen.form.password') as string}
                   onChangeText={value =>
-                    setFormData({ ...formData, password: value })
+                    setFormData({ ...formData, password: value.trim() })
                   }
                   error={errors.password}
                   isDisabled={isLoading}
@@ -107,7 +107,7 @@ export default function RegisterScreen({ route, navigation }) {
                   type={'password'}
                   label={t('registerScreen.form.confirmPassword') as string}
                   onChangeText={value =>
-                    setFormData({ ...formData, confirmPassword: value })
+                    setFormData({ ...formData, confirmPassword: value.trim() })
                   }
                   error={errors.confirmPassword}
                   isDisabled={isLoading}
