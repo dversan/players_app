@@ -12,15 +12,12 @@ interface GSButtonProps extends PropsWithChildren<PressableProps> {
 }
 
 export default function Button(props: GSButtonProps) {
-  console.log('loading = ', props.isLoading, 'disabled = ', props.disabled)
   return (
     <GSButton
+      disabled={props.isLoading || props.disabled}
       {...props}
       sx={{
         ':active': {
-          bg: colors.primary300
-        },
-        ':disabled': {
           bg: colors.primary300
         }
       }}
