@@ -7,7 +7,6 @@ import VStackLayout from '../../../ui/layout/vstack.layout'
 import { Center, Image } from '@gluestack-ui/themed'
 import Text from '../../../ui/components/text'
 import Input from '../../../ui/components/input'
-import BoxLayout from '../../../ui/layout/box.layout'
 import HStackLayout from '../../../ui/layout/hstack.layout'
 import Link from '../../../ui/components/link'
 import Button from '../../../ui/components/button'
@@ -52,14 +51,14 @@ export default function RegisterScreen({ route, navigation }) {
             pt={authLayoutProps.paddingTop}
             space={authLayoutProps.mainSpacing}
           >
-            <BoxLayout alignSelf={'center'}>
+            <Center>
               <Image
                 height={authLayoutProps.logoH}
                 width={authLayoutProps.logoW}
                 source={require('../../../ui/images/players_logo.jpeg')}
                 alt={'players logo'}
               />
-            </BoxLayout>
+            </Center>
             <VStackLayout space={'3xl'}>
               <Center>
                 <Text size={'2xl'} bold>

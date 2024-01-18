@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../../lib/auth/auth.context'
 import ScreenLayout from '../../../ui/layout/screen.layout'
-import BoxLayout from '../../../ui/layout/box.layout'
 import VStackLayout from '../../../ui/layout/vstack.layout'
 import Text from '../../../ui/components/text'
 import Link from '../../../ui/components/link'
@@ -11,65 +10,44 @@ import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
 import Button from '../../../ui/components/button'
 import { Center, Image } from '@gluestack-ui/themed'
 import { t } from 'i18next'
+import { formValidation } from '../../../lib/data/helpers'
 
-export default function LoginScreen({ navigation }: any) {
-  const { signInWithEmail, user } = useAuth()
+export default function LoginScreen({ route, navigation }: any) {
+  const { signInWithEmail } = useAuth()
   const [formData, setFormData] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState<{ [id: string]: string }>({})
   const [isLoading, setIsLoading] = useState<boolean>(false)
-
-  function validate() {
-    let errorsValidation = {}
-    if (formData.email.trim().length === 0) {
-      errorsValidation = {
-        ...errorsValidation,
-        email: t('common.error.requiredField', {
-          field: t('registerScreen.form.email')
-        })
-      }
-    }
-    if (formData.password.trim().length < 6) {
-      errorsValidation = {
-        ...errorsValidation,
-        password: t('common.error.minLengthField', {
-          field: t('registerScreen.form.password'),
-          number: 6
-        })
-      }
-    }
-
-    setErrors(errorsValidation)
-
-    return Object.keys(errorsValidation).length === 0
-  }
+  const { authLayoutProps } = route.params
 
   function onSubmit() {
-    if (validate()) {
+    if (formValidation(formData).validationOk) {
       setIsLoading(true)
       const { email, password } = formData
-      signInWithEmail(email, password)
-        .then(res => console.log(res))
-        .catch(reason => {
-          setIsLoading(false)
-          setErrors({ email: reason })
-        })
+      signInWithEmail(email, password).catch(reason => {
+        setIsLoading(false)
+        setErrors({ email: reason })
+      })
+    } else {
+      setErrors(formValidation(formData).validationErrors)
     }
   }
-
-  console.log(user)
 
   return (
     <ScreenLayout>
       <ScrollViewLayout fullHeight>
-        <VStackLayout flex={1} p={24} pt={16} space={'md'}>
-          <BoxLayout alignSelf={'center'}>
+        <VStackLayout
+          p={authLayoutProps.padding}
+          pt={authLayoutProps.paddingTop}
+          space={authLayoutProps.mainSpacing}
+        >
+          <Center>
             <Image
-              height={45}
-              width={45}
+              height={authLayoutProps.logoH}
+              width={authLayoutProps.logoW}
               source={require('../../../ui/images/players_logo.jpeg')}
               alt={'players logo'}
             />
-          </BoxLayout>
+          </Center>
           <VStackLayout space={'3xl'}>
             <Center>
               <Text size={'2xl'} bold>
@@ -78,7 +56,6 @@ export default function LoginScreen({ navigation }: any) {
             </Center>
             <VStackLayout space={'md'}>
               <Input
-                isRequired
                 label={t('loginScreen.form.email') as string}
                 onChangeText={value =>
                   setFormData({ ...formData, email: value.trim() })
@@ -89,10 +66,9 @@ export default function LoginScreen({ navigation }: any) {
               />
               <Input
                 type={'password'}
-                isRequired
                 label={t('loginScreen.form.password') as string}
                 onChangeText={value =>
-                  setFormData({ ...formData, password: value })
+                  setFormData({ ...formData, password: value.trim() })
                 }
                 error={errors.password}
                 isDisabled={isLoading}
@@ -102,7 +78,7 @@ export default function LoginScreen({ navigation }: any) {
               alignSelf={'center'}
               onPress={() => navigation.navigate('PasswordScreen')}
             >
-              {<Text underline>{t('loginScreen.forgotPassword')}</Text>}
+              {t('loginScreen.forgotPassword')}
             </Link>
             <Button size={'xl'} isLoading={isLoading} onPress={onSubmit}>
               {t('loginScreen.form.signUp')}
@@ -111,9 +87,7 @@ export default function LoginScreen({ navigation }: any) {
           <HStackLayout alignSelf={'center'} flexWrap={'wrap'}>
             <Text size={'md'}>{t('loginScreen.noAccount')}</Text>
             <Link onPress={() => navigation.navigate('RegisterScreen')}>
-              <Text size={'md'} underline>
-                {t('loginScreen.signUp')}
-              </Text>
+              {t('loginScreen.signUp')}
             </Link>
           </HStackLayout>
         </VStackLayout>
