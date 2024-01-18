@@ -2,7 +2,7 @@
   "welcomeScreen": {
     "createPlayer": "Crear jugador",
     "title": "Juega al fútbol que quieras",
-    "appDescription": "Juega a fútbol 7 o fútbol sala donde quieras, con quien quieras y al nivel que se ajuste mejor al tuyo.\n\nCrea tu jugador para empezar a jugar partidos amistosos o de competición.\n\nFunda un club con un grupo jugadores y gestiona fácilmente equipos, partidos, alineaciones, cuotas, fichajes y más."
+    "appDescription": "Juega a fútbol 7 o fútbol sala donde quieras, con quien quieras y al nivel que se ajuste mejor al tuyo.\n\nCrea tu jugador para empezar a jugar partidos amistosos o de competición.\n\nFunda un club con un grupo de jugadores y gestiona fácilmente equipos, partidos, alineaciones, cuotas, fichajes y más."
   },
   "registerScreen": {
     "title": "Hola! Vamos a crear tu cuenta",
@@ -44,8 +44,8 @@
   "common": {
     "error": {
       "generic": "Algo ha ido mal, por favor inténtalo más tarde.",
-      "requiredField": "El {{field}} es requerido",
-      "minLengthField": "{{field}} debe contener {{number}} caracteres o más.",
+      "requiredField": "Este campo es obligatorio",
+      "minLengthField": "Debe contener al menos {{number}} caracteres.",
       "notSamePassword": "Las contraseñas no coinciden.",
       "invalidMail": "El formato del email no es correcto.",
       "userNotFound": "No existe ningún usuario con esta dirección de email o la contraseña es incorrecta."
