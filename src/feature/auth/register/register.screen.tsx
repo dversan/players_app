@@ -17,7 +17,7 @@ import { t } from 'i18next'
 import { Linking } from 'react-native'
 import { links } from '../../../lib/data/links.data'
 
-export default function RegisterScreen({ navigation }) {
+export default function RegisterScreen({ route, navigation }) {
   const { signUp } = useAuth()
   const [formData, setFormData] = useState({
     email: '',
@@ -28,18 +28,16 @@ export default function RegisterScreen({ navigation }) {
   })
   const [errors, setErrors] = useState<{ [id: string]: string }>({})
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const { authLayoutProps } = route.params
 
   function onSubmit() {
     if (validate(formData).validationOk) {
-      console.log('validation OK')
       setIsLoading(true)
       const { email, name, lastName, password } = formData
-      signUp(email, name, lastName, password)
-        .then(res => console.log(res))
-        .catch(reason => {
-          setIsLoading(false)
-          setErrors({ email: reason.message })
-        })
+      signUp(email, name, lastName, password).catch(reason => {
+        setIsLoading(false)
+        setErrors({ email: reason.message })
+      })
     } else {
       setErrors(validate(formData).validationErrors)
     }
@@ -51,11 +49,15 @@ export default function RegisterScreen({ navigation }) {
     <ScreenLayout>
       <KeyboardAvoidingView>
         <ScrollViewLayout>
-          <VStackLayout p={24} pt={16} space={'md'}>
+          <VStackLayout
+            p={24}
+            pt={authLayoutProps.paddingTop}
+            space={authLayoutProps.mainSpacing}
+          >
             <BoxLayout alignSelf={'center'}>
               <Image
-                height={45}
-                width={45}
+                height={authLayoutProps.logoH}
+                width={authLayoutProps.logoW}
                 source={require('../../../ui/images/players_logo.jpeg')}
                 alt={'players logo'}
               />
@@ -68,9 +70,7 @@ export default function RegisterScreen({ navigation }) {
               </Center>
               <VStackLayout space={'md'}>
                 <Input
-                  isRequired
                   label={t('registerScreen.form.email') as string}
-                  value={formData.email}
                   onChangeText={value =>
                     setFormData({ ...formData, email: value })
                   }
@@ -79,7 +79,6 @@ export default function RegisterScreen({ navigation }) {
                   autoCapitalize={'none'}
                 />
                 <Input
-                  isRequired
                   label={t('registerScreen.form.name') as string}
                   onChangeText={value =>
                     setFormData({ ...formData, name: value })
@@ -89,7 +88,6 @@ export default function RegisterScreen({ navigation }) {
                   autoCapitalize={'none'}
                 />
                 <Input
-                  isRequired
                   label={t('registerScreen.form.lastName') as string}
                   onChangeText={value =>
                     setFormData({ ...formData, lastName: value })
@@ -100,7 +98,6 @@ export default function RegisterScreen({ navigation }) {
                 />
                 <Input
                   type={'password'}
-                  isRequired
                   label={t('registerScreen.form.password') as string}
                   onChangeText={value =>
                     setFormData({ ...formData, password: value })
@@ -111,7 +108,6 @@ export default function RegisterScreen({ navigation }) {
                 />
                 <Input
                   type={'password'}
-                  isRequired
                   label={t('registerScreen.form.confirmPassword') as string}
                   onChangeText={value =>
                     setFormData({ ...formData, confirmPassword: value })
@@ -123,28 +119,34 @@ export default function RegisterScreen({ navigation }) {
               </VStackLayout>
               <HStackLayout flexWrap={'wrap'}>
                 <Text size={'sm'}>{t('registerScreen.termsAndPrivacy')}</Text>
-                <Link onPress={() => Linking.openURL(links.terms)}>
-                  <Text underline size={'sm'}>
-                    {t('registerScreen.terms')}
-                  </Text>
+                <Link size={'sm'} onPress={() => Linking.openURL(links.terms)}>
+                  {t('registerScreen.terms')}
                 </Link>
                 <Text size={'sm'}>{t('registerScreen.and')}</Text>
-                <Link onPress={() => Linking.openURL(links.privacy)}>
-                  <Text underline size={'sm'}>
-                    {t('registerScreen.privacy')}
-                  </Text>
+                <Link
+                  size={'sm'}
+                  color={'white'}
+                  onPress={() => Linking.openURL(links.privacy)}
+                >
+                  {t('registerScreen.privacy')}
                 </Link>
               </HStackLayout>
-              <Button size={'xl'} isLoading={isLoading} onPress={onSubmit}>
+              <Button
+                size={'xl'}
+                isLoading={isLoading}
+                disabled={isLoading}
+                onPress={onSubmit}
+              >
                 {t('registerScreen.form.signUp')}
               </Button>
             </VStackLayout>
             <HStackLayout alignSelf={'center'} flexWrap={'wrap'}>
               <Text size={'md'}>{t('registerScreen.alreadyAccount')}</Text>
-              <Link onPress={() => navigation.navigate('LoginScreen')}>
-                <Text size={'md'} underline>
-                  {t('registerScreen.signIn')}
-                </Text>
+              <Link
+                color={'white'}
+                onPress={() => navigation.navigate('LoginScreen')}
+              >
+                {t('registerScreen.signIn')}
               </Link>
             </HStackLayout>
           </VStackLayout>
