@@ -11,7 +11,7 @@ import BoxLayout from '../../../ui/layout/box.layout'
 import HStackLayout from '../../../ui/layout/hstack.layout'
 import Link from '../../../ui/components/link'
 import Button from '../../../ui/components/button'
-import { validate } from '../../../lib/data/helpers'
+import { registerFormValidation } from '../../../lib/data/helpers'
 import { useAuth } from '../../../lib/auth/auth.context'
 import { t } from 'i18next'
 import { Linking } from 'react-native'
@@ -31,7 +31,7 @@ export default function RegisterScreen({ route, navigation }) {
   const { authLayoutProps } = route.params
 
   function onSubmit() {
-    if (validate(formData).validationOk) {
+    if (registerFormValidation(formData).validationOk) {
       setIsLoading(true)
       const { email, name, lastName, password } = formData
       signUp(email, name, lastName, password).catch(reason => {
@@ -39,11 +39,9 @@ export default function RegisterScreen({ route, navigation }) {
         setErrors({ email: reason.message })
       })
     } else {
-      setErrors(validate(formData).validationErrors)
+      setErrors(registerFormValidation(formData).validationErrors)
     }
   }
-
-  console.log(errors)
 
   return (
     <ScreenLayout>
