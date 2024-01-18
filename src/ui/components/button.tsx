@@ -1,16 +1,31 @@
-import { Button as GSButton, ButtonText } from '@gluestack-ui/themed'
+import {
+  Button as GSButton,
+  ButtonSpinner,
+  ButtonText
+} from '@gluestack-ui/themed'
+import { PressableProps } from 'react-native'
 import { customColors as colors } from '../ui-theme.provider'
+import { PropsWithChildren } from 'react'
 
-export default function Button(props) {
+interface GSButtonProps extends PropsWithChildren<PressableProps> {
+  isLoading: boolean
+}
+
+export default function Button(props: GSButtonProps) {
+  console.log('loading = ', props.isLoading, 'disabled = ', props.disabled)
   return (
     <GSButton
       {...props}
       sx={{
         ':active': {
           bg: colors.primary300
+        },
+        ':disabled': {
+          bg: colors.primary300
         }
       }}
     >
+      {props.isLoading && <ButtonSpinner mr={8} color={'white'} />}
       <ButtonText>{props.children}</ButtonText>
     </GSButton>
   )

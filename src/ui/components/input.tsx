@@ -9,13 +9,14 @@ import {
 import { TextInputProps } from 'react-native'
 import { customColors as colors } from '../ui-theme.provider'
 
-interface GSInputCustomProps extends PropsWithChildren<TextInputProps> {
+interface GSInputProps extends PropsWithChildren<TextInputProps> {
   label?: string
   error?: string
   type?: string
+  textColor?: string
 }
 
-export default function Input(props: GSInputCustomProps) {
+export default function Input(props: GSInputProps) {
   return (
     <FormControl w={'100%'} isInvalid={props.error !== undefined}>
       {props.label && (
@@ -43,7 +44,7 @@ export default function Input(props: GSInputCustomProps) {
           type={props.type}
           onChangeText={props.onChangeText}
           selectionColor={'white'}
-          color={'white'}
+          color={props.textColor || 'white'}
           style={{ fontWeight: 'bold' }}
         />
       </GSInput>
