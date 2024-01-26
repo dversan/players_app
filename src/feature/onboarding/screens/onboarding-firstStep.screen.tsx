@@ -2,7 +2,7 @@ import React from 'react'
 import ScreenLayout from '../../../ui/layout/screen.layout'
 import Text from '../../../ui/components/text'
 import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
-import { Center } from '@gluestack-ui/themed'
+import VStackLayout from '../../../ui/layout/vstack.layout'
 
 export default function OnboardingFirstStepScreen({ route, navigation }: any) {
   const { onboardingLayoutProps } = route.params
@@ -10,13 +10,13 @@ export default function OnboardingFirstStepScreen({ route, navigation }: any) {
   return (
     <ScreenLayout>
       <ScrollViewLayout fullHeight>
-        <Center
+        <VStackLayout
           p={onboardingLayoutProps.padding}
           pt={onboardingLayoutProps.paddingTop}
           space={onboardingLayoutProps.mainSpacing}
         >
           <Text>{'ONBOARDING'}</Text>
-        </Center>
+        </VStackLayout>
       </ScrollViewLayout>
     </ScreenLayout>
   )
