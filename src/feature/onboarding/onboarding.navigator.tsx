@@ -1,6 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import OnboardingFirstStepScreen from './screens/onboarding-firstStep.screen'
+import OnboardingSecondStepScreen from './screens/onboarding-secondStep.screen'
 
 const AuthStack = createNativeStackNavigator()
 
@@ -24,8 +25,13 @@ export default function OnboardingNavigator() {
   return (
     <AuthStack.Navigator screenOptions={{ headerShown: false }}>
       <AuthStack.Screen
-        name={'OnboardingFirstStep'}
+        name={'OnboardingFirstStepScreen'}
         component={OnboardingFirstStepScreen}
+        initialParams={{ onboardingLayoutProps }}
+      />
+      <AuthStack.Screen
+        name={'OnboardingSecondStepScreen'}
+        component={OnboardingSecondStepScreen}
         initialParams={{ onboardingLayoutProps }}
       />
     </AuthStack.Navigator>
