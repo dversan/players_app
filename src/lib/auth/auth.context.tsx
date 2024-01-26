@@ -60,10 +60,7 @@ function useFirebaseAuth() {
         if (message.includes('auth/invalid-email')) {
           throw t('common.error.invalidMail')
         }
-        if (
-          message.includes('auth/user-not-found') ||
-          message.includes('auth/wrong-password')
-        ) {
+        if (message.includes('auth/invalid-credential')) {
           throw t('common.error.userNotFound')
         }
         throw t('common.error.generic')
@@ -77,10 +74,7 @@ function useFirebaseAuth() {
         if (message.includes('auth/invalid-email')) {
           throw t('common.error.invalidMail')
         }
-        if (
-          message.includes('auth/user-not-found') ||
-          message.includes('auth/wrong-password')
-        ) {
+        if (message.includes('auth/invalid-credential')) {
           throw t('common.error.userNotFound')
         }
         throw t('common.error.generic')

@@ -10,7 +10,7 @@ import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
 import Button from '../../../ui/components/button'
 import { Center, Image } from '@gluestack-ui/themed'
 import { t } from 'i18next'
-import { formValidation } from '../../../lib/data/helpers'
+import { loginFormValidation } from '../../../lib/data/helpers'
 
 export default function LoginScreen({ route, navigation }: any) {
   const { signInWithEmail } = useAuth()
@@ -20,7 +20,7 @@ export default function LoginScreen({ route, navigation }: any) {
   const { authLayoutProps } = route.params
 
   function onSubmit() {
-    if (formValidation(formData).validationOk) {
+    if (loginFormValidation(formData).validationOk) {
       setIsLoading(true)
       const { email, password } = formData
       signInWithEmail(email, password).catch(reason => {
@@ -28,7 +28,7 @@ export default function LoginScreen({ route, navigation }: any) {
         setErrors({ email: reason })
       })
     } else {
-      setErrors(formValidation(formData).validationErrors)
+      setErrors(loginFormValidation(formData).validationErrors)
     }
   }
 
