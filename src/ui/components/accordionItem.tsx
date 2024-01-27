@@ -13,6 +13,7 @@ interface GSAccordionProps extends PropsWithChildren<ViewProps> {
   itemValue: string
   isDisabled?: boolean
   borderRadius?: number
+  backgroundColor: string
   margin?:
     | {
         mt?: 8 | 16 | 24
@@ -27,7 +28,7 @@ export default function AccordionItem(props: GSAccordionProps) {
   return (
     <GSAccordionItem
       value={props.itemValue}
-      backgroundColor={'red'}
+      backgroundColor={props.backgroundColor}
       borderRadius={8}
       shadowColor={'transparent'}
       sx={props.margin}
