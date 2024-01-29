@@ -41,6 +41,14 @@
       "message": "We've sent you a link to reset your password."
     }
   },
+  "onboardingScreen": {
+    "title": "Create player",
+    "firstFormTitle": "Player info",
+    "playerNumber": "Number",
+    "playerNickname": "Player nickname",
+    "mainPositionSelect": "Select main position",
+    "alternativePositionSelect": "Select alternative position"
+  },
   "common": {
     "error": {
       "generic": "Something went wrong, please try again later.",
@@ -51,7 +59,8 @@
       "userNotFound": "There is no user with this email or the password is incorrect"
     },
     "text": {
-      "ok": "ok"
+      "ok": "ok",
+      "selectOption": "Select position"
     }
   }
 }

@@ -41,6 +41,14 @@
       "message": "Te hemos enviado un link para resetear tu contraseña."
     }
   },
+  "onboardingScreen": {
+    "title": "Crear jugador",
+    "firstFormTitle": "Dorsal y Posición",
+    "playerNumber": "Número",
+    "playerNickname": "Nombre dorsal",
+    "mainPositionSelect": "Posición principal",
+    "alternativePositionSelect": "Posición alternativa"
+  },
   "common": {
     "error": {
       "generic": "Algo ha ido mal, por favor inténtalo más tarde.",
@@ -51,7 +59,8 @@
       "userNotFound": "No existe ningún usuario con esta dirección de email o la contraseña es incorrecta."
     },
     "text": {
-      "ok": "ok"
+      "ok": "ok",
+      "selectOption": "Selecciona posición"
     }
   }
 }
