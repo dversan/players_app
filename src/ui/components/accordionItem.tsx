@@ -7,10 +7,12 @@ import {
 } from '@gluestack-ui/themed'
 import React, { PropsWithChildren } from 'react'
 import { ViewProps } from 'react-native'
+import { customColors as colors } from '../../ui/ui-theme.provider'
 
 interface GSAccordionProps extends PropsWithChildren<ViewProps> {
   headerTitle: string
-  itemValue: string
+  titleColor: string
+  value: string
   isDisabled?: boolean
   borderRadius?: number
   backgroundColor: string
@@ -27,20 +29,23 @@ interface GSAccordionProps extends PropsWithChildren<ViewProps> {
 export default function AccordionItem(props: GSAccordionProps) {
   return (
     <GSAccordionItem
-      value={props.itemValue}
-      backgroundColor={props.backgroundColor}
+      {...props}
       borderRadius={8}
       shadowColor={'transparent'}
       sx={props.margin}
     >
       <AccordionHeader>
         <AccordionTrigger>
-          {() => {
-            return <AccordionTitleText>{props.headerTitle}</AccordionTitleText>
-          }}
+          <AccordionTitleText color={props.titleColor}>
+            {props.headerTitle}
+          </AccordionTitleText>
         </AccordionTrigger>
       </AccordionHeader>
-      <AccordionContent borderTopWidth={1} borderColor='black' paddingTop={16}>
+      <AccordionContent
+        borderTopWidth={8}
+        borderColor={colors.backgroundDark500}
+        paddingTop={16}
+      >
         {props.children}
       </AccordionContent>
     </GSAccordionItem>
