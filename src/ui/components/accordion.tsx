@@ -12,6 +12,7 @@ interface GSAccordionProps extends PropsWithChildren<ViewProps> {
 export default function Accordion(props: GSAccordionProps) {
   return (
     <GSAccordion
+      style={props.style}
       size={props.size}
       variant={props.variant}
       type={props.type}
