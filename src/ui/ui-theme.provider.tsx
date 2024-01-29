@@ -1,21 +1,5 @@
 import { config } from '@gluestack-ui/config'
 
-export const dummyColors = {
-  backgrounds: {
-    base: '#fffffe',
-    dark: '#eff0f3'
-  },
-  text: {
-    base: '#0d0d0d'
-  },
-  action: {
-    base: '#d9376e'
-  },
-  button: {
-    base: '#ff8e3c'
-  }
-}
-
 export const customColors = {
   primary200: '#B5CC95',
   primary300: '#91B25F',
@@ -33,7 +17,8 @@ export const customColors = {
   backgroundDark400: '#45433f',
   backgroundDark500: '#302E2A',
   backgroundDark600: '#252322',
-  backgroundDark700: '#262522'
+  backgroundDark700: '#262522',
+  backgroundDark800: '#1e1e1b'
 }
 
 const gluestackCustomUIConfig = {
