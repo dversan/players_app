@@ -14,13 +14,16 @@ interface GSInputProps extends PropsWithChildren<TextInputProps> {
   error?: string
   type?: string
   textColor?: string
+  flex?: number
 }
 
 export default function Input(props: GSInputProps) {
   return (
-    <FormControl w={'100%'} isInvalid={props.error !== undefined}>
+    <FormControl flex={props.flex} isInvalid={props.error !== undefined}>
       {props.label && (
-        <FormControlLabelText color={colors.backgroundLight500}>
+        <FormControlLabelText
+          color={colors.backgroundLight500}
+        >
           {props.label}
         </FormControlLabelText>
       )}
@@ -41,11 +44,12 @@ export default function Input(props: GSInputProps) {
         }}
       >
         <InputField
+          value={props.value}
           type={props.type}
           onChangeText={props.onChangeText}
           selectionColor={'white'}
           color={props.textColor || 'white'}
-          style={{ fontWeight: 'bold' }}
+          style={{ ...props.style }}
         />
       </GSInput>
       {props.error && (
