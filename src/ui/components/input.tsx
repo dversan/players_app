@@ -8,13 +8,14 @@ import {
 } from '@gluestack-ui/themed'
 import { TextInputProps } from 'react-native'
 import { customColors as colors } from '../ui-theme.provider'
+import { FormType } from '../../lib/data/models'
 
 interface GSInputProps extends PropsWithChildren<TextInputProps> {
   label?: string
   error?: string
   type?: string
   flex?: number
-  formType?: 'register' | 'onboarding'
+  formType?: FormType
 }
 
 export default function Input(props: GSInputProps) {
