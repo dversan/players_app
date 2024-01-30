@@ -46,8 +46,8 @@
     "firstFormTitle": "Dorsal y Posición",
     "playerNumber": "Número",
     "playerNickname": "Nombre dorsal",
-    "mainPositionSelect": "Posición principal",
-    "alternativePositionSelect": "Posición alternativa"
+    "mainPosition": "Posición preferida",
+    "alternativePosition": "Posición alternativa"
   },
   "common": {
     "error": {

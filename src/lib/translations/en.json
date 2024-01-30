@@ -46,8 +46,8 @@
     "firstFormTitle": "Player info",
     "playerNumber": "Number",
     "playerNickname": "Player nickname",
-    "mainPositionSelect": "Select main position",
-    "alternativePositionSelect": "Select alternative position"
+    "mainPosition": "Select favorite position",
+    "alternativePosition": "Select alternative position"
   },
   "common": {
     "error": {
