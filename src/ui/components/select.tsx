@@ -16,6 +16,8 @@ import {
 import { ViewProps } from 'react-native'
 import { PropsWithChildren } from 'react'
 import { customColors as colors } from '../../ui/ui-theme.provider'
+import { inputStyle } from '../../ui/components/input'
+import { FormType } from '../../lib/data/models'
 
 interface GSSelectProps extends PropsWithChildren<ViewProps> {
   size?: 'xl' | 'lg' | 'md' | 'sm'
@@ -25,6 +27,7 @@ interface GSSelectProps extends PropsWithChildren<ViewProps> {
   isFocused?: boolean
   onOpen?: () => void
   onClose?: () => void
+  formType?: FormType
 }
 
 export default function Select(props: GSSelectProps) {
@@ -37,22 +40,19 @@ export default function Select(props: GSSelectProps) {
         isFocused={props.isFocused}
         onOpen={props.onOpen}
         onClose={props.onClose}
+        selectedValue
       >
         <SelectTrigger
           size={props.size}
           variant={props.variant}
-          sx={{
-            ':focus': {
-              bg: colors.backgroundDark300,
-              borderColor: colors.primary300,
-              borderWidth: 2
-            },
-            ':invalid': {
-              borderColor: 'red'
-            }
-          }}
+          sx={
+            props.formType === 'onboarding'
+              ? inputStyle.onboarding
+              : inputStyle.register
+          }
         >
           <SelectInput
+            style={{ ...(props.style, inputStyle.onboarding.text) }}
             placeholderTextColor={colors.backgroundDark300}
             placeholder={props.placeholder}
           />
