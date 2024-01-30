@@ -10,12 +10,12 @@ import { ViewProps } from 'react-native'
 import { customColors as colors } from '../../ui/ui-theme.provider'
 
 interface GSAccordionProps extends PropsWithChildren<ViewProps> {
-  headerTitle: string
-  titleColor: string
-  value: string
+  headerTitle?: string
+  titleColor?: string
+  value?: string
   isDisabled?: boolean
   borderRadius?: number
-  backgroundColor: string
+  backgroundColor?: string
   margin?:
     | {
         mt?: 8 | 16 | 24
