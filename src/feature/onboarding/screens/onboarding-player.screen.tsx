@@ -154,8 +154,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                 </HStackLayout>
                 <Button
                   size={'lg'}
-                  w={'fitContent'}
-                  mt={16}
+                  style={{ marginTop: 16, paddingHorizontal: 16 }}
                   alignSelf={'center'}
                   isLoading={isLoading}
                   onPress={onSubmit}
