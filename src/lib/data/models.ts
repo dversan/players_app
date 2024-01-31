@@ -10,6 +10,15 @@ export enum Gender {
   FEMALE = 'female'
 }
 
+export enum Positions {
+  GOALKEEPER = 'goalkeeper',
+  DEFENDER = 'defender',
+  WINGER_R = 'winger_right ',
+  WINGER_L = 'winger_left',
+  MIDFIELDER = 'midfielder',
+  STRIKER = 'striker'
+}
+
 export interface User {
   id: string
   email: string
@@ -25,3 +34,5 @@ export interface User {
   // subscriptionTransactionId: string
   // subscriptionTransactionReceipt: string
 }
+
+export type FormType = 'onboarding' | 'register'
