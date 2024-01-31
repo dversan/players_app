@@ -9,9 +9,9 @@ export const customColors = {
   primary700: '#2d3a17',
   primary800: '#202a11',
 
+  backgroundLight200: '#ffffff',
   backgroundLight400: '#f5f5f5',
   backgroundLight500: '#F8F8F8',
-  backgroundLight200: '#ffffff',
 
   backgroundDark300: '#595855',
   backgroundDark400: '#45433f',

@@ -14,7 +14,7 @@ import {
   SelectTrigger
 } from '@gluestack-ui/themed'
 import { ViewProps } from 'react-native'
-import { PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react'
 import { customColors as colors } from '../../ui/ui-theme.provider'
 import { inputStyle } from '../../ui/components/input'
 import { FormType } from '../../lib/data/models'
@@ -62,8 +62,8 @@ export default function Select(props: GSSelectProps) {
         </SelectTrigger>
         <SelectPortal>
           <SelectBackdrop />
-          <SelectContent>
-            <SelectDragIndicatorWrapper>
+          <SelectContent py={34}>
+            <SelectDragIndicatorWrapper mb={8}>
               <SelectDragIndicator />
             </SelectDragIndicatorWrapper>
             {props.children}

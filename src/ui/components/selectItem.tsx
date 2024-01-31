@@ -13,6 +13,8 @@ export default function SelectItem(props: SelectItemProps) {
       label={props.label}
       value={props.value}
       isDisabled={props.disabled}
+      style={props.style}
+      sx={{ _text: { fontSize: 20 } }}
     />
   )
 }

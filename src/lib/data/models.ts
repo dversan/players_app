@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export interface Notification {
   title: string
   description: string
@@ -13,7 +14,7 @@ export enum Gender {
 export enum Positions {
   GOALKEEPER = 'goalkeeper',
   DEFENDER = 'defender',
-  WINGER_R = 'winger_right ',
+  WINGER_R = 'winger_right',
   WINGER_L = 'winger_left',
   MIDFIELDER = 'midfielder',
   STRIKER = 'striker'
