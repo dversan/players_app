@@ -1,9 +1,9 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import OnboardingFirstStepScreen from './screens/onboarding-firstStep.screen'
-import OnboardingSecondStepScreen from './screens/onboarding-secondStep.screen'
+import OnboardingPlayerScreen from './screens/onboarding-player.screen'
+import OnboardingClubScreen from './screens/onboarding-club.screen'
 
-const AuthStack = createNativeStackNavigator()
+const Onboarding = createNativeStackNavigator()
 
 interface OnboardingLayoutProps {
   padding: number
@@ -23,17 +23,17 @@ export default function OnboardingNavigator() {
   }
 
   return (
-    <AuthStack.Navigator screenOptions={{ headerShown: false }}>
-      <AuthStack.Screen
-        name={'OnboardingFirstStepScreen'}
-        component={OnboardingFirstStepScreen}
+    <Onboarding.Navigator screenOptions={{ headerShown: false }}>
+      <Onboarding.Screen
+        name={'OnboardingPlayerScreen'}
+        component={OnboardingPlayerScreen}
         initialParams={{ onboardingLayoutProps }}
       />
-      <AuthStack.Screen
-        name={'OnboardingSecondStepScreen'}
-        component={OnboardingSecondStepScreen}
+      <Onboarding.Screen
+        name={'OnboardingClubScreen'}
+        component={OnboardingClubScreen}
         initialParams={{ onboardingLayoutProps }}
       />
-    </AuthStack.Navigator>
+    </Onboarding.Navigator>
   )
 }
