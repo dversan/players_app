@@ -34,10 +34,7 @@ export default function AccordionItem(props: GSAccordionProps) {
           </AccordionTitleText>
         </AccordionTrigger>
       </AccordionHeader>
-      <AccordionContent
-      >
-        {props.children}
-      </AccordionContent>
+      <AccordionContent>{props.children}</AccordionContent>
     </GSAccordionItem>
   )
 }

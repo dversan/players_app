@@ -8,13 +8,5 @@ interface SelectItemProps extends PropsWithChildren<PressableProps> {
 }
 
 export default function SelectItem(props: SelectItemProps) {
-  return (
-    <GSSelectItem
-      label={props.label}
-      value={props.value}
-      isDisabled={props.disabled}
-      style={props.style}
-      sx={{ _text: { fontSize: 20 } }}
-    />
-  )
+  return <GSSelectItem {...props} sx={{ _text: { fontSize: 20 } }} />
 }

@@ -10,16 +10,5 @@ interface GSAccordionProps extends PropsWithChildren<ViewProps> {
 }
 
 export default function Accordion(props: GSAccordionProps) {
-  return (
-    <GSAccordion
-      style={props.style}
-      size={props.size}
-      variant={props.variant}
-      type={props.type}
-      isCollapsible={props.collapsable}
-      isDisabled={props.disabled}
-    >
-      {props.children}
-    </GSAccordion>
-  )
+  return <GSAccordion {...props}>{props.children}</GSAccordion>
 }
