@@ -20,6 +20,8 @@ export enum Positions {
   STRIKER = 'striker'
 }
 
+export type AccordionItems = 'firstItem' | 'secondItem' | 'thirdItem'
+
 export interface User {
   id: string
   email: string

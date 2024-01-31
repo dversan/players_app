@@ -13,7 +13,7 @@ import HStackLayout from '../../../ui/layout/hstack.layout'
 import Input, { inputStyle } from '../../../ui/components/input'
 import Select from '../../../ui/components/select'
 import { loginFormValidation } from '../../../lib/data/helpers'
-import { Positions } from '../../../lib/data/models'
+import { AccordionItems, Positions } from '../../../lib/data/models'
 import SelectItem from '../../../ui/components/selectItem'
 
 interface PositionValuesProps {
@@ -30,6 +30,8 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errors, setErrors] = useState<{ [id: string]: string }>({})
+  const [accordionToOpen, setAccordionToOpen] =
+    useState<AccordionItems>('firstItem')
   const [focusPositionSelect, setFocusPositionSelect] = useState<boolean>(false)
   const [focusSecondPosSelect, setFocusSecondPosSelect] =
     useState<boolean>(false)
@@ -61,7 +63,11 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
             </Text>
           </Center>
 
-          <Accordion collapsable={true} style={{ maxWidth: 400 }}>
+          <Accordion
+            collapsable={true}
+            style={{ maxWidth: 400 }}
+            value={accordionToOpen}
+          >
             <AccordionItem
               value={'firstItem'}
               backgroundColor={colors.backgroundDark800}
@@ -157,7 +163,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                   style={{ marginTop: 16, paddingHorizontal: 16 }}
                   alignSelf={'center'}
                   isLoading={isLoading}
-                  onPress={onSubmit}
+                  onPress={() => setAccordionToOpen('secondItem')}
                 >
                   {t('onboardingScreen.confirmStep')}
                 </Button>

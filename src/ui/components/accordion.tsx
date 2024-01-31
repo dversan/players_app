@@ -7,6 +7,7 @@ interface GSAccordionProps extends PropsWithChildren<ViewProps> {
   variant?: 'filled' | 'unfilled'
   type?: 'single' | 'multiple'
   disabled?: boolean
+  defaultValue?: string
 }
 
 export default function Accordion(props: GSAccordionProps) {
