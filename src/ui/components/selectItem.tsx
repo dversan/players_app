@@ -5,9 +5,14 @@ import { PressableProps } from 'react-native'
 interface SelectItemProps extends PropsWithChildren<PressableProps> {
   label: string
   value: any
-  isDisabled?: boolean
 }
 
 export default function SelectItem(props: SelectItemProps) {
-  return <GSSelectItem>{props.children}</GSSelectItem>
+  return (
+    <GSSelectItem
+      label={props.label}
+      value={props.value}
+      isDisabled={props.disabled}
+    />
+  )
 }
