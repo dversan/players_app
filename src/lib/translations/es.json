@@ -55,7 +55,8 @@
       "winger_left": "Banda Izquierda",
       "midfielder": "Centrocampista",
       "striker": "Delantero"
-    }
+    },
+    "confirmStep": "Confirmar"
   },
   "common": {
     "error": {

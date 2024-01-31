@@ -55,7 +55,8 @@
       "winger_left": "Winger Left",
       "midfielder": "Midfielder",
       "striker": "Striker"
-    }
+    },
+    "confirmStep": "Confirm"
   },
   "common": {
     "error": {
