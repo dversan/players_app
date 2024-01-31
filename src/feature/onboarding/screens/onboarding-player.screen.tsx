@@ -67,6 +67,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                 'onboardingScreen.firstFormTitle'
               )}`.toUpperCase()}
               titleColor={'white'}
+              borderRadius={8}
             >
               <VStackLayout space={'lg'}>
                 <HStackLayout space={'lg'}>

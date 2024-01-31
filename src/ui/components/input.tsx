@@ -73,7 +73,7 @@ export const inputStyle = {
     text: {
       textAlign: 'center',
       fontSize: 24,
-      fontWeight: 'semiBold',
+      fontWeight: 'semibold',
       color: 'white'
     }
   }
