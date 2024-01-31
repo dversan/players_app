@@ -47,7 +47,15 @@
     "playerNumber": "Número",
     "playerNickname": "Nombre dorsal",
     "mainPosition": "Posición preferida",
-    "alternativePosition": "Posición alternativa"
+    "alternativePosition": "Posición alternativa",
+    "positions": {
+      "goalkeeper": "Portero",
+      "defender": "Defensa",
+      "winger_right": "Banda Derecha",
+      "winger_left": "Banda Izquierda",
+      "midfielder": "Centrocampista",
+      "striker": "Delantero"
+    }
   },
   "common": {
     "error": {

@@ -47,7 +47,15 @@
     "playerNumber": "Number",
     "playerNickname": "Player nickname",
     "mainPosition": "Select favorite position",
-    "alternativePosition": "Select alternative position"
+    "alternativePosition": "Select alternative position",
+    "positions": {
+      "goalkeeper": "Goalkeeper",
+      "defender": "Defender",
+      "winger_right": "Winger Right",
+      "winger_left": "Winger Left",
+      "midfielder": "Midfielder",
+      "striker": "Striker"
+    }
   },
   "common": {
     "error": {
