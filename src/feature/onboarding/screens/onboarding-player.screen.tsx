@@ -10,15 +10,18 @@ import { Center } from '@gluestack-ui/themed'
 import { t } from 'i18next'
 import { customColors as colors } from '../../../ui/ui-theme.provider'
 import HStackLayout from '../../../ui/layout/hstack.layout'
-import Input from '../../../ui/components/input'
+import Input, { inputStyle } from '../../../ui/components/input'
 import Select from '../../../ui/components/select'
 import { loginFormValidation } from '../../../lib/data/helpers'
-import { useAuth } from '../../../lib/auth/auth.context'
 import { Positions } from '../../../lib/data/models'
 import SelectItem from '../../../ui/components/selectItem'
 
+interface PositionValuesProps {
+  mainPosition: boolean
+  secondPosition: boolean
+}
+
 export default function OnboardingPlayerScreen({ route, navigation }: any) {
-  const { signInWithEmail } = useAuth()
   const [formData, setFormData] = useState({
     playerNumber: '',
     playerNickname: '',
@@ -30,16 +33,15 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   const [focusPositionSelect, setFocusPositionSelect] = useState<boolean>(false)
   const [focusSecondPosSelect, setFocusSecondPosSelect] =
     useState<boolean>(false)
+  const hasValue: PositionValuesProps = {
+    mainPosition: !!formData.mainPosition,
+    secondPosition: !!formData.secondPosition
+  }
   const { onboardingLayoutProps } = route.params
 
   function onSubmit() {
     if (loginFormValidation(formData).validationOk) {
-      setIsLoading(true)
-      const { email, password } = formData
-      signInWithEmail(email, password).catch(reason => {
-        setIsLoading(false)
-        setErrors({ email: reason })
-      })
+      console.log(formData)
     } else {
       setErrors(loginFormValidation(formData).validationErrors)
     }
@@ -95,9 +97,20 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                     formType={'onboarding'}
                     size={'xl'}
                     placeholder={t('common.text.selectOption')}
+                    placeholderStyle={
+                      hasValue.mainPosition
+                        ? inputStyle.onboarding.text
+                        : { fontSize: 20 }
+                    }
                     isFocused={focusPositionSelect}
                     onOpen={() => setFocusPositionSelect(true)}
                     onClose={() => setFocusPositionSelect(false)}
+                    onValueChange={value =>
+                      setFormData({
+                        ...formData,
+                        mainPosition: value.trim()
+                      })
+                    }
                   >
                     {Object.values(Positions).map(position => (
                       <SelectItem
@@ -115,9 +128,20 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                     formType={'onboarding'}
                     size={'xl'}
                     placeholder={t('common.text.selectOption')}
+                    placeholderStyle={
+                      hasValue.secondPosition
+                        ? inputStyle.onboarding.text
+                        : { fontSize: 20 }
+                    }
                     isFocused={focusSecondPosSelect}
                     onOpen={() => setFocusSecondPosSelect(true)}
                     onClose={() => setFocusSecondPosSelect(false)}
+                    onValueChange={value =>
+                      setFormData({
+                        ...formData,
+                        secondPosition: value.trim()
+                      })
+                    }
                   >
                     {Object.values(Positions).map(position => (
                       <SelectItem
@@ -128,8 +152,15 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                     ))}
                   </Select>
                 </HStackLayout>
-                <Button size={'xl'} isLoading={isLoading} onPress={onSubmit}>
-                  {t('loginScreen.form.signUp')}
+                <Button
+                  size={'lg'}
+                  w={'fitContent'}
+                  mt={16}
+                  alignSelf={'center'}
+                  isLoading={isLoading}
+                  onPress={onSubmit}
+                >
+                  {t('onboardingScreen.confirmStep')}
                 </Button>
               </VStackLayout>
             </AccordionItem>

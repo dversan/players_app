@@ -19,6 +19,13 @@ import { customColors as colors } from '../../ui/ui-theme.provider'
 import { inputStyle } from '../../ui/components/input'
 import { FormType } from '../../lib/data/models'
 
+interface PlaceholderStyle {
+  textAlign?: string
+  fontSize?: number
+  fontWeight?: string
+  color?: string
+}
+
 interface GSSelectProps extends PropsWithChildren<ViewProps> {
   size?: 'xl' | 'lg' | 'md' | 'sm'
   variant?: 'underlined' | 'outline' | 'rounded'
@@ -28,6 +35,8 @@ interface GSSelectProps extends PropsWithChildren<ViewProps> {
   onOpen?: () => void
   onClose?: () => void
   formType?: FormType
+  onValueChange?: (value: any) => void
+  placeholderStyle?: PlaceholderStyle | undefined
 }
 
 export default function Select(props: GSSelectProps) {
@@ -36,12 +45,7 @@ export default function Select(props: GSSelectProps) {
       <FormControlLabelText color={colors.backgroundLight500}>
         {props.label}
       </FormControlLabelText>
-      <GSSelect
-        isFocused={props.isFocused}
-        onOpen={props.onOpen}
-        onClose={props.onClose}
-        selectedValue
-      >
+      <GSSelect {...props}>
         <SelectTrigger
           size={props.size}
           variant={props.variant}
@@ -52,7 +56,11 @@ export default function Select(props: GSSelectProps) {
           }
         >
           <SelectInput
-            style={{ ...(props.style, inputStyle.onboarding.text) }}
+            style={
+              props.placeholderStyle
+                ? { ...(props.style, props.placeholderStyle) }
+                : { ...(props.style, inputStyle.onboarding.text) }
+            }
             placeholderTextColor={colors.backgroundDark300}
             placeholder={props.placeholder}
           />
