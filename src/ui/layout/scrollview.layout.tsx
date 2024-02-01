@@ -1,17 +1,15 @@
 import React, { PropsWithChildren } from 'react'
 import { ScrollView as GSScrollView } from '@gluestack-ui/themed'
+import { ScrollViewProps } from 'react-native'
 
-interface CustomProps extends PropsWithChildren {
+interface GSScrollViewProps extends PropsWithChildren<ScrollViewProps> {
   fullHeight?: boolean
 }
 
-export default function ScrollViewLayout({
-  fullHeight,
-  ...props
-}: CustomProps) {
+export default function ScrollViewLayout(props: GSScrollViewProps) {
   return (
     <GSScrollView
-      contentContainerStyle={{ flexGrow: fullHeight ? 1 : 0 }}
+      contentContainerStyle={{ flexGrow: props.fullHeight ? 1 : 0 }}
       {...props}
     >
       {props.children}
