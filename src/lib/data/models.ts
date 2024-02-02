@@ -20,7 +20,13 @@ export enum Positions {
   STRIKER = 'striker'
 }
 
-export type AccordionItems = 'firstItem' | 'secondItem' | 'thirdItem'
+export enum OnboardingSteps {
+  POSITION = 1,
+  FITNESS,
+  PARAMETERS
+}
+
+export type AccordionItemsName = keyof typeof OnboardingSteps;
 
 export interface User {
   id: string
