@@ -9,7 +9,7 @@ import {
 } from '@gluestack-ui/themed'
 import React, { PropsWithChildren } from 'react'
 import { ViewProps } from 'react-native'
-import OnboardingHeaderIcon from '../../ui/components/onboardingHeaderIcon'
+import OnboardingHeaderIcon from '../../ui/components/onboarding-header-icon'
 import { OnboardingSteps } from '../../lib/data/models'
 import Text from '../../ui/components/text'
 

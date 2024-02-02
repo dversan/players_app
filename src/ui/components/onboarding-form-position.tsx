@@ -3,7 +3,7 @@ import Input, { inputStyle } from '../../ui/components/input'
 import { t } from 'i18next'
 import Select from '../../ui/components/select'
 import { Positions } from '../../lib/data/models'
-import SelectItem from '../../ui/components/selectItem'
+import SelectItem from '../../ui/components/select-item'
 import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useState } from 'react'
 import { PositionValuesProps } from '../../feature/onboarding/screens/onboarding-player.screen'
@@ -13,7 +13,7 @@ interface OnboardingFormDorsalProps {
   hasValue: PositionValuesProps
 }
 
-export default function OnboardingFormDorsal({
+export default function OnboardingFormPosition({
   onSetFormData,
   hasValue
 }: OnboardingFormDorsalProps) {

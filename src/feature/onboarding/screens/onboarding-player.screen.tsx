@@ -5,12 +5,12 @@ import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
 import VStackLayout from '../../../ui/layout/vstack.layout'
 import Button from '../../../ui/components/button'
 import Accordion from '../../../ui/components/accordion'
-import AccordionItem from '../../../ui/components/accordionItem'
+import AccordionItem from '../../../ui/components/accordion-item'
 import { Center } from '@gluestack-ui/themed'
 import { t } from 'i18next'
 import { customColors as colors } from '../../../ui/ui-theme.provider'
 import { OnboardingSteps } from '../../../lib/data/models'
-import OnboardingFormDorsal from '../../../ui/components/onboardingFormDorsal'
+import OnboardingFormPosition from '../../../ui/components/onboarding-form-position'
 
 export interface PositionValuesProps {
   mainPosition: boolean
