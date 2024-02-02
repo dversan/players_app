@@ -44,6 +44,8 @@
   "onboardingScreen": {
     "title": "Crear jugador",
     "firstFormTitle": "Dorsal y Posición",
+    "secondFormTitle": "Estado de forma",
+    "thirdFormTitle": "Parámetros",
     "playerNumber": "Número",
     "playerNickname": "Nombre dorsal",
     "mainPosition": "Posición preferida",

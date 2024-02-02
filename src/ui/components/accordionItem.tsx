@@ -10,14 +10,14 @@ import {
 import React, { PropsWithChildren } from 'react'
 import { ViewProps } from 'react-native'
 import OnboardingHeaderIcon from '../../ui/components/onboardingHeaderIcon'
-import { AccordionItemsName, OnboardingSteps } from '../../lib/data/models'
+import { OnboardingSteps } from '../../lib/data/models'
 import Text from '../../ui/components/text'
 
 interface GSAccordionProps extends PropsWithChildren<ViewProps> {
   headerTitle?: string
   titleColor?: string
   showCheckIcon?: boolean
-  value?: AccordionItemsName
+  value?: OnboardingSteps
   isDisabled?: boolean
   backgroundColor?: string
   margin?:
@@ -31,6 +31,8 @@ interface GSAccordionProps extends PropsWithChildren<ViewProps> {
 }
 
 export default function AccordionItem(props: GSAccordionProps) {
+  const stepsName = Object.values(OnboardingSteps)
+
   return (
     <GSAccordionItem {...props} shadowColor={'transparent'} sx={props.margin}>
       <AccordionHeader>
@@ -41,8 +43,8 @@ export default function AccordionItem(props: GSAccordionProps) {
             ) : (
               <Center mr={8}>
                 <Text bold>{`${
-                  OnboardingSteps[props.value?.toUpperCase()]
-                }. `}</Text>
+                  stepsName.indexOf(props.value as OnboardingSteps) + 1
+                }.`}</Text>
               </Center>
             )}
             <AccordionTitleText

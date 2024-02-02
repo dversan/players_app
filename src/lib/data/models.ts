@@ -21,12 +21,10 @@ export enum Positions {
 }
 
 export enum OnboardingSteps {
-  POSITION = 1,
-  FITNESS,
-  PARAMETERS
+  POSITION = 'firstFormTitle',
+  FITNESS = 'secondFormTitle',
+  PARAMETERS = 'thirdFormTitle'
 }
-
-export type AccordionItemsName = keyof typeof OnboardingSteps;
 
 export interface User {
   id: string

@@ -9,32 +9,35 @@ import AccordionItem from '../../../ui/components/accordionItem'
 import { Center } from '@gluestack-ui/themed'
 import { t } from 'i18next'
 import { customColors as colors } from '../../../ui/ui-theme.provider'
-import HStackLayout from '../../../ui/layout/hstack.layout'
-import Input, { inputStyle } from '../../../ui/components/input'
-import Select from '../../../ui/components/select'
-import { loginFormValidation } from '../../../lib/data/helpers'
-import { AccordionItems, Positions } from '../../../lib/data/models'
-import SelectItem from '../../../ui/components/selectItem'
+import { OnboardingSteps } from '../../../lib/data/models'
+import OnboardingFormDorsal from '../../../ui/components/onboardingFormDorsal'
 
-interface PositionValuesProps {
+export interface PositionValuesProps {
   mainPosition: boolean
   secondPosition: boolean
 }
 
+interface OnbaordingFormData {
+  playerNumber: number
+  playerNickname: string
+  mainPosition: string
+  secondPosition: string
+}
+
 export default function OnboardingPlayerScreen({ route, navigation }: any) {
-  const [formData, setFormData] = useState({
-    playerNumber: '',
+  const [formData, setFormData] = useState<OnbaordingFormData>({
+    playerNumber: 0,
     playerNickname: '',
     mainPosition: '',
     secondPosition: ''
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [errors, setErrors] = useState<{ [id: string]: string }>({})
-  const [accordionToOpen, setAccordionToOpen] =
-    useState<AccordionItems>('firstItem')
-  const [focusPositionSelect, setFocusPositionSelect] = useState<boolean>(false)
-  const [focusSecondPosSelect, setFocusSecondPosSelect] =
-    useState<boolean>(false)
+  // const [errors, setErrors] = useState<{ [id: string]: string }>({})
+  const [stepToShow, setStepToShow] = useState<OnboardingSteps>(
+    OnboardingSteps.POSITION
+  )
+  const [stepsCompleted, setStepsCompleted] = useState<string[]>([])
+
   const hasValue: PositionValuesProps = {
     mainPosition: !!formData.mainPosition,
     secondPosition: !!formData.secondPosition
@@ -69,7 +72,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
             value={accordionToOpen}
           >
             <AccordionItem
-              value={'firstItem'}
+              value={OnboardingSteps.POSITION}
               backgroundColor={colors.backgroundDark800}
               headerTitle={`1 - ${t(
                 'onboardingScreen.firstFormTitle'
@@ -163,22 +166,59 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                   style={{ marginTop: 16, paddingHorizontal: 16 }}
                   alignSelf={'center'}
                   isLoading={isLoading}
-                  onPress={() => setAccordionToOpen('secondItem')}
+                  onPress={() =>
+                    stepHandler(
+                      OnboardingSteps.FITNESS,
+                      OnboardingSteps.POSITION
+                    )
+                  }
                 >
                   {t('onboardingScreen.confirmStep')}
                 </Button>
               </VStackLayout>
             </AccordionItem>
             <AccordionItem
-              value={'secondItem'}
+              value={OnboardingSteps.FITNESS}
               margin={{ mt: 24 }}
               backgroundColor={colors.backgroundDark800}
-            ></AccordionItem>
+            >
+              <Button
+                size={'lg'}
+                style={{ marginTop: 34, paddingHorizontal: 16 }}
+                alignSelf={'center'}
+                isLoading={isLoading}
+                onPress={() =>
+                  stepHandler(
+                    OnboardingSteps.PARAMETERS,
+                    OnboardingSteps.FITNESS
+                  )
+                }
+              >
+                {' '}
+                {t('onboardingScreen.confirmStep')}
+              </Button>
+            </AccordionItem>
             <AccordionItem
-              value={'thirdItem'}
+              value={OnboardingSteps.PARAMETERS}
               margin={{ mt: 24 }}
               backgroundColor={colors.backgroundDark800}
-            ></AccordionItem>
+            >
+              <Button
+                size={'lg'}
+                style={{ marginTop: 34, paddingHorizontal: 16 }}
+                alignSelf={'center'}
+                isLoading={isLoading}
+                onPress={() =>
+                  stepHandler(
+                    OnboardingSteps.FITNESS,
+                    OnboardingSteps.PARAMETERS
+                  )
+                }
+              >
+                {' '}
+                {t('onboardingScreen.confirmStep')}
+              </Button>
+            </AccordionItem>
           </Accordion>
           <Button onPress={() => navigation.navigate('OnboardingClubScreen')}>
             {'GO TO STEP2'}

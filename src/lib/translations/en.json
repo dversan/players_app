@@ -44,6 +44,8 @@
   "onboardingScreen": {
     "title": "Create player",
     "firstFormTitle": "Player info",
+    "secondFormTitle": "State of fitness",
+    "thirdFormTitle": "Parameters",
     "playerNumber": "Number",
     "playerNickname": "Player nickname",
     "mainPosition": "Select favorite position",
