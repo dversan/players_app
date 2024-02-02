@@ -46,7 +46,7 @@
     "firstFormTitle": "Player info",
     "secondFormTitle": "State of fitness",
     "thirdFormTitle": "Parameters",
-    "playerNumber": "Number",
+    "playerNumberField": "Number",
     "playerNickname": "Player nickname",
     "mainPosition": "Select favorite position",
     "alternativePosition": "Select alternative position",
@@ -64,6 +64,8 @@
     "error": {
       "generic": "Something went wrong, please try again later.",
       "requiredField": "{{field}} is required",
+      "allRequiredField": "All fields are required",
+      "requiredFieldNumber": "{{field}} must be a number between 1 and 99 without decimals.",
       "minLengthField": "{{field}} must be {{number}} characters or more",
       "notSamePassword": "Passwords are not the same",
       "invalidMail": "The email address is badly formatted",

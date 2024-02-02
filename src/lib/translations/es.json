@@ -46,7 +46,7 @@
     "firstFormTitle": "Dorsal y Posición",
     "secondFormTitle": "Estado de forma",
     "thirdFormTitle": "Parámetros",
-    "playerNumber": "Número",
+    "playerNumberField": "Dorsal",
     "playerNickname": "Nombre dorsal",
     "mainPosition": "Posición preferida",
     "alternativePosition": "Posición alternativa",
@@ -63,7 +63,9 @@
   "common": {
     "error": {
       "generic": "Algo ha ido mal, por favor inténtalo más tarde.",
-      "requiredField": "Este campo es obligatorio",
+      "requiredField": "{{field}} es obligatorio",
+      "allRequiredField": "Todos los campos son obligatorios.",
+      "requiredFieldNumber": "{{field}} debe ser un número entre 1 y 99, sin decimales.",
       "minLengthField": "Debe contener al menos {{number}} caracteres.",
       "notSamePassword": "Las contraseñas no coinciden.",
       "invalidMail": "El formato del email no es correcto.",

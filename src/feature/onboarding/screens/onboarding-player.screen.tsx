@@ -10,7 +10,8 @@ import { Center } from '@gluestack-ui/themed'
 import { t } from 'i18next'
 import { customColors as colors } from '../../../ui/ui-theme.provider'
 import { OnboardingSteps } from '../../../lib/data/models'
-import OnboardingFormPosition from '../../../ui/components/onboarding-form-position'
+import OnboardingPositionForm from '../../../ui/components/onboarding-position-form'
+import { OnboardingStepsValidation } from '../../../lib/data/helpers'
 
 export interface PositionValuesProps {
   mainPosition: boolean
@@ -32,7 +33,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     secondPosition: ''
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  // const [errors, setErrors] = useState<{ [id: string]: string }>({})
+  const [errors, setErrors] = useState<{ [id: string]: string }>({})
   const [stepToShow, setStepToShow] = useState<OnboardingSteps>(
     OnboardingSteps.POSITION
   )
@@ -57,11 +58,14 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   }
 
   function stepHandler(stepToOpen: OnboardingSteps, step: OnboardingSteps) {
-    setStepToShow(stepToOpen)
-
-    if (!stepsCompleted.includes(step)) {
-      const currentStepsCompleted = stepsCompleted.concat(step)
-      setStepsCompleted(currentStepsCompleted)
+    if (OnboardingStepsValidation(formData).validationOk) {
+      if (!stepsCompleted.includes(step)) {
+        const currentStepsCompleted = stepsCompleted.concat(step)
+        setStepsCompleted(currentStepsCompleted)
+      }
+      setStepToShow(stepToOpen)
+    } else {
+      setErrors(OnboardingStepsValidation(formData).validationErrors)
     }
   }
 
@@ -102,11 +106,12 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               stepsCompleted={stepsCompleted}
             >
               <>
-                <OnboardingFormPosition
+                <OnboardingPositionForm
                   onSetFormData={onSetFormData}
                   isLoading={isLoading}
                   hasValue={hasValue}
                   onSetAccordionToOpen={onSetAccordionToOpen}
+                  validation={errors}
                 />
                 <Button
                   size={'lg'}
@@ -141,7 +146,6 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                   )
                 }
               >
-                {' '}
                 {t('onboardingScreen.confirmStep')}
               </Button>
             </AccordionItem>
@@ -162,7 +166,6 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                   )
                 }
               >
-                {' '}
                 {t('onboardingScreen.confirmStep')}
               </Button>
             </AccordionItem>

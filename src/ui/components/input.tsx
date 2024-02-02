@@ -32,9 +32,9 @@ export default function Input(props: GSInputProps) {
         borderRadius={4}
         size={'xl'}
         sx={
-          props.formType === 'onboarding'
-            ? inputStyle.onboarding
-            : inputStyle.register
+          props.formType !== 'onboarding'
+            ? inputStyle.register
+            : inputStyle.onboarding
         }
       >
         <InputField
@@ -46,7 +46,7 @@ export default function Input(props: GSInputProps) {
           style={{ ...(props.style, inputStyle.onboarding.text) }}
         />
       </GSInput>
-      {props.error && (
+      {props.error && props.formType !== 'onboarding' && (
         <FormControlErrorText color={'red'}>{props.error}</FormControlErrorText>
       )}
     </FormControl>
@@ -69,6 +69,9 @@ export const inputStyle = {
       backgroundColor: colors.backgroundDark800,
       borderColor: colors.primary300,
       borderWidth: 3
+    },
+    ':invalid': {
+      borderColor: 'red'
     },
     text: {
       textAlign: 'center',

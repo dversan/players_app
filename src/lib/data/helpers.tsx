@@ -1,5 +1,13 @@
 import { t } from 'i18next'
 
+function isValidNumber(min, max, value) {
+  return (
+    /^\d{1,2}$/.test(value) &&
+    parseInt(value, 10) >= min &&
+    parseInt(value, 10) <= max
+  )
+}
+
 function registerFormValidation(formData) {
   let validationErrors = {}
 
@@ -76,4 +84,44 @@ function loginFormValidation(formData) {
   }
 }
 
-export { registerFormValidation, loginFormValidation }
+function OnboardingStepsValidation(formData) {
+  let validationErrors = {}
+
+  if (formData.playerNumber === 0) {
+    validationErrors = {
+      ...validationErrors,
+      number: t('common.error.requiredField', {
+        field: t('onboardingScreen.playerNumberField')
+      })
+    }
+  }
+
+  if (!isValidNumber(0, 100, Number(formData.playerNumber))) {
+    validationErrors = {
+      ...validationErrors,
+      number: t('common.error.requiredFieldNumber', {
+        field: t('onboardingScreen.playerNumberField')
+      })
+    }
+  }
+
+  if (formData.playerNickname.trim().length === 0) {
+    validationErrors = {
+      ...validationErrors,
+      nickName: t('common.error.requiredField', {
+        field: t('registerScreen.form.name')
+      })
+    }
+  }
+
+  return {
+    validationOk: Object.keys(validationErrors).length === 0,
+    validationErrors
+  }
+}
+
+export {
+  registerFormValidation,
+  loginFormValidation,
+  OnboardingStepsValidation
+}
