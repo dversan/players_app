@@ -44,12 +44,32 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   }
   const { onboardingLayoutProps } = route.params
 
-  function onSubmit() {
-    if (loginFormValidation(formData).validationOk) {
-      console.log(formData)
-    } else {
-      setErrors(loginFormValidation(formData).validationErrors)
+  // function onSubmit() {
+  //   if (loginFormValidation(formData).validationOk) {
+  //     console.log(formData)
+  //   } else {
+  //     setErrors(loginFormValidation(formData).validationErrors)
+  //   }
+  // }
+
+  function onSetAccordionToOpen(itemToOpen) {
+    setStepToShow(itemToOpen)
+  }
+
+  function stepHandler(stepToOpen: OnboardingSteps, step: OnboardingSteps) {
+    setStepToShow(stepToOpen)
+
+    if (!stepsCompleted.includes(step)) {
+      const currentStepsCompleted = stepsCompleted.concat(step)
+      setStepsCompleted(currentStepsCompleted)
     }
+  }
+
+  function onSetFormData(fieldName, fieldValue) {
+    setFormData(prevState => ({
+      ...prevState,
+      [fieldName]: fieldValue
+    }))
   }
 
   return (
@@ -69,101 +89,28 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
           <Accordion
             collapsable={true}
             style={{ maxWidth: 400 }}
-            value={accordionToOpen}
+            value={stepToShow}
           >
             <AccordionItem
               value={OnboardingSteps.POSITION}
               backgroundColor={colors.backgroundDark800}
-              headerTitle={`1 - ${t(
+              headerTitle={`${t(
                 'onboardingScreen.firstFormTitle'
               )}`.toUpperCase()}
               titleColor={'white'}
               borderRadius={8}
+              stepsCompleted={stepsCompleted}
             >
-              <VStackLayout space={'lg'}>
-                <HStackLayout space={'lg'}>
-                  <Input
-                    label={t('onboardingScreen.playerNumber')}
-                    flex={2}
-                    formType={'onboarding'}
-                    onChangeText={value =>
-                      setFormData({ ...formData, playerNumber: value.trim() })
-                    }
-                  />
-                  <Input
-                    label={t('onboardingScreen.playerNickname')}
-                    flex={6}
-                    formType={'onboarding'}
-                    onChangeText={value =>
-                      setFormData({ ...formData, playerNickname: value.trim() })
-                    }
-                  />
-                </HStackLayout>
-                <HStackLayout w={'100%'}>
-                  <Select
-                    label={t('onboardingScreen.mainPosition')}
-                    variant={'outline'}
-                    formType={'onboarding'}
-                    size={'xl'}
-                    placeholder={t('common.text.selectOption')}
-                    placeholderStyle={
-                      hasValue.mainPosition
-                        ? inputStyle.onboarding.text
-                        : { fontSize: 20 }
-                    }
-                    isFocused={focusPositionSelect}
-                    onOpen={() => setFocusPositionSelect(true)}
-                    onClose={() => setFocusPositionSelect(false)}
-                    onValueChange={value =>
-                      setFormData({
-                        ...formData,
-                        mainPosition: value.trim()
-                      })
-                    }
-                  >
-                    {Object.values(Positions).map(position => (
-                      <SelectItem
-                        key={position}
-                        label={t(`onboardingScreen.positions.${position}`)}
-                        value={position}
-                      />
-                    ))}
-                  </Select>
-                </HStackLayout>
-                <HStackLayout w={'100%'}>
-                  <Select
-                    label={t('onboardingScreen.alternativePosition')}
-                    variant={'outline'}
-                    formType={'onboarding'}
-                    size={'xl'}
-                    placeholder={t('common.text.selectOption')}
-                    placeholderStyle={
-                      hasValue.secondPosition
-                        ? inputStyle.onboarding.text
-                        : { fontSize: 20 }
-                    }
-                    isFocused={focusSecondPosSelect}
-                    onOpen={() => setFocusSecondPosSelect(true)}
-                    onClose={() => setFocusSecondPosSelect(false)}
-                    onValueChange={value =>
-                      setFormData({
-                        ...formData,
-                        secondPosition: value.trim()
-                      })
-                    }
-                  >
-                    {Object.values(Positions).map(position => (
-                      <SelectItem
-                        key={position}
-                        label={t(`onboardingScreen.positions.${position}`)}
-                        value={position}
-                      />
-                    ))}
-                  </Select>
-                </HStackLayout>
+              <>
+                <OnboardingFormPosition
+                  onSetFormData={onSetFormData}
+                  isLoading={isLoading}
+                  hasValue={hasValue}
+                  onSetAccordionToOpen={onSetAccordionToOpen}
+                />
                 <Button
                   size={'lg'}
-                  style={{ marginTop: 16, paddingHorizontal: 16 }}
+                  style={{ marginTop: 34, paddingHorizontal: 16 }}
                   alignSelf={'center'}
                   isLoading={isLoading}
                   onPress={() =>
@@ -175,7 +122,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                 >
                   {t('onboardingScreen.confirmStep')}
                 </Button>
-              </VStackLayout>
+              </>
             </AccordionItem>
             <AccordionItem
               value={OnboardingSteps.FITNESS}
