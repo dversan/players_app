@@ -15,7 +15,10 @@ import {
   PositionValuesProps
 } from '../../../lib/data/models'
 import OnboardingPositionForm from '../../../ui/components/onboarding-position-form'
-import { OnboardingStepsValidation } from '../../../lib/data/helpers'
+import {
+  OnboardingStepsValidation,
+  ValidationFields
+} from '../../../lib/data/helpers'
 
 export default function OnboardingPlayerScreen({ route, navigation }: any) {
   const [formData, setFormData] = useState<OnboardingFormData>({
@@ -25,7 +28,9 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     secondPosition: ''
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [errors, setErrors] = useState<{ [id: string]: string }>({})
+  const [errors, setErrors] = useState<{
+    [key: keyof ValidationFields]: string
+  }>({})
   const [stepToShow, setStepToShow] = useState<OnboardingSteps>(
     OnboardingSteps.POSITION
   )

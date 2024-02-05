@@ -37,6 +37,7 @@ interface GSSelectProps extends PropsWithChildren<ViewProps> {
   formType?: FormType
   onValueChange?: (value: any) => void
   placeholderStyle?: PlaceholderStyle | undefined
+  isInvalid?: boolean
 }
 
 export default function Select(props: GSSelectProps) {

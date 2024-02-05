@@ -12,7 +12,7 @@ import { ValidationFields } from '@lib/data/helpers'
 interface OnboardingFormDorsalProps {
   onSetFormData: (fieldName: string, fieldValue: string | number) => void
   hasValue: PositionValuesProps
-  validation: ValidationFields
+  validation: { [key: keyof ValidationFields]: string }
 }
 
 export default function OnboardingPositionForm({
@@ -37,7 +37,7 @@ export default function OnboardingPositionForm({
           flex={2}
           formType={'onboarding'}
           onChangeText={value => onSetFormData('playerNumber', value.trim())}
-          error={validation.playerNumber.toString()}
+          error={validation.playerNumber?.toString()}
         />
         <Input
           label={t('onboardingScreen.playerNickname')}
@@ -53,6 +53,9 @@ export default function OnboardingPositionForm({
           variant={'outline'}
           formType={'onboarding'}
           size={'xl'}
+          isInvalid={Object.entries(validation).some(
+            ([key, value]) => key === 'mainPosition' && value !== ''
+          )}
           placeholder={t('common.text.selectOption')}
           placeholderStyle={
             hasValue.inMainPosition
@@ -79,6 +82,9 @@ export default function OnboardingPositionForm({
           variant={'outline'}
           formType={'onboarding'}
           size={'xl'}
+          isInvalid={Object.entries(validation).some(
+            ([key, value]) => key === 'secondPosition' && value !== ''
+          )}
           placeholder={t('common.text.selectOption')}
           placeholderStyle={
             hasValue.inSecondPosition

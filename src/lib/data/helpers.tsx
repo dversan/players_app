@@ -15,7 +15,9 @@ export interface ValidationFields extends OnboardingFormData, User {
 }
 
 function registerFormValidation(formData) {
-  let validationErrors: ValidationFields
+  let validationErrors: {
+    [key: keyof ValidationFields]: string
+  } = {}
 
   if (formData.email.trim().length === 0) {
     validationErrors = {
@@ -96,7 +98,7 @@ function OnboardingStepsValidation(formData) {
   if (formData.playerNumber === 0) {
     validationErrors = {
       ...validationErrors,
-      number: t('common.error.requiredField', {
+      playerNumber: t('common.error.requiredField', {
         field: t('onboardingScreen.playerNumberField')
       })
     }
@@ -105,7 +107,7 @@ function OnboardingStepsValidation(formData) {
   if (!isValidNumber(0, 100, Number(formData.playerNumber))) {
     validationErrors = {
       ...validationErrors,
-      number: t('common.error.requiredFieldNumber', {
+      playerNumber: t('common.error.requiredFieldNumber', {
         field: t('onboardingScreen.playerNumberField')
       })
     }
@@ -114,7 +116,38 @@ function OnboardingStepsValidation(formData) {
   if (formData.playerNickname.trim().length === 0) {
     validationErrors = {
       ...validationErrors,
-      nickName: t('common.error.requiredField', {
+      playerNickname: t('common.error.requiredField', {
+        field: t('registerScreen.form.name')
+      })
+    }
+  }
+
+  if (
+    formData.playerNickname.trim().length === 0 ||
+    formData.mainPosition.trim().length === 0 ||
+    formData.secondPosition.trim().length === 0
+  ) {
+    validationErrors = {
+      ...validationErrors,
+      requiredFields: t('common.error.requiredField', {
+        field: t('registerScreen.form.name')
+      })
+    }
+  }
+
+  if (formData.mainPosition.trim().length === 0) {
+    validationErrors = {
+      ...validationErrors,
+      mainPosition: t('common.error.requiredField', {
+        field: t('registerScreen.form.name')
+      })
+    }
+  }
+
+  if (formData.secondPosition.trim().length === 0) {
+    validationErrors = {
+      ...validationErrors,
+      secondPosition: t('common.error.requiredField', {
         field: t('registerScreen.form.name')
       })
     }
