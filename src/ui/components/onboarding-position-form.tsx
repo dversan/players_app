@@ -2,17 +2,17 @@ import HStackLayout from '../../ui/layout/hstack.layout'
 import Input, { inputStyle } from '../../ui/components/input'
 import { t } from 'i18next'
 import Select from '../../ui/components/select'
-import { Positions } from '../../lib/data/models'
+import { Positions, PositionValuesProps } from '../../lib/data/models'
 import SelectItem from '../../ui/components/select-item'
 import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useState } from 'react'
-import { PositionValuesProps } from '../../feature/onboarding/screens/onboarding-player.screen'
 import Text from '../../ui/components/text'
+import { ValidationFields } from '@lib/data/helpers'
 
 interface OnboardingFormDorsalProps {
   onSetFormData: (fieldName: string, fieldValue: string | number) => void
   hasValue: PositionValuesProps
-  validation: { [id: string]: string }
+  validation: ValidationFields
 }
 
 export default function OnboardingPositionForm({
@@ -25,7 +25,8 @@ export default function OnboardingPositionForm({
     useState<boolean>(false)
 
   const someFormFieldEmpty = Object.values(validation).some(
-    val => val.includes('required') || val.includes('obligatorio')
+    r =>
+      r.toString().includes('obligatorio') || r.toString().includes('required')
   )
 
   return (
@@ -36,14 +37,14 @@ export default function OnboardingPositionForm({
           flex={2}
           formType={'onboarding'}
           onChangeText={value => onSetFormData('playerNumber', value.trim())}
-          error={validation.number}
+          error={validation.playerNumber.toString()}
         />
         <Input
           label={t('onboardingScreen.playerNickname')}
           flex={6}
           formType={'onboarding'}
           onChangeText={value => onSetFormData('playerNickname', value.trim())}
-          error={validation.nickName}
+          error={validation.playerNickname}
         />
       </HStackLayout>
       <HStackLayout w={'100%'}>
@@ -54,7 +55,7 @@ export default function OnboardingPositionForm({
           size={'xl'}
           placeholder={t('common.text.selectOption')}
           placeholderStyle={
-            hasValue.mainPosition
+            hasValue.inMainPosition
               ? inputStyle.onboarding.text
               : { fontSize: 20 }
           }
@@ -80,7 +81,7 @@ export default function OnboardingPositionForm({
           size={'xl'}
           placeholder={t('common.text.selectOption')}
           placeholderStyle={
-            hasValue.secondPosition
+            hasValue.inSecondPosition
               ? inputStyle.onboarding.text
               : { fontSize: 20 }
           }

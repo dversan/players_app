@@ -9,24 +9,16 @@ import AccordionItem from '../../../ui/components/accordion-item'
 import { Center } from '@gluestack-ui/themed'
 import { t } from 'i18next'
 import { customColors as colors } from '../../../ui/ui-theme.provider'
-import { OnboardingSteps } from '../../../lib/data/models'
+import {
+  OnboardingFormData,
+  OnboardingSteps,
+  PositionValuesProps
+} from '../../../lib/data/models'
 import OnboardingPositionForm from '../../../ui/components/onboarding-position-form'
 import { OnboardingStepsValidation } from '../../../lib/data/helpers'
 
-export interface PositionValuesProps {
-  mainPosition: boolean
-  secondPosition: boolean
-}
-
-interface OnbaordingFormData {
-  playerNumber: number
-  playerNickname: string
-  mainPosition: string
-  secondPosition: string
-}
-
 export default function OnboardingPlayerScreen({ route, navigation }: any) {
-  const [formData, setFormData] = useState<OnbaordingFormData>({
+  const [formData, setFormData] = useState<OnboardingFormData>({
     playerNumber: 0,
     playerNickname: '',
     mainPosition: '',
@@ -40,8 +32,8 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   const [stepsCompleted, setStepsCompleted] = useState<string[]>([])
 
   const hasValue: PositionValuesProps = {
-    mainPosition: !!formData.mainPosition,
-    secondPosition: !!formData.secondPosition
+    inMainPosition: !!formData.mainPosition,
+    inSecondPosition: !!formData.secondPosition
   }
   const { onboardingLayoutProps } = route.params
 

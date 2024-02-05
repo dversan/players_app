@@ -1,4 +1,5 @@
 import { t } from 'i18next'
+import { OnboardingFormData, User } from '../data/models'
 
 function isValidNumber(min, max, value) {
   return (
@@ -8,8 +9,13 @@ function isValidNumber(min, max, value) {
   )
 }
 
+export interface ValidationFields extends OnboardingFormData, User {
+  password: string
+  confirmPassword: string
+}
+
 function registerFormValidation(formData) {
-  let validationErrors = {}
+  let validationErrors: ValidationFields
 
   if (formData.email.trim().length === 0) {
     validationErrors = {
