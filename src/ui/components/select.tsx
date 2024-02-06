@@ -19,7 +19,7 @@ import { customColors as colors } from '../../ui/ui-theme.provider'
 import { inputStyle } from '../../ui/components/input'
 import { FormType } from '../../lib/data/models'
 
-interface PlaceholderStyle {
+export interface PlaceholderStyleProps {
   textAlign?: string
   fontSize?: number
   fontWeight?: string
@@ -31,12 +31,12 @@ interface GSSelectProps extends PropsWithChildren<ViewProps> {
   variant?: 'underlined' | 'outline' | 'rounded'
   label?: string
   placeholder?: string
+  placeholderStyle?: PlaceholderStyleProps
   isFocused?: boolean
   onOpen?: () => void
   onClose?: () => void
   formType?: FormType
   onValueChange?: (value: any) => void
-  placeholderStyle?: PlaceholderStyle | undefined
   isInvalid?: boolean
 }
 
@@ -62,7 +62,6 @@ export default function Select(props: GSSelectProps) {
                 ? { ...(props.style, props.placeholderStyle) }
                 : { ...(props.style, inputStyle.onboarding.text) }
             }
-            placeholderTextColor={colors.backgroundDark300}
             placeholder={props.placeholder}
           />
           <SelectIcon mr='$3'>
