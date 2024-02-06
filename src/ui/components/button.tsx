@@ -9,6 +9,8 @@ import { PropsWithChildren } from 'react'
 
 interface GSButtonProps extends PropsWithChildren<PressableProps> {
   isLoading?: boolean
+  variant?: 'link' | 'outline' | 'solid'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 }
 
 export default function Button(props: GSButtonProps) {
