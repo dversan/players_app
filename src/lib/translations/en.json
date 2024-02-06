@@ -58,6 +58,10 @@
       "midfielder": "Midfielder",
       "striker": "Striker"
     },
+    "height": "Height (cm)",
+    "weight": "Weight (kg)",
+    "birthdayLabel": "Birthday",
+    "birthdayButtonText": "Enter Birthday date",
     "confirmStep": "Confirm"
   },
   "common": {

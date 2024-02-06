@@ -58,6 +58,10 @@
       "midfielder": "Centrocampista",
       "striker": "Delantero"
     },
+    "height": "Altura (cm)",
+    "weight": "Peso (kg)",
+    "birthdayLabel": "Fecha de nacimiento",
+    "birthdayButtonText": "Introducir fecha",
     "confirmStep": "Confirmar"
   },
   "common": {
