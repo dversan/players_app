@@ -9,6 +9,7 @@ import {
 import { TextInputProps } from 'react-native'
 import { customColors as colors } from '../ui-theme.provider'
 import { FormType } from '../../lib/data/models'
+import { PlaceholderStyleProps } from '@ui/components/select'
 
 interface GSInputProps extends PropsWithChildren<TextInputProps> {
   label?: string
@@ -16,6 +17,8 @@ interface GSInputProps extends PropsWithChildren<TextInputProps> {
   type?: string
   flex?: number
   formType?: FormType
+  placeholder?: string
+  placeholderStyle?: PlaceholderStyleProps
 }
 
 export default function Input(props: GSInputProps) {
@@ -43,7 +46,15 @@ export default function Input(props: GSInputProps) {
           onChangeText={props.onChangeText}
           selectionColor={'white'}
           color={inputStyle.onboarding.text.color || 'white'}
-          style={{ ...(props.style, inputStyle.onboarding.text) }}
+          p={0}
+          style={
+            props.placeholderStyle
+              ? { ...(props.style, props.placeholderStyle) }
+              : { ...(props.style, inputStyle.onboarding.text) }
+          }
+          caretHidden={props.caretHidden}
+          placeholder={props.placeholder}
+          onPressIn={props.onPressIn}
         />
       </GSInput>
       {props.error && props.formType !== 'onboarding' && (
