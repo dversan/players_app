@@ -47,6 +47,7 @@ export type FormType = 'onboarding' | 'register'
 export interface PositionValuesProps {
   inMainPosition: boolean
   inSecondPosition: boolean
+  birthday: boolean
 }
 
 export interface OnboardingFormData {
@@ -54,4 +55,7 @@ export interface OnboardingFormData {
   playerNickname: string
   mainPosition: string
   secondPosition: string
+  playerHeight: number
+  playerWeight: number
+  birthday: Date | string
 }
