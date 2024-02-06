@@ -15,6 +15,7 @@ import {
   PositionValuesProps
 } from '../../../lib/data/models'
 import OnboardingPositionForm from '../../../ui/components/onboarding-position-form'
+import OnboardingFitnessForm from '../../../ui/components/onboarding-fitness-form'
 import {
   OnboardingStepsValidation,
   ValidationFields
@@ -25,7 +26,10 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     playerNumber: 0,
     playerNickname: '',
     mainPosition: '',
-    secondPosition: ''
+    secondPosition: '',
+    playerHeight: 0,
+    playerWeight: 0,
+    birthday: ''
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errors, setErrors] = useState<{
@@ -38,7 +42,8 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
 
   const hasValue: PositionValuesProps = {
     inMainPosition: !!formData.mainPosition,
-    inSecondPosition: !!formData.secondPosition
+    inSecondPosition: !!formData.secondPosition,
+    birthday: !!formData.birthday
   }
   const { onboardingLayoutProps } = route.params
 
@@ -112,7 +117,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                 />
                 <Button
                   size={'lg'}
-                  style={{ marginTop: 34, paddingHorizontal: 16 }}
+                  mt={32}
                   alignSelf={'center'}
                   isLoading={isLoading}
                   onPress={() =>
@@ -131,9 +136,16 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               margin={{ mt: 24 }}
               backgroundColor={colors.backgroundDark800}
             >
+              <OnboardingFitnessForm
+                onSetFormData={onSetFormData}
+                isLoading={isLoading}
+                hasValue={hasValue}
+                onSetAccordionToOpen={onSetAccordionToOpen}
+                validation={errors}
+              />
               <Button
                 size={'lg'}
-                style={{ marginTop: 34, paddingHorizontal: 16 }}
+                mt={32}
                 alignSelf={'center'}
                 isLoading={isLoading}
                 onPress={() =>
@@ -153,7 +165,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
             >
               <Button
                 size={'lg'}
-                style={{ marginTop: 34, paddingHorizontal: 16 }}
+                mt={32}
                 alignSelf={'center'}
                 isLoading={isLoading}
                 onPress={() =>
