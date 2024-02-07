@@ -29,21 +29,23 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     secondPosition: '',
     playerHeight: 0,
     playerWeight: 0,
-    birthday: ''
+    birthday: '',
+    gamesPerYearIndex: 0
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errors, setErrors] = useState<{
     [key: keyof ValidationFields]: string
   }>({})
   const [stepToShow, setStepToShow] = useState<OnboardingSteps>(
-    OnboardingSteps.POSITION
+    OnboardingSteps.FITNESS
   )
   const [stepsCompleted, setStepsCompleted] = useState<string[]>([])
 
   const hasValue: PositionValuesProps = {
     inMainPosition: !!formData.mainPosition,
     inSecondPosition: !!formData.secondPosition,
-    birthday: !!formData.birthday
+    birthday: !!formData.birthday,
+    gamesPerYearIndex: !!formData.gamesPerYearIndex
   }
   const { onboardingLayoutProps } = route.params
 
@@ -135,6 +137,12 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               value={OnboardingSteps.FITNESS}
               margin={{ mt: 24 }}
               backgroundColor={colors.backgroundDark800}
+              headerTitle={`${t(
+                'onboardingScreen.secondFormTitle'
+              )}`.toUpperCase()}
+              titleColor={'white'}
+              borderRadius={8}
+              stepsCompleted={stepsCompleted}
             >
               <OnboardingFitnessForm
                 onSetFormData={onSetFormData}
@@ -162,6 +170,12 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               value={OnboardingSteps.PARAMETERS}
               margin={{ mt: 24 }}
               backgroundColor={colors.backgroundDark800}
+              headerTitle={`${t(
+                'onboardingScreen.thirdFormTitle'
+              )}`.toUpperCase()}
+              titleColor={'white'}
+              borderRadius={8}
+              stepsCompleted={stepsCompleted}
             >
               <Button
                 size={'lg'}

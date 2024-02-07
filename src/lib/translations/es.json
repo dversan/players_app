@@ -62,6 +62,15 @@
     "weight": "Peso (kg)",
     "birthdayLabel": "Fecha de nacimiento",
     "birthdayPlaceholder": "dd/mm/aaaa",
+    "gamesLabel": "Partidos jugados el último año",
+    "gamesPlaceholder": "Selecciona un rango",
+    "gamesRange": {
+      "no_games": "0 partidos",
+      "first_games_range": "Entre 1 y 10",
+      "second_games_range": "Entre 11 y 25",
+      "third_games_range": "Entre 26 y 40",
+      "top_games_range": "Más de 40 partidos"
+    },
     "confirmStep": "Confirmar"
   },
   "common": {

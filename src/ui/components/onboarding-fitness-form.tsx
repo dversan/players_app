@@ -3,6 +3,7 @@ import Input, { inputStyle } from '../../ui/components/input'
 import { t } from 'i18next'
 import Select from '../../ui/components/select'
 import {
+  GamesPerYearOptions,
   OnboardingFormData,
   Positions,
   PositionValuesProps
@@ -11,7 +12,7 @@ import SelectItem from '../../ui/components/select-item'
 import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useState } from 'react'
 import Text from '../../ui/components/text'
-import { ValidationFields } from '@lib/data/helpers'
+import { createNumericEnumKeys, ValidationFields } from '../../lib/data/helpers'
 import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native'
 import DatePicker from '../../ui/components/datepicker'
 import Button from '../../ui/components/button'
@@ -129,7 +130,7 @@ export default function OnboardingFitnessForm({
                     variant={'link'}
                     onPress={() => iosDatePickerButtonsHandler('ok')}
                   >
-                    {'OK'}
+                    {t('common.text.ok')}
                   </Button>
                   <Button
                     textColor={colors.backgroundLight500}
@@ -137,7 +138,7 @@ export default function OnboardingFitnessForm({
                     variant={'link'}
                     onPress={() => iosDatePickerButtonsHandler('cancel')}
                   >
-                    {'Cancel'}
+                    {t('common.text.cancel')}
                   </Button>
                 </HStackLayout>
               )}
@@ -147,29 +148,33 @@ export default function OnboardingFitnessForm({
       </HStackLayout>
       <HStackLayout w={'100%'}>
         <Select
-          label={t('onboardingScreen.mainPosition')}
+          label={t('onboardingScreen.gamesLabel')}
           variant={'outline'}
           formType={'onboarding'}
           size={'xl'}
           isInvalid={Object.entries(validation).some(
-            ([key, value]) => key === 'mainPosition' && value !== ''
+            ([key, value]) => key === 'gamesPerYearIndex' && value !== ''
           )}
-          placeholder={t('common.text.selectOption')}
+          placeholder={t('onboardingScreen.gamesPlaceholder')}
           placeholderStyle={
-            hasValue.inMainPosition
+            hasValue.gamesPerYearIndex
               ? inputStyle.onboarding.text
               : { fontSize: 20 }
           }
           isFocused={focusPositionSelect}
           onOpen={() => setFocusPositionSelect(true)}
           onClose={() => setFocusPositionSelect(false)}
-          onValueChange={value => onSetFormData('mainPosition', value.trim())}
+          onValueChange={value =>
+            onSetFormData('gamesPerYearIndex', value.trim())
+          }
         >
-          {Object.values(Positions).map(position => (
+          {createNumericEnumKeys(GamesPerYearOptions).map(range => (
             <SelectItem
-              key={position}
-              label={t(`onboardingScreen.positions.${position}`)}
-              value={position}
+              key={range.label}
+              label={t(
+                `onboardingScreen.gamesRange.${range.label.toLowerCase()}`
+              )}
+              value={range.value}
             />
           ))}
         </Select>

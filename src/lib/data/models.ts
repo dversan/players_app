@@ -20,6 +20,21 @@ export enum Positions {
   STRIKER = 'striker'
 }
 
+export enum GamesPerYearOptions {
+  NO_GAMES,
+  FIRST_GAMES_RANGE,
+  SECOND_GAMES_RANGE,
+  THIRD_GAMES_RANGE,
+  TOP_GAMES_RANGE
+}
+
+export enum CompetitionMatchesOptions {
+  QUARTER,
+  HALF,
+  THREE_QUARTERS,
+  ALL
+}
+
 export enum OnboardingSteps {
   POSITION = 'firstFormTitle',
   FITNESS = 'secondFormTitle',
@@ -48,6 +63,7 @@ export interface PositionValuesProps {
   inMainPosition: boolean
   inSecondPosition: boolean
   birthday: boolean
+  gamesPerYearIndex: boolean
 }
 
 export interface OnboardingFormData {
@@ -58,4 +74,5 @@ export interface OnboardingFormData {
   playerHeight: number
   playerWeight: number
   birthday: Date | string
+  gamesPerYearIndex: number
 }

@@ -159,8 +159,19 @@ function OnboardingStepsValidation(formData) {
   }
 }
 
+function createNumericEnumKeys(myEnum: any) {
+  // Map to select items (assuming you want objects with `value` and `label` properties)
+  return Object.keys(myEnum)
+    .map(key => ({
+      label: myEnum[key as keyof typeof myEnum], // the name of the enum
+      value: key // gets the numeric value
+    }))
+    .filter(k => isNaN(Number(k.label)))
+}
+
 export {
   registerFormValidation,
   loginFormValidation,
-  OnboardingStepsValidation
+  OnboardingStepsValidation,
+  createNumericEnumKeys
 }
