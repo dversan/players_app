@@ -63,6 +63,7 @@ export default function Select(props: GSSelectProps) {
                 : { ...(props.style, inputStyle.onboarding.text) }
             }
             placeholder={props.placeholder}
+            p={0}
           />
           <SelectIcon mr='$3'>
             <Icon as={ChevronDownIcon} color={'white'} />
