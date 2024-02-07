@@ -61,7 +61,7 @@
     "height": "Altura (cm)",
     "weight": "Peso (kg)",
     "birthdayLabel": "Fecha de nacimiento",
-    "birthdayButtonText": "Introducir fecha",
+    "birthdayPlaceholder": "Introduce una fecha",
     "confirmStep": "Confirmar"
   },
   "common": {
@@ -76,7 +76,8 @@
       "userNotFound": "No existe ningún usuario con esta dirección de email o la contraseña es incorrecta."
     },
     "text": {
-      "ok": "ok",
+      "ok": "Ok",
+      "cancel": "Cancelar",
       "selectOption": "Selecciona posición"
     }
   }

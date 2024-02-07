@@ -61,7 +61,7 @@
     "height": "Height (cm)",
     "weight": "Weight (kg)",
     "birthdayLabel": "Birthday",
-    "birthdayButtonText": "Enter Birthday date",
+    "birthdayPlaceholder": "Enter Birthday date",
     "confirmStep": "Confirm"
   },
   "common": {
@@ -76,7 +76,8 @@
       "userNotFound": "There is no user with this email or the password is incorrect"
     },
     "text": {
-      "ok": "ok",
+      "ok": "Ok",
+      "cancel": "Cancel",
       "selectOption": "Select position"
     }
   }
