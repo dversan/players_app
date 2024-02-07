@@ -30,7 +30,8 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     playerHeight: 0,
     playerWeight: 0,
     birthday: '',
-    gamesPerYearIndex: 0
+    gamesPerYearIndex: 0,
+    competitionGamesIndex: 0
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errors, setErrors] = useState<{
@@ -45,7 +46,8 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     inMainPosition: !!formData.mainPosition,
     inSecondPosition: !!formData.secondPosition,
     birthday: !!formData.birthday,
-    gamesPerYearIndex: !!formData.gamesPerYearIndex
+    gamesPerYearIndex: !!formData.gamesPerYearIndex,
+    competitionGamesIndex: !!formData.competitionGamesIndex
   }
   const { onboardingLayoutProps } = route.params
 

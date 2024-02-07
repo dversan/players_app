@@ -28,11 +28,12 @@ export enum GamesPerYearOptions {
   TOP_GAMES_RANGE
 }
 
-export enum CompetitionMatchesOptions {
-  QUARTER,
-  HALF,
-  THREE_QUARTERS,
-  ALL
+export enum CompetitionGamesOptions {
+  NONE = 0,
+  QUARTER = 25,
+  HALF = 50,
+  THREE_QUARTERS = 75,
+  ALL = 100
 }
 
 export enum OnboardingSteps {
@@ -64,6 +65,7 @@ export interface PositionValuesProps {
   inSecondPosition: boolean
   birthday: boolean
   gamesPerYearIndex: boolean
+  competitionGamesIndex: boolean
 }
 
 export interface OnboardingFormData {
@@ -75,4 +77,5 @@ export interface OnboardingFormData {
   playerWeight: number
   birthday: Date | string
   gamesPerYearIndex: number
+  competitionGamesIndex: number
 }

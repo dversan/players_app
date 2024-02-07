@@ -3,9 +3,9 @@ import Input, { inputStyle } from '../../ui/components/input'
 import { t } from 'i18next'
 import Select from '../../ui/components/select'
 import {
+  CompetitionGamesOptions,
   GamesPerYearOptions,
   OnboardingFormData,
-  Positions,
   PositionValuesProps
 } from '../../lib/data/models'
 import SelectItem from '../../ui/components/select-item'
@@ -181,29 +181,34 @@ export default function OnboardingFitnessForm({
       </HStackLayout>
       <HStackLayout w={'100%'}>
         <Select
-          label={t('onboardingScreen.alternativePosition')}
+          label={t('onboardingScreen.competitionGamesLabel')}
           variant={'outline'}
           formType={'onboarding'}
           size={'xl'}
           isInvalid={Object.entries(validation).some(
-            ([key, value]) => key === 'secondPosition' && value !== ''
+            ([key, value]) =>
+              key === 'competitionGamesIndex' && value.toString() !== ''
           )}
-          placeholder={t('common.text.selectOption')}
+          placeholder={t('onboardingScreen.competitionGamesPlaceholder')}
           placeholderStyle={
-            hasValue.inSecondPosition
+            hasValue.competitionGamesIndex
               ? inputStyle.onboarding.text
               : { fontSize: 20 }
           }
           isFocused={focusSecondPosSelect}
           onOpen={() => setFocusSecondPosSelect(true)}
           onClose={() => setFocusSecondPosSelect(false)}
-          onValueChange={value => onSetFormData('secondPosition', value.trim())}
+          onValueChange={value =>
+            onSetFormData('competitionGamesIndex', value.trim())
+          }
         >
-          {Object.values(Positions).map(position => (
+          {createNumericEnumKeys(CompetitionGamesOptions).map(range => (
             <SelectItem
-              key={position}
-              label={t(`onboardingScreen.positions.${position}`)}
-              value={position}
+              key={range.label}
+              label={t(
+                `onboardingScreen.gamesPercentage.${range.label.toLowerCase()}`
+              )}
+              value={range.value}
             />
           ))}
         </Select>

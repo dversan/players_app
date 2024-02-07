@@ -71,6 +71,15 @@
       "third_games_range": "Entre 26 y 40",
       "top_games_range": "Más de 40 partidos"
     },
+    "competitionGamesLabel": "Competición",
+    "competitionGamesPlaceholder": "Selecciona un porcentaje",
+    "gamesPercentage": {
+      "none": "0%",
+      "quarter": "Entre 1% - 25%",
+      "half": "Entre 26% - 50%",
+      "three_quarters": "Entre 51% - 75%",
+      "all": "Más del 75%%"
+    },
     "confirmStep": "Confirmar"
   },
   "common": {
