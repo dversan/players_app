@@ -11,6 +11,7 @@ interface GSButtonProps extends PropsWithChildren<PressableProps> {
   isLoading?: boolean
   variant?: 'link' | 'outline' | 'solid'
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  textColor?: string
 }
 
 export default function Button(props: GSButtonProps) {
@@ -21,6 +22,9 @@ export default function Button(props: GSButtonProps) {
       sx={{
         ':active': {
           bg: colors.primary300
+        },
+        _text: {
+          color: props.textColor || colors.backgroundLight400
         }
       }}
     >
