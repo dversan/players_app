@@ -61,7 +61,7 @@
     "height": "Height (cm)",
     "weight": "Weight (kg)",
     "birthdayLabel": "Birthday",
-    "birthdayPlaceholder": "Enter Birthday date",
+    "birthdayPlaceholder": "mm/dd/yyyy",
     "confirmStep": "Confirm"
   },
   "common": {

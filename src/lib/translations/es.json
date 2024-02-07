@@ -61,7 +61,7 @@
     "height": "Altura (cm)",
     "weight": "Peso (kg)",
     "birthdayLabel": "Fecha de nacimiento",
-    "birthdayPlaceholder": "Introduce una fecha",
+    "birthdayPlaceholder": "dd/mm/aaaa",
     "confirmStep": "Confirmar"
   },
   "common": {

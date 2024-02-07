@@ -12,6 +12,12 @@ import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useState } from 'react'
 import Text from '../../ui/components/text'
 import { ValidationFields } from '@lib/data/helpers'
+import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native'
+import DatePicker from '../../ui/components/datepicker'
+import Button from '../../ui/components/button'
+import BoxLayout from '../../ui/layout/box.layout'
+import { customColors as colors } from '../../ui/ui-theme.provider'
+import { DateTimePickerEvent } from '@react-native-community/datetimepicker'
 
 interface OnboardingFormFitnessProps {
   onSetFormData: (
@@ -31,12 +37,37 @@ export default function OnboardingFitnessForm({
   const [focusSecondPosSelect, setFocusSecondPosSelect] =
     useState<boolean>(false)
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false)
-  const [date, setDate] = useState<Date>()
+  const [date, setDate] = useState<Date | undefined>()
+  const [previousDate, setPreviousDate] = useState<Date | undefined>()
 
   const someFormFieldEmpty = Object.values(validation).some(
     r =>
       r.toString().includes('obligatorio') || r.toString().includes('required')
   )
+
+  const iosDatePickerButtonsHandler = (type: 'ok' | 'cancel') => {
+    setShowDatePicker(false)
+    setPreviousDate(date)
+
+    type === 'cancel'
+      ? setDate(previousDate)
+      : onSetFormData('birthday', date ? date.toLocaleDateString() : '')
+  }
+
+  const datePickerOnChangeHandler = (
+    e: DateTimePickerEvent,
+    selectedDate?: Date
+  ) => {
+    if (Platform.OS === 'android' && (e.type === 'dismissed' || 'set')) {
+      setShowDatePicker(false)
+      setDate(selectedDate)
+      onSetFormData(
+        'birthday',
+        selectedDate ? selectedDate.toLocaleDateString() : ''
+      )
+    }
+    setDate(selectedDate)
+  }
 
   return (
     <VStackLayout space={'lg'}>
@@ -58,19 +89,60 @@ export default function OnboardingFitnessForm({
       </HStackLayout>
       <HStackLayout w={'100%'}>
         <VStackLayout flex={1}>
-          <Input
-            label={t('onboardingScreen.birthdayLabel')}
-            flex={1}
-            formType={'onboarding'}
-            placeholder={t('common.text.selectOption')}
-            placeholderStyle={
-              hasValue.birthday ? inputStyle.onboarding.text : { fontSize: 20 }
-            }
-            onPressIn={() => setShowDatePicker(true)}
-            caretHidden
-            // value={date.toLocaleDateString()}
-            // error={validation.playerWeight}
-          ></Input>
+          <TouchableWithoutFeedback
+            onPress={Keyboard.dismiss}
+            accessible={false}
+          >
+            <Input
+              label={t('onboardingScreen.birthdayLabel')}
+              formType={'onboarding'}
+              placeholder={t('onboardingScreen.birthdayPlaceholder')}
+              placeholderStyle={
+                hasValue.birthday
+                  ? inputStyle.onboarding.text
+                  : { fontSize: 20 }
+              }
+              onPressIn={() => setShowDatePicker(true)}
+              caretHidden
+              value={date && new Date(date).toLocaleDateString()}
+              pb={!hasValue.birthday && Platform.OS === 'ios' ? 6 : 0}
+              // error={validation.playerWeight}
+            />
+          </TouchableWithoutFeedback>
+          {showDatePicker && (
+            <BoxLayout
+              style={Platform.OS === 'ios' ? iOSDatePickerContainerStyle : {}}
+            >
+              <DatePicker
+                value={date ? new Date(date) : new Date()}
+                onChange={(e, selectedDate) =>
+                  datePickerOnChangeHandler(e, selectedDate)
+                }
+                display={'spinner'}
+                themeVariant={'dark'}
+              />
+              {Platform.OS === 'ios' && (
+                <HStackLayout space={'lg'} style={{ alignSelf: 'center' }}>
+                  <Button
+                    textColor={'white'}
+                    size={'lg'}
+                    variant={'link'}
+                    onPress={() => iosDatePickerButtonsHandler('ok')}
+                  >
+                    {'OK'}
+                  </Button>
+                  <Button
+                    textColor={colors.backgroundLight500}
+                    size={'lg'}
+                    variant={'link'}
+                    onPress={() => iosDatePickerButtonsHandler('cancel')}
+                  >
+                    {'Cancel'}
+                  </Button>
+                </HStackLayout>
+              )}
+            </BoxLayout>
+          )}
         </VStackLayout>
       </HStackLayout>
       <HStackLayout w={'100%'}>
@@ -140,4 +212,14 @@ export default function OnboardingFitnessForm({
       )}
     </VStackLayout>
   )
+}
+
+const iOSDatePickerContainerStyle = {
+  borderWidth: 2,
+  borderRadius: 8,
+  borderBottomColor: colors.primary500,
+  borderLeftColor: colors.primary500,
+  borderRightColor: colors.primary500,
+  borderTopRightRadius: 0,
+  borderTopLeftRadius: 0
 }
