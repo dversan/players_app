@@ -64,14 +64,15 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   }
 
   function stepHandler(stepToOpen: OnboardingSteps, step: OnboardingSteps) {
-    if (OnboardingStepsValidation(formData).validationOk) {
+    if (OnboardingStepsValidation(formData)[`${step}ValidationOk`]) {
       if (!stepsCompleted.includes(step)) {
         const currentStepsCompleted = stepsCompleted.concat(step)
         setStepsCompleted(currentStepsCompleted)
       }
+      setErrors({})
       setStepToShow(stepToOpen)
     } else {
-      setErrors(OnboardingStepsValidation(formData).validationErrors)
+      setErrors(OnboardingStepsValidation(formData)[`${step}ValidationErrors`])
     }
   }
 
@@ -105,7 +106,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               value={OnboardingSteps.POSITION}
               backgroundColor={colors.backgroundDark800}
               headerTitle={`${t(
-                'onboardingScreen.firstFormTitle'
+                `onboardingScreen.${OnboardingSteps.POSITION}Title`
               )}`.toUpperCase()}
               titleColor={'white'}
               borderRadius={8}
@@ -140,7 +141,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               margin={{ mt: 24 }}
               backgroundColor={colors.backgroundDark800}
               headerTitle={`${t(
-                'onboardingScreen.secondFormTitle'
+                `onboardingScreen.${OnboardingSteps.FITNESS}Title`
               )}`.toUpperCase()}
               titleColor={'white'}
               borderRadius={8}
@@ -173,7 +174,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               margin={{ mt: 24 }}
               backgroundColor={colors.backgroundDark800}
               headerTitle={`${t(
-                'onboardingScreen.thirdFormTitle'
+                `onboardingScreen.${OnboardingSteps.PARAMETERS}Title`
               )}`.toUpperCase()}
               titleColor={'white'}
               borderRadius={8}

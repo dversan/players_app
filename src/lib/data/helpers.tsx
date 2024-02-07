@@ -93,11 +93,13 @@ function loginFormValidation(formData) {
 }
 
 function OnboardingStepsValidation(formData) {
-  let validationErrors = {}
+  let firstStepValidationErrors = {}
+  let secondStepValidationErrors = {}
+  // let thirdStepValidationErrors = {}
 
   if (formData.playerNumber === 0) {
-    validationErrors = {
-      ...validationErrors,
+    firstStepValidationErrors = {
+      ...firstStepValidationErrors,
       playerNumber: t('common.error.requiredField', {
         field: t('onboardingScreen.playerNumberField')
       })
@@ -105,8 +107,8 @@ function OnboardingStepsValidation(formData) {
   }
 
   if (!isValidNumber(0, 100, Number(formData.playerNumber))) {
-    validationErrors = {
-      ...validationErrors,
+    firstStepValidationErrors = {
+      ...firstStepValidationErrors,
       playerNumber: t('common.error.requiredFieldNumber', {
         field: t('onboardingScreen.playerNumberField')
       })
@@ -114,8 +116,8 @@ function OnboardingStepsValidation(formData) {
   }
 
   if (formData.playerNickname.trim().length === 0) {
-    validationErrors = {
-      ...validationErrors,
+    firstStepValidationErrors = {
+      ...firstStepValidationErrors,
       playerNickname: t('common.error.requiredField', {
         field: t('registerScreen.form.name')
       })
@@ -127,8 +129,8 @@ function OnboardingStepsValidation(formData) {
     formData.mainPosition.trim().length === 0 ||
     formData.secondPosition.trim().length === 0
   ) {
-    validationErrors = {
-      ...validationErrors,
+    firstStepValidationErrors = {
+      ...firstStepValidationErrors,
       requiredFields: t('common.error.requiredField', {
         field: t('registerScreen.form.name')
       })
@@ -136,8 +138,8 @@ function OnboardingStepsValidation(formData) {
   }
 
   if (formData.mainPosition.trim().length === 0) {
-    validationErrors = {
-      ...validationErrors,
+    firstStepValidationErrors = {
+      ...firstStepValidationErrors,
       mainPosition: t('common.error.requiredField', {
         field: t('registerScreen.form.name')
       })
@@ -145,17 +147,56 @@ function OnboardingStepsValidation(formData) {
   }
 
   if (formData.secondPosition.trim().length === 0) {
-    validationErrors = {
-      ...validationErrors,
+    firstStepValidationErrors = {
+      ...firstStepValidationErrors,
       secondPosition: t('common.error.requiredField', {
         field: t('registerScreen.form.name')
       })
     }
   }
 
+  if (formData.playerHeight === 0) {
+    secondStepValidationErrors = {
+      ...secondStepValidationErrors,
+      playerHeight: t('common.error.requiredField', {
+        field: t('common.text.height')
+      })
+    }
+  }
+
+  if (!isValidNumber(0, 250, Number(formData.playerHeight))) {
+    secondStepValidationErrors = {
+      ...secondStepValidationErrors,
+      playerHeight: t('common.error.requiredFieldHeight', {
+        field: t('common.text.height')
+      })
+    }
+  }
+
+  if (formData.playerWeight === 0) {
+    secondStepValidationErrors = {
+      ...secondStepValidationErrors,
+      playerWeight: t('common.error.requiredField', {
+        field: t('common.text.weight')
+      })
+    }
+  }
+
+  if (!isValidNumber(0, 100, Number(formData.playerWeight))) {
+    secondStepValidationErrors = {
+      ...secondStepValidationErrors,
+      playerWeight: t('common.error.requiredFieldWeight', {
+        field: t('common.text.weight')
+      })
+    }
+  }
+
   return {
-    validationOk: Object.keys(validationErrors).length === 0,
-    validationErrors
+    firstStepValidationOk: Object.keys(firstStepValidationErrors).length === 0,
+    secondStepValidationOk:
+      Object.keys(secondStepValidationErrors).length === 0,
+    firstStepValidationErrors,
+    secondStepValidationErrors
   }
 }
 

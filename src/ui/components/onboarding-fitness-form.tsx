@@ -78,14 +78,14 @@ export default function OnboardingFitnessForm({
           flex={1}
           formType={'onboarding'}
           onChangeText={value => onSetFormData('playerHeight', value.trim())}
-          // error={validation.playerHeight?.toString()}
+          error={validation.playerHeight?.toString()}
         />
         <Input
           label={t('onboardingScreen.weight')}
           flex={1}
           formType={'onboarding'}
           onChangeText={value => onSetFormData('playerWeight', value.trim())}
-          // error={validation.playerWeight}
+          error={validation.playerWeight?.toString()}
         />
       </HStackLayout>
       <HStackLayout w={'100%'}>

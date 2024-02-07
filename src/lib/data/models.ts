@@ -37,9 +37,9 @@ export enum CompetitionGamesOptions {
 }
 
 export enum OnboardingSteps {
-  POSITION = 'firstFormTitle',
-  FITNESS = 'secondFormTitle',
-  PARAMETERS = 'thirdFormTitle'
+  POSITION = 'firstStep',
+  FITNESS = 'secondStep',
+  PARAMETERS = 'thirdStep'
 }
 
 export interface User {
