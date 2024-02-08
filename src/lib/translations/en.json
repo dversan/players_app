@@ -80,7 +80,14 @@
       "three_quarters": "Between 51% - 75%",
       "all": "More than 75%%"
     },
-    "confirmStep": "Confirm"
+    "attack": "Attack",
+    "defense": "Defense",
+    "fitness": "Fitness",
+    "goal": "Goal",
+    "pass": "Pass",
+    "teamWork": "Team work",
+    "confirmStep": "Confirm",
+    "createProfile": "Create profile"
   },
   "common": {
     "error": {

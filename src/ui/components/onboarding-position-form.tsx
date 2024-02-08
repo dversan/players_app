@@ -2,7 +2,7 @@ import HStackLayout from '../../ui/layout/hstack.layout'
 import Input, { inputStyle } from '../../ui/components/input'
 import { t } from 'i18next'
 import Select from '../../ui/components/select'
-import { Positions, PositionValuesProps } from '../../lib/data/models'
+import { Positions, SelectValuesProps } from '../../lib/data/models'
 import SelectItem from '../../ui/components/select-item'
 import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useState } from 'react'
@@ -11,7 +11,7 @@ import { ValidationFields } from '@lib/data/helpers'
 
 interface OnboardingFormDorsalProps {
   onSetFormData: (fieldName: string, fieldValue: string | number) => void
-  hasValue: PositionValuesProps
+  hasValue: SelectValuesProps
   validation: { [key: keyof ValidationFields]: string }
 }
 

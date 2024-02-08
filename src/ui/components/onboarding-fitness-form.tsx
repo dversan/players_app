@@ -6,7 +6,7 @@ import {
   CompetitionGamesOptions,
   GamesPerYearOptions,
   OnboardingFormData,
-  PositionValuesProps
+  SelectValuesProps
 } from '../../lib/data/models'
 import SelectItem from '../../ui/components/select-item'
 import VStackLayout from '../../ui/layout/vstack.layout'
@@ -25,7 +25,7 @@ interface OnboardingFormFitnessProps {
     fieldName: keyof OnboardingFormData,
     fieldValue: string | number | Date
   ) => void
-  hasValue: PositionValuesProps
+  hasValue: SelectValuesProps
   validation: { [key: keyof ValidationFields]: string }
 }
 

@@ -12,10 +12,11 @@ import { customColors as colors } from '../../../ui/ui-theme.provider'
 import {
   OnboardingFormData,
   OnboardingSteps,
-  PositionValuesProps
+  SelectValuesProps
 } from '../../../lib/data/models'
 import OnboardingPositionForm from '../../../ui/components/onboarding-position-form'
 import OnboardingFitnessForm from '../../../ui/components/onboarding-fitness-form'
+import OnboardingParametersForm from '../../../ui/components/onboarding-parameters-form'
 import {
   OnboardingStepsValidation,
   ValidationFields
@@ -31,18 +32,24 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     playerWeight: 0,
     birthday: '',
     gamesPerYearIndex: 0,
-    competitionGamesIndex: 0
+    competitionGamesIndex: 0,
+    attack: 0,
+    defense: 0,
+    fitness: 0,
+    goal: 0,
+    pass: 0,
+    teamWork: 0
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [errors, setErrors] = useState<{
     [key: keyof ValidationFields]: string
   }>({})
   const [stepToShow, setStepToShow] = useState<OnboardingSteps>(
-    OnboardingSteps.FITNESS
+    OnboardingSteps.PARAMETERS
   )
   const [stepsCompleted, setStepsCompleted] = useState<string[]>([])
 
-  const hasValue: PositionValuesProps = {
+  const hasValue: SelectValuesProps = {
     inMainPosition: !!formData.mainPosition,
     inSecondPosition: !!formData.secondPosition,
     birthday: !!formData.birthday,
@@ -180,6 +187,11 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               borderRadius={8}
               stepsCompleted={stepsCompleted}
             >
+              <OnboardingParametersForm
+                onSetFormData={onSetFormData}
+                isLoading={isLoading}
+                validation={errors}
+              />
               <Button
                 size={'lg'}
                 mt={32}
@@ -196,8 +208,11 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               </Button>
             </AccordionItem>
           </Accordion>
-          <Button onPress={() => navigation.navigate('OnboardingClubScreen')}>
-            {'GO TO STEP2'}
+          <Button
+            size={'xl'}
+            onPress={() => navigation.navigate('OnboardingClubScreen')}
+          >
+            {'Crear perfil'}
           </Button>
         </VStackLayout>
       </ScrollViewLayout>

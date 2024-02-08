@@ -94,7 +94,7 @@ function loginFormValidation(formData) {
 function OnboardingStepsValidation(formData) {
   let firstStepValidationErrors: ValidationErrors = {}
   let secondStepValidationErrors: ValidationErrors = {}
-  // let thirdStepValidationErrors: ValidationErrors = {}
+  let thirdStepValidationErrors: ValidationErrors = {}
 
   // ############ First Step Validations ##################
 
@@ -214,14 +214,33 @@ function OnboardingStepsValidation(formData) {
     }
   }
 
+  // ############ Third Step Validations ##################
+
+  const fields = ['attack', 'defense', 'fitness', 'goal', 'pass', 'teamWork']
+
+  fields.forEach(field => {
+    if (!isValidNumber(10, 100, Number(formData[field]))) {
+      thirdStepValidationErrors = {
+        ...thirdStepValidationErrors,
+        [field]: t('common.error.requiredFieldNumberWithRange', {
+          field: t(`onboardingScreen.${field}`), // Assuming you want to use the same field name for all. If not, this needs to be adjusted.
+          min: t('10'),
+          max: t('100')
+        })
+      }
+    }
+  })
+
   // ############ Onboarding Form Validations Outputs ##################
 
   return {
     firstStepValidationOk: Object.keys(firstStepValidationErrors).length === 0,
     secondStepValidationOk:
       Object.keys(secondStepValidationErrors).length === 0,
+    thirdStepValidationOk: Object.keys(thirdStepValidationErrors).length === 0,
     firstStepValidationErrors,
-    secondStepValidationErrors
+    secondStepValidationErrors,
+    thirdStepValidationErrors
   }
 }
 

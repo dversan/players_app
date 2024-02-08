@@ -60,7 +60,7 @@ export interface User {
 
 export type FormType = 'onboarding' | 'register'
 
-export interface PositionValuesProps {
+export interface SelectValuesProps {
   inMainPosition: boolean
   inSecondPosition: boolean
   birthday: boolean
@@ -78,4 +78,10 @@ export interface OnboardingFormData {
   birthday: Date | string
   gamesPerYearIndex: number
   competitionGamesIndex: number
+  attack: number
+  defense: number
+  fitness: number
+  goal: number
+  pass: number
+  teamWork: number
 }

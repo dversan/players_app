@@ -80,7 +80,14 @@
       "three_quarters": "Entre 51% - 75%",
       "all": "Más del 75%%"
     },
-    "confirmStep": "Confirmar"
+    "attack": "Ataque",
+    "defense": "Defensa",
+    "fitness": "Est. Forma",
+    "goal": "Hab. Gol",
+    "pass": "Hab. Pase",
+    "teamWork": "T. Equipo",
+    "confirmStep": "Confirmar",
+    "createProfile": "Crear perfil"
   },
   "common": {
     "error": {
