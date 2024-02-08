@@ -41,11 +41,6 @@ export default function OnboardingFitnessForm({
   const [date, setDate] = useState<Date | undefined>()
   const [previousDate, setPreviousDate] = useState<Date | undefined>()
 
-  const someFormFieldEmpty = Object.values(validation).some(
-    r =>
-      r.toString().includes('obligatorio') || r.toString().includes('required')
-  )
-
   const iosDatePickerButtonsHandler = (type: 'ok' | 'cancel') => {
     setShowDatePicker(false)
     setPreviousDate(date)
@@ -107,7 +102,7 @@ export default function OnboardingFitnessForm({
               caretHidden
               value={date && new Date(date).toLocaleDateString()}
               pb={!hasValue.birthday && Platform.OS === 'ios' ? 6 : 0}
-              // error={validation.playerWeight}
+              error={validation.birthday}
             />
           </TouchableWithoutFeedback>
           {showDatePicker && (
@@ -214,11 +209,7 @@ export default function OnboardingFitnessForm({
         </Select>
       </HStackLayout>
       {Object.keys(validation).length > 0 && (
-        <Text color={'red'}>
-          {someFormFieldEmpty
-            ? t('common.error.allRequiredField')
-            : Object.values(validation)[0]}
-        </Text>
+        <Text color={'red'}>{Object.values(validation)[0]}</Text>
       )}
     </VStackLayout>
   )

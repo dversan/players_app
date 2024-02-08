@@ -24,11 +24,6 @@ export default function OnboardingPositionForm({
   const [focusSecondPosSelect, setFocusSecondPosSelect] =
     useState<boolean>(false)
 
-  const someFormFieldEmpty = Object.values(validation).some(
-    r =>
-      r.toString().includes('obligatorio') || r.toString().includes('required')
-  )
-
   return (
     <VStackLayout space={'lg'}>
       <HStackLayout space={'lg'}>
@@ -78,7 +73,7 @@ export default function OnboardingPositionForm({
       </HStackLayout>
       <HStackLayout w={'100%'}>
         <Select
-          label={t('onboardingScreen.alternativePosition')}
+          label={t('onboardingScreen.secondPosition')}
           variant={'outline'}
           formType={'onboarding'}
           size={'xl'}
@@ -106,11 +101,7 @@ export default function OnboardingPositionForm({
         </Select>
       </HStackLayout>
       {Object.keys(validation).length > 0 && (
-        <Text color={'red'}>
-          {someFormFieldEmpty
-            ? t('common.error.allRequiredField')
-            : Object.values(validation)[0]}
-        </Text>
+        <Text color={'red'}>{Object.values(validation)[0]}</Text>
       )}
     </VStackLayout>
   )

@@ -21,7 +21,7 @@ export enum Positions {
 }
 
 export enum GamesPerYearOptions {
-  NO_GAMES,
+  NO_GAMES = 1,
   FIRST_GAMES_RANGE,
   SECOND_GAMES_RANGE,
   THIRD_GAMES_RANGE,
@@ -29,7 +29,7 @@ export enum GamesPerYearOptions {
 }
 
 export enum CompetitionGamesOptions {
-  NONE = 0,
+  NONE = 1,
   QUARTER = 25,
   HALF = 50,
   THREE_QUARTERS = 75,

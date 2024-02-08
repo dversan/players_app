@@ -2,22 +2,21 @@ import { t } from 'i18next'
 import { OnboardingFormData, User } from '../data/models'
 
 function isValidNumber(min, max, value) {
-  return (
-    /^\d{1,2}$/.test(value) &&
-    parseInt(value, 10) >= min &&
-    parseInt(value, 10) <= max
-  )
+  return /^\d{1,2}$/ && parseInt(value) >= min && parseInt(value) <= max
 }
 
 export interface ValidationFields extends OnboardingFormData, User {
   password: string
   confirmPassword: string
+  requiredFields: string
+}
+
+type ValidationErrors = {
+  [key: keyof ValidationFields]: string
 }
 
 function registerFormValidation(formData) {
-  let validationErrors: {
-    [key: keyof ValidationFields]: string
-  } = {}
+  let validationErrors: ValidationErrors = {}
 
   if (formData.email.trim().length === 0) {
     validationErrors = {
@@ -66,7 +65,7 @@ function registerFormValidation(formData) {
 }
 
 function loginFormValidation(formData) {
-  let validationErrors = {}
+  let validationErrors: ValidationErrors = {}
 
   if (formData.email.trim().length === 0) {
     validationErrors = {
@@ -93,9 +92,11 @@ function loginFormValidation(formData) {
 }
 
 function OnboardingStepsValidation(formData) {
-  let firstStepValidationErrors = {}
-  let secondStepValidationErrors = {}
-  // let thirdStepValidationErrors = {}
+  let firstStepValidationErrors: ValidationErrors = {}
+  let secondStepValidationErrors: ValidationErrors = {}
+  // let thirdStepValidationErrors: ValidationErrors = {}
+
+  // ############ First Step Validations ##################
 
   if (formData.playerNumber === 0) {
     firstStepValidationErrors = {
@@ -106,11 +107,13 @@ function OnboardingStepsValidation(formData) {
     }
   }
 
-  if (!isValidNumber(0, 100, Number(formData.playerNumber))) {
+  if (!isValidNumber(0, 99, Number(formData.playerNumber))) {
     firstStepValidationErrors = {
       ...firstStepValidationErrors,
-      playerNumber: t('common.error.requiredFieldNumber', {
-        field: t('onboardingScreen.playerNumberField')
+      playerNumber: t('common.error.requiredFieldNumberWithRange', {
+        field: t('onboardingScreen.playerNumberField'),
+        min: t('0'),
+        max: t('99')
       })
     }
   }
@@ -124,24 +127,11 @@ function OnboardingStepsValidation(formData) {
     }
   }
 
-  if (
-    formData.playerNickname.trim().length === 0 ||
-    formData.mainPosition.trim().length === 0 ||
-    formData.secondPosition.trim().length === 0
-  ) {
-    firstStepValidationErrors = {
-      ...firstStepValidationErrors,
-      requiredFields: t('common.error.requiredField', {
-        field: t('registerScreen.form.name')
-      })
-    }
-  }
-
   if (formData.mainPosition.trim().length === 0) {
     firstStepValidationErrors = {
       ...firstStepValidationErrors,
       mainPosition: t('common.error.requiredField', {
-        field: t('registerScreen.form.name')
+        field: t('onboardingScreen.mainPosition')
       })
     }
   }
@@ -150,10 +140,12 @@ function OnboardingStepsValidation(formData) {
     firstStepValidationErrors = {
       ...firstStepValidationErrors,
       secondPosition: t('common.error.requiredField', {
-        field: t('registerScreen.form.name')
+        field: t('onboardingScreen.secondPosition')
       })
     }
   }
+
+  // ############ Second Step Validations ##################
 
   if (formData.playerHeight === 0) {
     secondStepValidationErrors = {
@@ -164,11 +156,13 @@ function OnboardingStepsValidation(formData) {
     }
   }
 
-  if (!isValidNumber(0, 250, Number(formData.playerHeight))) {
+  if (!isValidNumber(100, 300, Number(formData.playerHeight))) {
     secondStepValidationErrors = {
       ...secondStepValidationErrors,
-      playerHeight: t('common.error.requiredFieldHeight', {
-        field: t('common.text.height')
+      playerHeight: t('common.error.requiredFieldNumberWithRange', {
+        field: t('common.text.height'),
+        min: t('100'),
+        max: t('300')
       })
     }
   }
@@ -182,14 +176,45 @@ function OnboardingStepsValidation(formData) {
     }
   }
 
-  if (!isValidNumber(0, 100, Number(formData.playerWeight))) {
+  if (!isValidNumber(25, 200, Number(formData.playerWeight))) {
     secondStepValidationErrors = {
       ...secondStepValidationErrors,
-      playerWeight: t('common.error.requiredFieldWeight', {
-        field: t('common.text.weight')
+      playerWeight: t('common.error.requiredFieldNumberWithRange', {
+        field: t('common.text.weight'),
+        min: t('25'),
+        max: t('200')
       })
     }
   }
+
+  if (formData.birthday.trim().length === 0) {
+    secondStepValidationErrors = {
+      ...secondStepValidationErrors,
+      birthday: t('common.error.requiredField', {
+        field: t('onboardingScreen.birthdayLabel')
+      })
+    }
+  }
+
+  if (formData.gamesPerYearIndex === 0) {
+    secondStepValidationErrors = {
+      ...secondStepValidationErrors,
+      gamesPerYearIndex: t('common.error.requiredField', {
+        field: t('onboardingScreen.gamesLabel')
+      })
+    }
+  }
+
+  if (formData.competitionGamesIndex === 0) {
+    secondStepValidationErrors = {
+      ...secondStepValidationErrors,
+      competitionGamesIndex: t('common.error.requiredField', {
+        field: t('onboardingScreen.competitionGamesLabel')
+      })
+    }
+  }
+
+  // ############ Onboarding Form Validations Outputs ##################
 
   return {
     firstStepValidationOk: Object.keys(firstStepValidationErrors).length === 0,
