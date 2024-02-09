@@ -5,13 +5,14 @@ import {
   AccordionTitleText,
   AccordionTrigger,
   Center,
-  CheckIcon
+  Icon
 } from '@gluestack-ui/themed'
+import { CheckCircle } from 'lucide-react-native'
 import React, { PropsWithChildren } from 'react'
 import { ViewProps } from 'react-native'
-import OnboardingHeaderIcon from '../../ui/components/onboarding-header-icon'
 import { OnboardingSteps } from '../../lib/data/models'
 import Text from '../../ui/components/text'
+import { customColors as colors } from '../../ui/ui-theme.provider'
 
 interface GSAccordionProps extends PropsWithChildren<ViewProps> {
   headerTitle?: string
@@ -39,7 +40,9 @@ export default function AccordionItem(props: GSAccordionProps) {
         <AccordionTrigger>
           <>
             {props.showCheckIcon ? (
-              <OnboardingHeaderIcon>{CheckIcon}</OnboardingHeaderIcon>
+              <Center mr={8}>
+                <Icon as={CheckCircle} size={24} color={colors.primary200} />
+              </Center>
             ) : (
               <Center mr={8}>
                 <Text bold>{`${

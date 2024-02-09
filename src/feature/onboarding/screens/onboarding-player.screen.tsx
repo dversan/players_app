@@ -47,7 +47,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     [key: keyof ValidationFields]: string
   }>({})
   const [stepToShow, setStepToShow] = useState<OnboardingSteps>(
-    OnboardingSteps.FITNESS
+    OnboardingSteps.POSITION
   )
   const [stepsCompleted, setStepsCompleted] = useState<string[]>([])
   const disableSubmitButton =
@@ -125,6 +125,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               titleColor={'white'}
               borderRadius={8}
               stepsCompleted={stepsCompleted}
+              showCheckIcon={stepsCompleted.includes(OnboardingSteps.POSITION)}
             >
               <>
                 <OnboardingPositionForm
@@ -160,6 +161,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               titleColor={'white'}
               borderRadius={8}
               stepsCompleted={stepsCompleted}
+              showCheckIcon={stepsCompleted.includes(OnboardingSteps.FITNESS)}
             >
               <OnboardingFitnessForm
                 onSetFormData={onSetFormData}
@@ -193,6 +195,9 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               titleColor={'white'}
               borderRadius={8}
               stepsCompleted={stepsCompleted}
+              showCheckIcon={stepsCompleted.includes(
+                OnboardingSteps.PARAMETERS
+              )}
             >
               <OnboardingParametersForm
                 onSetFormData={onSetFormData}
