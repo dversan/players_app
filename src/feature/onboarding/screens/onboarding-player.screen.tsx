@@ -45,10 +45,11 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     [key: keyof ValidationFields]: string
   }>({})
   const [stepToShow, setStepToShow] = useState<OnboardingSteps>(
-    OnboardingSteps.PARAMETERS
+    OnboardingSteps.POSITION
   )
   const [stepsCompleted, setStepsCompleted] = useState<string[]>([])
-
+  const disableSubmitButton =
+    stepsCompleted.length !== Object.keys(OnboardingSteps).length
   const hasValue: SelectValuesProps = {
     inMainPosition: !!formData.mainPosition,
     inSecondPosition: !!formData.secondPosition,
@@ -58,13 +59,9 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   }
   const { onboardingLayoutProps } = route.params
 
-  // function onSubmit() {
-  //   if (loginFormValidation(formData).validationOk) {
-  //     console.log(formData)
-  //   } else {
-  //     setErrors(loginFormValidation(formData).validationErrors)
-  //   }
-  // }
+  function onSubmit() {
+    console.log(formData)
+  }
 
   function onSetAccordionToOpen(itemToOpen) {
     setStepToShow(itemToOpen)
@@ -210,6 +207,8 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
           </Accordion>
           <Button
             size={'xl'}
+            onPressIn={onSubmit}
+            disabled={disableSubmitButton}
             onPress={() => navigation.navigate('OnboardingClubScreen')}
           >
             {'Crear perfil'}
