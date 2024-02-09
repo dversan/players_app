@@ -1,7 +1,7 @@
 import firestore, {
   FirebaseFirestoreTypes
 } from '@react-native-firebase/firestore'
-import { Gender, Notification, User } from '../data/models'
+import { Gender, Notification, OnboardingFormData, User } from '../data/models'
 import { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import { t } from 'i18next'
 
@@ -43,37 +43,22 @@ function createUser(
     })
 }
 
-function savePushToken(userId: string, token: string | null): Promise<void> {
-  return firestore()
-    .collection('users')
-    .doc(userId)
-    .update({ pushToken: token })
-}
-
-function saveUser(
+function savePlayerData(
   userId: string,
-  name: string,
-  lastName: string
+  playerData: OnboardingFormData
 ): Promise<void> {
-  return firestore()
-    .collection('users')
-    .doc(userId)
-    .update({ name: name, lastName: lastName })
+  return firestore().collection('users').doc(userId).update({ playerData })
 }
 
-function updateEmail(userId: string, email: string): Promise<void> {
-  return firestore().collection('users').doc(userId).update({ email: email })
-}
-
-function saveDisabledNotifications(
-  userId: string,
-  options: string[]
-): Promise<void> {
-  return firestore()
-    .collection('users')
-    .doc(userId)
-    .update({ disabledNotifications: options })
-}
+// function saveDisabledNotifications(
+//   userId: string,
+//   options: string[]
+// ): Promise<void> {
+//   return firestore()
+//     .collection('users')
+//     .doc(userId)
+//     .update({ disabledNotifications: options })
+// }
 
 function mapUserNotifications(notifications: any): Notification[] {
   return notifications
@@ -124,11 +109,4 @@ function parseUser(
   }
 }
 
-export {
-  getUser,
-  createUser,
-  savePushToken,
-  saveUser,
-  updateEmail,
-  saveDisabledNotifications
-}
+export { getUser, createUser, savePlayerData }

@@ -21,6 +21,8 @@ import {
   OnboardingStepsValidation,
   ValidationFields
 } from '../../../lib/data/helpers'
+import { savePlayerData } from '../../../lib/api/users.api'
+import { useAuth } from '../../../lib/auth/auth.context'
 
 export default function OnboardingPlayerScreen({ route, navigation }: any) {
   const [formData, setFormData] = useState<OnboardingFormData>({
@@ -45,7 +47,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     [key: keyof ValidationFields]: string
   }>({})
   const [stepToShow, setStepToShow] = useState<OnboardingSteps>(
-    OnboardingSteps.POSITION
+    OnboardingSteps.FITNESS
   )
   const [stepsCompleted, setStepsCompleted] = useState<string[]>([])
   const disableSubmitButton =
@@ -58,9 +60,17 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     competitionGamesIndex: !!formData.competitionGamesIndex
   }
   const { onboardingLayoutProps } = route.params
+  const firebaseUser = useAuth().user
 
   function onSubmit() {
     console.log(formData)
+    setIsLoading(true)
+    savePlayerData(firebaseUser.id, formData)
+      .then(() => {
+        navigation.navigate('OnboardingClubScreen')
+        setIsLoading(false)
+      })
+      .catch(e => console.log(e))
   }
 
   function onSetAccordionToOpen(itemToOpen) {
@@ -205,12 +215,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               </Button>
             </AccordionItem>
           </Accordion>
-          <Button
-            size={'xl'}
-            onPressIn={onSubmit}
-            disabled={disableSubmitButton}
-            onPress={() => navigation.navigate('OnboardingClubScreen')}
-          >
+          <Button size={'xl'} disabled={disableSubmitButton} onPress={onSubmit}>
             {'Crear perfil'}
           </Button>
         </VStackLayout>

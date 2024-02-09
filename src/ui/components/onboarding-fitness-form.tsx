@@ -47,7 +47,7 @@ export default function OnboardingFitnessForm({
 
     type === 'cancel'
       ? setDate(previousDate)
-      : onSetFormData('birthday', date ? date.toLocaleDateString() : '')
+      : onSetFormData('birthday', date || '')
   }
 
   const datePickerOnChangeHandler = (
@@ -72,14 +72,14 @@ export default function OnboardingFitnessForm({
           label={t('onboardingScreen.height')}
           flex={1}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('playerHeight', value.trim())}
+          onChangeText={value => onSetFormData('playerHeight', Number(value))}
           error={validation.playerHeight?.toString()}
         />
         <Input
           label={t('onboardingScreen.weight')}
           flex={1}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('playerWeight', value.trim())}
+          onChangeText={value => onSetFormData('playerWeight', Number(value))}
           error={validation.playerWeight?.toString()}
         />
       </HStackLayout>
@@ -160,7 +160,7 @@ export default function OnboardingFitnessForm({
           onOpen={() => setFocusPositionSelect(true)}
           onClose={() => setFocusPositionSelect(false)}
           onValueChange={value =>
-            onSetFormData('gamesPerYearIndex', value.trim())
+            onSetFormData('gamesPerYearIndex', Number(value))
           }
         >
           {createNumericEnumKeys(GamesPerYearOptions).map(range => (
@@ -194,7 +194,7 @@ export default function OnboardingFitnessForm({
           onOpen={() => setFocusSecondPosSelect(true)}
           onClose={() => setFocusSecondPosSelect(false)}
           onValueChange={value =>
-            onSetFormData('competitionGamesIndex', value.trim())
+            onSetFormData('competitionGamesIndex', Number(value))
           }
         >
           {createNumericEnumKeys(CompetitionGamesOptions).map(range => (

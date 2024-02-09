@@ -31,7 +31,7 @@ export default function OnboardingPositionForm({
           label={t('onboardingScreen.playerNumberField')}
           flex={2}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('playerNumber', value.trim())}
+          onChangeText={value => onSetFormData('playerNumber', Number(value))}
           error={validation.playerNumber?.toString()}
         />
         <Input

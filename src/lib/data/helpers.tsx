@@ -187,7 +187,7 @@ function OnboardingStepsValidation(formData) {
     }
   }
 
-  if (formData.birthday.trim().length === 0) {
+  if (formData.birthday.length === 0) {
     secondStepValidationErrors = {
       ...secondStepValidationErrors,
       birthday: t('common.error.requiredField', {

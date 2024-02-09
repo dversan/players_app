@@ -26,21 +26,21 @@ export default function OnboardingParametersForm({
           label={t('onboardingScreen.attack')}
           flex={1}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('attack', value.trim())}
+          onChangeText={value => onSetFormData('attack', Number(value))}
           error={validation.attack}
         />
         <Input
           label={t('onboardingScreen.defense')}
           flex={1}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('defense', value.trim())}
+          onChangeText={value => onSetFormData('defense', Number(value))}
           error={validation.defense}
         />
         <Input
           label={t('onboardingScreen.fitness')}
           flex={1}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('fitness', value.trim())}
+          onChangeText={value => onSetFormData('fitness', Number(value))}
           error={validation.fitness}
         />
       </HStackLayout>
@@ -49,21 +49,21 @@ export default function OnboardingParametersForm({
           label={t('onboardingScreen.goal')}
           flex={1}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('goal', value.trim())}
+          onChangeText={value => onSetFormData('goal', Number(value))}
           error={validation.goal}
         />
         <Input
           label={t('onboardingScreen.pass')}
           flex={1}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('pass', value.trim())}
+          onChangeText={value => onSetFormData('pass', Number(value))}
           error={validation.pass}
         />
         <Input
           label={t('onboardingScreen.teamWork')}
           flex={1}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('teamWork', value.trim())}
+          onChangeText={value => onSetFormData('teamWork', Number(value))}
           error={validation.teamWork}
         />
       </HStackLayout>
