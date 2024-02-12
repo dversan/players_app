@@ -92,7 +92,7 @@
   },
   "common": {
     "error": {
-      "generic": "Algo ha ido mal, por favor inténtalo más tarde.",
+      "generic": "Algo ha ido mal, por favor revisa los datos o inténtalo más tarde.",
       "requiredField": "{{field}} es obligatorio",
       "allRequiredField": "Todos los campos son obligatorios.",
       "requiredFieldNumberWithRange": "{{field}} debe ser un número entre {{min}} y {{max}}, sin decimales.",

@@ -92,7 +92,7 @@
   },
   "common": {
     "error": {
-      "generic": "Something went wrong, please try again later.",
+      "generic": "Something went wrong, please review your data or try again later.",
       "requiredField": "{{field}} is required",
       "allRequiredField": "All fields are required",
       "requiredFieldNumberWithRange": "{{field}} must be a number between {{min}} and {{max}} without decimals.",
