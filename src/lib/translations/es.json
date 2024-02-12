@@ -43,6 +43,7 @@
   },
   "onboardingScreen": {
     "title": "Crear jugador",
+    "introText": "Completa todos los datos de los 3 pasos siguientes para poder crear tu perfil de jugador.",
     "firstStepTitle": "Dorsal y Posición",
     "secondStepTitle": "Estado de forma",
     "thirdStepTitle": "Parámetros",

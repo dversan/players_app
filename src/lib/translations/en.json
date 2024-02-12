@@ -43,6 +43,7 @@
   },
   "onboardingScreen": {
     "title": "Create player",
+    "introText": "Complete all the data in the 3 steps below to create your player profile.",
     "firstStepTitle": "Player info",
     "secondStepTitle": "State of fitness",
     "thirdStepTitle": "Parameters",

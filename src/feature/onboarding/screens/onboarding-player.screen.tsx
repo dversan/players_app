@@ -46,7 +46,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   const [errors, setErrors] = useState<{
     [key: keyof ValidationFields]: string
   }>({})
-  const [stepToShow, setStepToShow] = useState<OnboardingSteps>(
+  const [stepToShow, setStepToShow] = useState<OnboardingSteps | ''>(
     OnboardingSteps.POSITION
   )
   const [stepsCompleted, setStepsCompleted] = useState<string[]>([])
@@ -77,14 +77,14 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     setStepToShow(itemToOpen)
   }
 
-  function stepHandler(stepToOpen: OnboardingSteps, step: OnboardingSteps) {
+  function stepHandler(step: OnboardingSteps, stepToOpen?: OnboardingSteps) {
     if (OnboardingStepsValidation(formData)[`${step}ValidationOk`]) {
       if (!stepsCompleted.includes(step)) {
         const currentStepsCompleted = stepsCompleted.concat(step)
         setStepsCompleted(currentStepsCompleted)
       }
       setErrors({})
-      setStepToShow(stepToOpen)
+      setStepToShow(stepToOpen || '')
     } else {
       setErrors(OnboardingStepsValidation(formData)[`${step}ValidationErrors`])
     }
@@ -110,11 +110,11 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               {t('onboardingScreen.title').toUpperCase()}
             </Text>
           </Center>
-
+          <Text>{t('onboardingScreen.introText')}</Text>
           <Accordion
             collapsable={true}
             style={{ maxWidth: 400 }}
-            value={stepToShow}
+            value={stepToShow || ''}
           >
             <AccordionItem
               value={OnboardingSteps.POSITION}
@@ -142,8 +142,8 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                   isLoading={isLoading}
                   onPress={() =>
                     stepHandler(
-                      OnboardingSteps.FITNESS,
-                      OnboardingSteps.POSITION
+                      OnboardingSteps.POSITION,
+                      OnboardingSteps.FITNESS
                     )
                   }
                 >
@@ -177,8 +177,8 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                 isLoading={isLoading}
                 onPress={() =>
                   stepHandler(
-                    OnboardingSteps.PARAMETERS,
-                    OnboardingSteps.FITNESS
+                    OnboardingSteps.FITNESS,
+                    OnboardingSteps.PARAMETERS
                   )
                 }
               >
@@ -209,12 +209,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                 mt={32}
                 alignSelf={'center'}
                 isLoading={isLoading}
-                onPress={() =>
-                  stepHandler(
-                    OnboardingSteps.FITNESS,
-                    OnboardingSteps.PARAMETERS
-                  )
-                }
+                onPress={() => stepHandler(OnboardingSteps.PARAMETERS)}
               >
                 {t('onboardingScreen.confirmStep')}
               </Button>
