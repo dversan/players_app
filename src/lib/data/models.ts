@@ -42,32 +42,6 @@ export enum OnboardingSteps {
   PARAMETERS = 'thirdStep'
 }
 
-export interface User {
-  id: string
-  email: string
-  name: string
-  lastName: string
-  notifications: Notification[]
-  disabledNotifications: string[]
-  birthDate?: string
-  gender?: Gender
-  subscribedAt?: Date
-  subscriptionId: string
-  // subscriptionProductId: string
-  // subscriptionTransactionId: string
-  // subscriptionTransactionReceipt: string
-}
-
-export type FormType = 'onboarding' | 'register'
-
-export interface SelectValuesProps {
-  inMainPosition: boolean
-  inSecondPosition: boolean
-  birthday: boolean
-  gamesPerYearIndex: boolean
-  competitionGamesIndex: boolean
-}
-
 export interface OnboardingFormData {
   playerNumber: number
   playerNickname: string
@@ -84,4 +58,31 @@ export interface OnboardingFormData {
   goal: number
   pass: number
   teamWork: number
+}
+
+export interface User {
+  id: string
+  email: string
+  name: string
+  lastName: string
+  notifications: Notification[]
+  disabledNotifications: string[]
+  birthDate?: string
+  gender?: Gender
+  subscribedAt?: Date
+  subscriptionId: string
+  playerData: OnboardingFormData
+  // subscriptionProductId: string
+  // subscriptionTransactionId: string
+  // subscriptionTransactionReceipt: string
+}
+
+export type FormType = 'onboarding' | 'register'
+
+export interface SelectValuesProps {
+  inMainPosition: boolean
+  inSecondPosition: boolean
+  birthday: boolean
+  gamesPerYearIndex: boolean
+  competitionGamesIndex: boolean
 }

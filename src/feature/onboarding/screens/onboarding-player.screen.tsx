@@ -63,7 +63,6 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   const firebaseUser = useAuth().user
 
   function onSubmit() {
-    console.log(formData)
     setIsLoading(true)
     savePlayerData(firebaseUser.id, formData)
       .then(() => {

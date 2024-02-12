@@ -97,6 +97,7 @@ function parseUser(
       ? (userDoc.get('birthDate') as string)
       : undefined,
     gender,
+    playerData: userDoc.get('playerData') as OnboardingFormData,
     subscribedAt: userDoc.get('subscribedAt')
       ? (userDoc.get('subscribedAt') as any)!.toDate()
       : undefined,
