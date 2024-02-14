@@ -1,3 +1,10 @@
+/** @type {import('ts-jest').JestConfigWithTsJest} */
+
 module.exports = {
-  presets: ['module:@react-native/babel-preset'],
-};
+  presets: [
+    '@babel/preset-env',
+    '@react-native/babel-preset',
+    '@babel/preset-typescript'
+  ],
+  plugins: []
+}
