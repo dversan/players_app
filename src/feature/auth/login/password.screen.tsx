@@ -9,7 +9,7 @@ import { t } from 'i18next'
 import { useAuth } from '../../../lib/auth/auth.context'
 import { Alert } from 'react-native'
 import Button from '../../../ui/components/button'
-import { formValidation } from '../../../lib/data/helpers'
+import { resetPasswordFormValidation } from '../../../lib/data/helpers'
 
 const PasswordScreen = ({ route, navigation }) => {
   const { recoverPassword } = useAuth()
@@ -19,7 +19,7 @@ const PasswordScreen = ({ route, navigation }) => {
   const { authLayoutProps } = route.params
 
   function onSubmit() {
-    if (formValidation(formData).validationOk) {
+    if (resetPasswordFormValidation(formData).validationOk) {
       setIsLoading(true)
       const { email } = formData
       recoverPassword(email)
@@ -36,7 +36,7 @@ const PasswordScreen = ({ route, navigation }) => {
           setErrors({ email: reason })
         })
     } else {
-      setErrors(formValidation(formData).validationErrors)
+      setErrors(resetPasswordFormValidation(formData).validationErrors)
     }
   }
 

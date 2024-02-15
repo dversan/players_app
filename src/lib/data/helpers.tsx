@@ -91,6 +91,24 @@ function loginFormValidation(formData) {
   }
 }
 
+function resetPasswordFormValidation(formData) {
+  let validationErrors: ValidationErrors = {}
+
+  if (formData.email.trim().length === 0) {
+    validationErrors = {
+      ...validationErrors,
+      email: t('common.error.requiredField', {
+        field: t('registerScreen.form.email')
+      })
+    }
+  }
+
+  return {
+    validationOk: Object.keys(validationErrors).length === 0,
+    validationErrors
+  }
+}
+
 function OnboardingStepsValidation(formData) {
   let firstStepValidationErrors: ValidationErrors = {}
   let secondStepValidationErrors: ValidationErrors = {}
@@ -258,5 +276,6 @@ export {
   registerFormValidation,
   loginFormValidation,
   OnboardingStepsValidation,
-  createNumericEnumKeys
+  createNumericEnumKeys,
+  resetPasswordFormValidation
 }
