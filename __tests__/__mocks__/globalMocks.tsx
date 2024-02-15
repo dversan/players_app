@@ -46,8 +46,10 @@ jest.mock('react-native-splash-screen', () => ({
 }))
 
 jest.mock('../../src/lib/auth/auth.context', () => ({
+  ...jest.requireActual('../../src/lib/auth/auth.context'),
   __esModule: true,
-  default: jest.fn(() => null)
+  default: jest.fn(() => null),
+  useAuth: jest.fn()
 }))
 // jest.mock('@react-native-firebase/storage', () => ({}))
 // jest.mock('react-native-share', () => ({}))

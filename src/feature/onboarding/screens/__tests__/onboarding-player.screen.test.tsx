@@ -1,5 +1,4 @@
 import { describe, afterEach, it, expect, jest } from '@jest/globals'
-import sinon from 'sinon'
 import { screen, waitFor } from '@testing-library/react-native'
 import { render } from '../../../../../__tests__/__utils__/test-utils'
 import * as Auth from '../../../../lib/auth/auth.context'
@@ -8,12 +7,11 @@ import OnboardingPlayerScreen from '../../../../feature/onboarding/screens/onboa
 
 describe('OnboardingPlayerScreen test', () => {
   afterEach(() => {
-    sinon.restore()
+    jest.resetAllMocks() // Reset mocks after each test
   })
 
   it('Should show the onboarding if user is registered and the onboarding is unfinished.', async () => {
-    sinon.stub(Auth, 'useAuth').returns({
-      ...Auth.useAuth(),
+    (Auth.useAuth as jest.Mock).mockReturnValue({
       user: {
         playerData: { playerNickname: 'New Player' }
       } as User
@@ -40,7 +38,7 @@ describe('OnboardingPlayerScreen test', () => {
       render(
         <OnboardingPlayerScreen route={mockRoute} navigation={mockNavigation} />
       )
-      // screen.debug()
+      screen.debug()
 
       expect(screen.getByText('ONBOARDINGSCREEN.TITLE')).toBeTruthy()
       // ace with actual expectation
