@@ -1,11 +1,29 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import App from '../src/App'
-import { describe, expect, test } from '@jest/globals'
+import { afterEach, describe, expect, jest, test } from '@jest/globals'
+import gluestackCustomUIConfig from '../src/ui/ui-theme.provider'
+import { NavigationContainer } from '@react-navigation/native'
+import MainNavigator from '../src/navigator/main.navigator'
+import { GluestackUIProvider } from '@gluestack-ui/themed'
+import { waitFor } from '@testing-library/react-native'
 
-describe('App is rendered', () => {
-  test('renders correctly', () => {
-    const tree = renderer.create(<App />).toJSON()
-    expect(tree).toMatchSnapshot()
+describe('App', () => {
+  afterEach(() => {
+    jest.restoreAllMocks()
+  })
+  test('renders correctly', async () => {
+    const tree = renderer
+      .create(
+        <GluestackUIProvider config={gluestackCustomUIConfig}>
+          <NavigationContainer>
+            <MainNavigator />
+          </NavigationContainer>
+        </GluestackUIProvider>
+      )
+      .toJSON()
+
+    await waitFor(() => {
+      expect(tree).toMatchSnapshot()
+    })
   })
 })
