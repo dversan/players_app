@@ -1,47 +1,33 @@
-import { describe, afterEach, it, expect, jest } from '@jest/globals'
+import { afterEach, describe, expect, it, jest } from '@jest/globals'
 import { screen, waitFor } from '@testing-library/react-native'
 import { render } from '../../../../../__tests__/__utils__/test-utils'
 import * as Auth from '../../../../lib/auth/auth.context'
 import { User } from '../../../../lib/data/models'
-import OnboardingPlayerScreen from '../../../../feature/onboarding/screens/onboarding-player.screen'
+import MainNavigator from '../../../../navigator/main.navigator'
+import { NavigationContainer } from '@react-navigation/native'
+import * as React from 'react'
 
-describe('OnboardingPlayerScreen test', () => {
+describe('OnboardingPlayerScreen', () => {
   afterEach(() => {
-    jest.resetAllMocks() // Reset mocks after each test
+    jest.resetAllMocks()
   })
 
-  it('Should show the onboarding if user is registered and the onboarding is unfinished.', async () => {
+  it('should be shown if user is registered and the onboarding is unfinished.', async () => {
     (Auth.useAuth as jest.Mock).mockReturnValue({
       user: {
-        playerData: { playerNickname: 'New Player' }
+        email: 'test@gmail.com',
+        playerData: { playerNickname: '' }
       } as User
     })
 
-    // Mock route and navigation props
-    const mockRoute = {
-      params: {
-        onboardingLayoutProps: {
-          padding: 24,
-          paddingTop: 8,
-          mainSpacing: 'xl',
-          logoH: 55,
-          logoW: 55
-        }
-      }
-    }
-    const mockNavigation = {
-      navigate: jest.fn()
-    }
+    render(
+      <NavigationContainer>
+        <MainNavigator />
+      </NavigationContainer>
+    )
 
     await waitFor(() => {
-      // Pass the mocked props to your component when rendering
-      render(
-        <OnboardingPlayerScreen route={mockRoute} navigation={mockNavigation} />
-      )
-      screen.debug()
-
       expect(screen.getByText('ONBOARDINGSCREEN.TITLE')).toBeTruthy()
-      // ace with actual expectation
     })
   })
 })

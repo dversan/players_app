@@ -49,7 +49,11 @@ jest.mock('../../src/lib/auth/auth.context', () => ({
   ...jest.requireActual('../../src/lib/auth/auth.context'),
   __esModule: true,
   default: jest.fn(() => null),
-  useAuth: jest.fn()
+  useAuth: jest.fn(() => ({
+    // Mock return values of useAuth
+    user: { email: '', playerData: { playerNickname: '' } },
+    initializing: false
+  }))
 }))
 // jest.mock('@react-native-firebase/storage', () => ({}))
 // jest.mock('react-native-share', () => ({}))

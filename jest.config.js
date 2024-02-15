@@ -12,7 +12,8 @@ module.exports = {
   ],
   modulePathIgnorePatterns: ['__mocks__', '__utils__', 'index.test.js'],
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|webp|svg)$': 'react-native'
+    '\\.(jpg|jpeg|png|gif|webp|svg)$':
+      '<rootDir>/__tests__/__mocks__/fileMock.js'
   },
   testPathIgnorePatterns: ['\\.snap$', '<rootDir>/node_modules/'],
   cacheDirectory: '.jest/cache'
