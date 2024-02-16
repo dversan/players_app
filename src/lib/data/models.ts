@@ -42,16 +42,16 @@ export enum OnboardingSteps {
   PARAMETERS = 'thirdStep'
 }
 
-export interface OnboardingFormData {
+export interface PlayerData {
   playerNumber: number
   playerNickname: string
-  mainPosition: string
-  secondPosition: string
+  mainPosition: Positions | ''
+  secondPosition: Positions | ''
   playerHeight: number
   playerWeight: number
   birthday: Date | string
-  gamesPerYearIndex: number
-  competitionGamesIndex: number
+  gamesPerYearIndex: GamesPerYearOptions
+  competitionGamesIndex: CompetitionGamesOptions
   attack: number
   defense: number
   fitness: number
@@ -65,13 +65,12 @@ export interface User {
   email: string
   name: string
   lastName: string
-  notifications: Notification[]
-  disabledNotifications: string[]
-  birthDate?: string
-  gender?: Gender
-  subscribedAt?: Date
-  subscriptionId: string
-  playerData: OnboardingFormData
+  playerData: PlayerData
+  // notifications?: Notification[]
+  // disabledNotifications?: string[]
+  // gender?: Gender
+  // subscribedAt?: Date
+  // subscriptionId?: string
   // subscriptionProductId: string
   // subscriptionTransactionId: string
   // subscriptionTransactionReceipt: string

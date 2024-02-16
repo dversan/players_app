@@ -1,11 +1,11 @@
 import { t } from 'i18next'
-import { OnboardingFormData, User } from '../data/models'
+import { PlayerData, User } from '../data/models'
 
 function isValidNumber(min, max, value) {
   return /^\d{1,2}$/ && parseInt(value) >= min && parseInt(value) <= max
 }
 
-export interface ValidationFields extends OnboardingFormData, User {
+export interface ValidationFields extends PlayerData, User {
   password: string
   confirmPassword: string
   requiredFields: string

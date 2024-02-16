@@ -47,7 +47,7 @@
     "firstStepTitle": "Player info",
     "secondStepTitle": "State of fitness",
     "thirdStepTitle": "Parameters",
-    "playerNumberField": "Number",
+    "playerNumber": "Number",
     "playerNickname": "Player nickname",
     "mainPosition": "Select favorite position",
     "secondPosition": "Select alternative position",

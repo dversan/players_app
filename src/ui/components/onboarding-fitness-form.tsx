@@ -5,7 +5,7 @@ import Select from '../../ui/components/select'
 import {
   CompetitionGamesOptions,
   GamesPerYearOptions,
-  OnboardingFormData,
+  PlayerData,
   SelectValuesProps
 } from '../../lib/data/models'
 import SelectItem from '../../ui/components/select-item'
@@ -22,7 +22,7 @@ import { DateTimePickerEvent } from '@react-native-community/datetimepicker'
 
 interface OnboardingFormFitnessProps {
   onSetFormData: (
-    fieldName: keyof OnboardingFormData,
+    fieldName: keyof PlayerData,
     fieldValue: string | number | Date
   ) => void
   hasValue: SelectValuesProps

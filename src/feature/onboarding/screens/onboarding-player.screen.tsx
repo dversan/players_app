@@ -10,7 +10,7 @@ import { Center } from '@gluestack-ui/themed'
 import { t } from 'i18next'
 import { customColors as colors } from '../../../ui/ui-theme.provider'
 import {
-  OnboardingFormData,
+  PlayerData,
   OnboardingSteps,
   SelectValuesProps
 } from '../../../lib/data/models'
@@ -25,7 +25,7 @@ import { savePlayerData } from '../../../lib/api/users.api'
 import { useAuth } from '../../../lib/auth/auth.context'
 
 export default function OnboardingPlayerScreen({ route, navigation }: any) {
-  const [formData, setFormData] = useState<OnboardingFormData>({
+  const [formData, setFormData] = useState<PlayerData>({
     playerNumber: 0,
     playerNickname: '',
     mainPosition: '',
@@ -203,15 +203,15 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                 isLoading={isLoading}
                 validation={errors}
               />
-              <Button
-                size={'lg'}
-                mt={32}
-                alignSelf={'center'}
-                isLoading={isLoading}
-                onPress={() => stepHandler(OnboardingSteps.PARAMETERS)}
-              >
-                {t('onboardingScreen.confirmStep')}
-              </Button>
+                <Button
+                  size={'lg'}
+                  mt={32}
+                  alignSelf={'center'}
+                  isLoading={isLoading}
+                  onPress={() => stepHandler(OnboardingSteps.PARAMETERS)}
+                >
+                  {t('onboardingScreen.confirmStep')}
+                </Button>
             </AccordionItem>
           </Accordion>
           <Button size={'xl'} disabled={disableSubmitButton} onPress={onSubmit}>

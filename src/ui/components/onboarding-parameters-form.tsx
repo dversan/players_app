@@ -1,7 +1,7 @@
 import HStackLayout from '../../ui/layout/hstack.layout'
 import Input from '../../ui/components/input'
 import { t } from 'i18next'
-import { OnboardingFormData } from '../../lib/data/models'
+import { PlayerData } from '../../lib/data/models'
 import VStackLayout from '../../ui/layout/vstack.layout'
 import React from 'react'
 import Text from '../../ui/components/text'
@@ -9,7 +9,7 @@ import { ValidationFields } from '../../lib/data/helpers'
 
 interface OnboardingFormParametersProps {
   onSetFormData: (
-    fieldName: keyof OnboardingFormData,
+    fieldName: keyof PlayerData,
     fieldValue: string | number | Date
   ) => void
   validation: { [key: keyof ValidationFields]: string }
