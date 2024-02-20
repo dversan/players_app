@@ -110,6 +110,7 @@ export default function OnboardingFitnessForm({
               style={Platform.OS === 'ios' ? iOSDatePickerContainerStyle : {}}
             >
               <DatePicker
+                testID={'datePicker'}
                 value={date ? new Date(date) : new Date()}
                 onChange={(e, selectedDate) =>
                   datePickerOnChangeHandler(e, selectedDate)
