@@ -28,7 +28,7 @@ export default function OnboardingPositionForm({
     <VStackLayout space={'lg'}>
       <HStackLayout space={'lg'}>
         <Input
-          label={t('onboardingScreen.playerNumberField')}
+          label={t('onboardingScreen.playerNumber')}
           flex={2}
           formType={'onboarding'}
           onChangeText={value => onSetFormData('playerNumber', Number(value))}

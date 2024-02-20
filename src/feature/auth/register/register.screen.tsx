@@ -15,10 +15,11 @@ import { useAuth } from '../../../lib/auth/auth.context'
 import { t } from 'i18next'
 import { Linking } from 'react-native'
 import { links } from '../../../lib/data/links.data'
+import { RegisterFormFields } from '@lib/data/models'
 
 export default function RegisterScreen({ route, navigation }) {
   const { signUp } = useAuth()
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<RegisterFormFields>({
     email: '',
     name: '',
     lastName: '',

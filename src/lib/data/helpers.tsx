@@ -1,11 +1,11 @@
 import { t } from 'i18next'
-import { OnboardingFormData, User } from '../data/models'
+import { PlayerData, RegisterFormFields, User } from '../data/models'
 
 function isValidNumber(min, max, value) {
   return /^\d{1,2}$/ && parseInt(value) >= min && parseInt(value) <= max
 }
 
-export interface ValidationFields extends OnboardingFormData, User {
+export interface ValidationFields extends PlayerData, User {
   password: string
   confirmPassword: string
   requiredFields: string
@@ -18,30 +18,16 @@ type ValidationErrors = {
 function registerFormValidation(formData) {
   let validationErrors: ValidationErrors = {}
 
-  if (formData.email.trim().length === 0) {
-    validationErrors = {
-      ...validationErrors,
-      email: t('common.error.requiredField', {
-        field: t('registerScreen.form.email')
+  const requiredFields = Object.keys(formData) as (keyof RegisterFormFields)[]
+
+  requiredFields.forEach(field => {
+    if (formData[field].trim().length === 0) {
+      validationErrors[field] = t('common.error.requiredField', {
+        field: t(`registerScreen.form.${field}`)
       })
     }
-  }
-  if (formData.name.trim().length === 0) {
-    validationErrors = {
-      ...validationErrors,
-      name: t('common.error.requiredField', {
-        field: t('registerScreen.form.name')
-      })
-    }
-  }
-  if (formData.lastName.trim().length === 0) {
-    validationErrors = {
-      ...validationErrors,
-      lastName: t('common.error.requiredField', {
-        field: t('registerScreen.form.lastName')
-      })
-    }
-  }
+  })
+
   if (formData.password.trim().length < 6) {
     validationErrors = {
       ...validationErrors,
@@ -81,6 +67,24 @@ function loginFormValidation(formData) {
       password: t('common.error.minLengthField', {
         field: t('registerScreen.form.password'),
         number: 6
+      })
+    }
+  }
+
+  return {
+    validationOk: Object.keys(validationErrors).length === 0,
+    validationErrors
+  }
+}
+
+function resetPasswordFormValidation(formData) {
+  let validationErrors: ValidationErrors = {}
+
+  if (formData.email.trim().length === 0) {
+    validationErrors = {
+      ...validationErrors,
+      email: t('common.error.requiredField', {
+        field: t('registerScreen.form.email')
       })
     }
   }
@@ -223,7 +227,7 @@ function OnboardingStepsValidation(formData) {
       thirdStepValidationErrors = {
         ...thirdStepValidationErrors,
         [field]: t('common.error.requiredFieldNumberWithRange', {
-          field: t(`onboardingScreen.${field}`), // Assuming you want to use the same field name for all. If not, this needs to be adjusted.
+          field: t(`onboardingScreen.${field}`),
           min: t('10'),
           max: t('100')
         })
@@ -245,11 +249,10 @@ function OnboardingStepsValidation(formData) {
 }
 
 function createNumericEnumKeys(myEnum: any) {
-  // Map to select items (assuming you want objects with `value` and `label` properties)
   return Object.keys(myEnum)
     .map(key => ({
-      label: myEnum[key as keyof typeof myEnum], // the name of the enum
-      value: key // gets the numeric value
+      label: myEnum[key as keyof typeof myEnum],
+      value: key
     }))
     .filter(k => isNaN(Number(k.label)))
 }
@@ -258,5 +261,6 @@ export {
   registerFormValidation,
   loginFormValidation,
   OnboardingStepsValidation,
-  createNumericEnumKeys
+  createNumericEnumKeys,
+  resetPasswordFormValidation
 }

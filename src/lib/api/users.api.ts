@@ -1,7 +1,7 @@
 import firestore, {
   FirebaseFirestoreTypes
 } from '@react-native-firebase/firestore'
-import { Gender, Notification, OnboardingFormData, User } from '../data/models'
+import { Gender, Notification, PlayerData, User } from '../data/models'
 import { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import { t } from 'i18next'
 
@@ -45,7 +45,7 @@ function createUser(
 
 function savePlayerData(
   userId: string,
-  playerData: OnboardingFormData
+  playerData: PlayerData
 ): Promise<void> {
   return firestore().collection('users').doc(userId).update({ playerData })
 }
@@ -97,7 +97,7 @@ function parseUser(
       ? (userDoc.get('birthDate') as string)
       : undefined,
     gender,
-    playerData: userDoc.get('playerData') as OnboardingFormData,
+    playerData: userDoc.get('playerData') as PlayerData,
     subscribedAt: userDoc.get('subscribedAt')
       ? (userDoc.get('subscribedAt') as any)!.toDate()
       : undefined,
