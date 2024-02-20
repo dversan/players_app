@@ -19,6 +19,7 @@ interface GSInputProps extends PropsWithChildren<TextInputProps> {
   formType?: FormType
   placeholder?: string
   placeholderStyle?: PlaceholderStyleProps
+  readOnly?: boolean
 }
 
 export default function Input(props: GSInputProps) {
@@ -32,6 +33,7 @@ export default function Input(props: GSInputProps) {
       <GSInput
         {...props}
         isInvalid={props.error !== undefined}
+        isReadOnly={props.readOnly}
         borderRadius={4}
         size={'xl'}
         sx={

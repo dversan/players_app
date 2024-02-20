@@ -90,6 +90,7 @@ export default function OnboardingFitnessForm({
             accessible={false}
           >
             <Input
+              readOnly={Platform.OS === 'ios'}
               label={t('onboardingScreen.birthdayLabel')}
               formType={'onboarding'}
               placeholder={t('onboardingScreen.birthdayPlaceholder')}
