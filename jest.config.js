@@ -13,7 +13,12 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!(@react-native|react-native|@react-navigation|@gluestack-style/react|@gluestack-ui/config|@gluestack-ui/themed|@react-native-community/datetimepicker|@react-native-firebase|@react-native-localize|lucide-react-native|@expo/html-elements|@legendapp/motion)/)'
   ],
-  modulePathIgnorePatterns: ['__mocks__', '__utils__', 'index.test.js'],
+  modulePathIgnorePatterns: [
+    '__mocks__',
+    '__utils__',
+    'index.test.js',
+    '__doubles__'
+  ],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|webp|svg)$':
       '<rootDir>/__tests__/__mocks__/fileMock.js'

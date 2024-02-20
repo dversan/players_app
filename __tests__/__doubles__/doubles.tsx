@@ -1,4 +1,4 @@
-import { PlayerData, Positions, User } from '../src/lib/data/models'
+import { PlayerData, Positions, User } from '@lib/data/models'
 
 export const samplePlayerData: PlayerData = {
   playerNumber: 12,

@@ -9,40 +9,14 @@ import {
 import { act, fireEvent, screen, waitFor } from '@testing-library/react-native'
 import { render } from '../../../../../__tests__/__utils__/test-utils'
 import * as Auth from '../../../../lib/auth/auth.context'
-import { PlayerData, Positions, User } from '../../../../lib/data/models'
 import MainNavigator from '../../../../navigator/main.navigator'
 import { NavigationContainer } from '@react-navigation/native'
 import * as React from 'react'
 import sinon from 'sinon'
 import OnboardingPlayerScreen from 'src/feature/onboarding/screens/onboarding-player.screen'
+import { samplePlayerData, sampleUser } from '__tests__/__doubles__/doubles'
 
-const samplePlayerData: PlayerData = {
-  playerNumber: 12,
-  playerNickname: 'Player Name',
-  mainPosition: Positions.GOALKEEPER,
-  secondPosition: Positions.DEFENDER,
-  playerHeight: 156,
-  playerWeight: 67,
-  birthday: new Date(),
-  gamesPerYearIndex: 1,
-  competitionGamesIndex: 1,
-  attack: 34,
-  defense: 34,
-  fitness: 34,
-  goal: 34,
-  pass: 34,
-  teamWork: 34
-}
-
-const sampleUser: User = {
-  id: 'string',
-  email: 'string',
-  name: 'string',
-  lastName: 'string',
-  playerData: samplePlayerData
-}
-
-describe('OnboardingPlayerScreen', () => {
+describe('OnboardingPlayerScreen test', () => {
   beforeEach(() => {
     sinon.stub(Auth, 'useAuth').returns({
       ...Auth.useAuth(),
@@ -65,7 +39,7 @@ describe('OnboardingPlayerScreen', () => {
     sinon.restore()
   })
 
-  it('should be shown if user is registered and the onboarding is unfinished. First step is opened by default when a screen is loaded for the first time', async () => {
+  it('screen should be shown if user is registered and the onboarding is unfinished. First step is opened by default when a screen is loaded for the first time', async () => {
     await waitFor(() => {
       render(
         <NavigationContainer>
@@ -165,11 +139,9 @@ describe('OnboardingPlayerScreen', () => {
     })
 
     await act(async () => {
-      fireEvent.press(screen.getByText('Crear perfil'))
-
-      screen.debug()
+      fireEvent.press(screen.getByText('onboardingScreen.createPlayerProfile'))
     })
 
-    // expect(mockNavigation.navigate).toHaveBeenCalledWith('OnboardingClubScreen')
+    expect(mockNavigation.navigate).toHaveBeenCalledWith('OnboardingClubScreen')
   })
 })
