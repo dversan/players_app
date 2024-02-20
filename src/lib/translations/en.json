@@ -1,6 +1,6 @@
 {
   "welcomeScreen": {
-    "createPlayer": "Create player",
+    "createPlayer": "Start",
     "title": "Play the soccer you want",
     "appDescription": "Play soccer 7-a-side or futsal wherever you want, with whomever you want and at the level that best suits you.\n\nCreate your player to start playing friendly or competitive matches.\n\nCreate a club with a group of players and easily manage teams, matches, lineups, quotas, transfers and more."
   },
@@ -88,7 +88,7 @@
     "pass": "Pass",
     "teamWork": "Team work",
     "confirmStep": "Confirm",
-    "createProfile": "Create profile"
+    "createPlayerProfile": "Create player"
   },
   "common": {
     "error": {

@@ -215,7 +215,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
             </AccordionItem>
           </Accordion>
           <Button size={'xl'} disabled={disableSubmitButton} onPress={onSubmit}>
-            {'Crear perfil'}
+            {t('onboardingScreen.createPlayerProfile')}
           </Button>
         </VStackLayout>
       </ScrollViewLayout>

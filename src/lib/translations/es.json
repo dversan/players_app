@@ -1,6 +1,6 @@
 {
   "welcomeScreen": {
-    "createPlayer": "Crear jugador",
+    "createPlayer": "Empezar",
     "title": "Juega al fútbol que quieras",
     "appDescription": "Juega a fútbol 7 o fútbol sala donde quieras, con quien quieras y al nivel que se ajuste mejor al tuyo.\n\nCrea tu jugador para empezar a jugar partidos amistosos o de competición.\n\nFunda un club con un grupo de jugadores y gestiona fácilmente equipos, partidos, alineaciones, cuotas, fichajes y más."
   },
@@ -88,7 +88,7 @@
     "pass": "Hab. Pase",
     "teamWork": "T. Equipo",
     "confirmStep": "Confirmar",
-    "createProfile": "Crear perfil"
+    "createPlayerProfile": "Crear jugador"
   },
   "common": {
     "error": {
