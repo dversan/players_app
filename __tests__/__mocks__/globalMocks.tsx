@@ -73,6 +73,10 @@ jest.mock('@react-native-community/datetimepicker', () => {
   return Picker
 })
 
+jest.mock('../../src/lib/api/users.api', () => ({
+  savePlayerData: jest.fn(() => Promise.resolve({ data: {} }))
+}))
+
 // jest.mock('@react-native-firebase/storage', () => ({}))
 // jest.mock('react-native-share', () => ({}))
 // jest.mock('react-native-compass-heading', () => ({}))
