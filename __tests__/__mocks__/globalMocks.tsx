@@ -55,6 +55,24 @@ jest.mock('../../src/lib/auth/auth.context', () => ({
     initializing: false
   }))
 }))
+
+jest.mock('@react-native-community/datetimepicker', () => {
+  const React = require('React')
+  const RealComponent = jest.requireActual(
+    '@react-native-community/datetimepicker'
+  )
+
+  class Picker extends React.Component<any, any> {
+    static propTypes: any
+    render() {
+      return React.createElement('Picker', this.props, this.props.children)
+    }
+  }
+
+  Picker.propTypes = RealComponent.propTypes
+  return Picker
+})
+
 // jest.mock('@react-native-firebase/storage', () => ({}))
 // jest.mock('react-native-share', () => ({}))
 // jest.mock('react-native-compass-heading', () => ({}))
