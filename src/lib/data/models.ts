@@ -76,6 +76,14 @@ export interface User {
   // subscriptionTransactionReceipt: string
 }
 
+export interface RegisterFormFields {
+  email: string
+  name: string
+  lastName: string
+  password: string
+  confirmPassword: string
+}
+
 export type FormType = 'onboarding' | 'register'
 
 export interface SelectValuesProps {
