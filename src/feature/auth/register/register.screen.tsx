@@ -139,7 +139,7 @@ export default function RegisterScreen({ route, navigation }) {
               </Button>
             </VStackLayout>
             <HStackLayout alignSelf={'center'} flexWrap={'wrap'}>
-              <Text size={'md'}>{t('registerScreen.alreadyAccount')}</Text>
+              <Text>{t('registerScreen.alreadyAccount')}</Text>
               <Link
                 color={'white'}
                 onPress={() => navigation.navigate('LoginScreen')}
