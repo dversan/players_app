@@ -66,7 +66,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     setIsLoading(true)
     savePlayerData(firebaseUser.id, formData)
       .then(() => {
-        navigation.navigate('OnboardingClubScreen')
+        navigation.navigate('OnboardingPlayerOptionsScreen')
         setIsLoading(false)
       })
       .catch(e => console.log(e))
