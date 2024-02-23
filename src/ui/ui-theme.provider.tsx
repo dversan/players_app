@@ -1,6 +1,7 @@
 import { config } from '@gluestack-ui/config'
 
 export const customColors = {
+  primary100: '#c4d6aa',
   primary200: '#B5CC95',
   primary300: '#91B25F',
   primary400: '#86A94B',
@@ -12,6 +13,12 @@ export const customColors = {
   backgroundLight200: '#ffffff',
   backgroundLight400: '#f5f5f5',
   backgroundLight500: '#F8F8F8',
+
+  darkPrimaryText300: '#45433f',
+  darkPrimaryText500: '#252322',
+
+  lightSecondaryText300: '#afafad',
+  lightSecondaryText500: '#F8F8F8',
 
   backgroundDark300: '#595855',
   backgroundDark400: '#45433f',
