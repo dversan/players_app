@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import { Box, Center, Image, Pressable } from '@gluestack-ui/themed'
+import { Center, Image, Pressable } from '@gluestack-ui/themed'
 import Text from './text'
 import HStackLayout from '../layout/hstack.layout'
 import VStackLayout from '../layout/vstack.layout'
@@ -15,22 +15,31 @@ interface CardProps extends PropsWithChildren<ViewProps> {
 
 export default function ButtonCard(props: CardProps) {
   return (
-    <Pressable onPress={props.onPress}>
-      <Box {...props} p={8} bg={colors.backgroundDark800} borderRadius={8}>
-        <HStackLayout space={'md'}>
-          <Center>
-            <Image source={props.imageUrl} alt={'player option card img'} />
-          </Center>
-          <VStackLayout flex={1} space={'xs'}>
-            <Text size={'lg'} bold>
-              {props.title}
-            </Text>
-            <Text lineHeight={20} color={colors.lightSecondaryText300}>
-              {props.text}
-            </Text>
-          </VStackLayout>
-        </HStackLayout>
-      </Box>
+    <Pressable
+      onPress={props.onPress}
+      {...props}
+      p={8}
+      bg={colors.backgroundDark800}
+      borderRadius={8}
+    >
+      <HStackLayout space={'md'}>
+        <Center>
+          <Image source={props.imageUrl} alt={'player option card img'} />
+        </Center>
+        <VStackLayout flex={1} space={'xs'}>
+          <Text size={'lg'} bold>
+            {props.title}
+          </Text>
+          <Text
+            numberOfLines={3}
+            isTruncated
+            lineHeight={20}
+            color={colors.lightSecondaryText300}
+          >
+            {props.text}
+          </Text>
+        </VStackLayout>
+      </HStackLayout>
     </Pressable>
   )
 }
