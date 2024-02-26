@@ -101,6 +101,16 @@
       "invalidMail": "The email address is badly formatted",
       "userNotFound": "There is no user with this email or the password is incorrect"
     },
+    "onboardingPlayerOptions": {
+      "title": "What would you like to do next?",
+      "description": "You can now sign up for matches or create them independently (no club). You can also join a club or start a new club. \n\nIf you are not going to join a club at the moment, go to your profile. These options will still be available.",
+      "joinClub": "Join a club",
+      "joinClubDescription": "Join a club and start participating in its match calls and activities.",
+      "createNewClub": "Create a new club",
+      "createNewClubDescription": "Start a club, invite friends, make match calls, manage and play.",
+      "goToProfile": "Go to my profile",
+      "goToProfileDescription": "Go straight to your profile. Creating or joining a club can be done later."
+    },
     "text": {
       "ok": "Ok",
       "cancel": "Cancel",

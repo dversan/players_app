@@ -90,6 +90,16 @@
     "confirmStep": "Confirmar",
     "createPlayerProfile": "Crear jugador"
   },
+  "onboardingPlayerOptions": {
+    "title": "¡A jugar {{name}}!",
+    "description": "Ya puedes inscribirte en partidos o crearlos de manera independiente (Sin club). Además puedes unirte a la plantilla de un club o fundar uno nuevo. \n\nSi por ahora, no vas a estar en ningún club ve a tu perifl. Estas opciones seguirán estando disponibles.",
+    "joinClub": "Unirme a un club",
+    "joinClubDescription": "Únete a un club y empieza a participar en sus convocatorias y actividades.",
+    "createNewClub": "Crear un nuevo club",
+    "createNewClubDescription": "Funda un club, invita a amigos, haz convocatorias, gestiona y juega.",
+    "goToProfile": "Ir a mi Perfil",
+    "goToProfileDescription": "Directo a tu perfil. Crear o entrar en un club lo puedes hacer más adelante."
+  },
   "common": {
     "error": {
       "generic": "Algo ha ido mal, por favor revisa los datos o inténtalo más tarde.",
