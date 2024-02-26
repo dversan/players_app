@@ -120,7 +120,7 @@ export default function OnboardingFitnessForm({
                 themeVariant={'dark'}
               />
               {Platform.OS === 'ios' && (
-                <HStackLayout space={'lg'} style={{ alignSelf: 'center' }}>
+                <HStackLayout space={'lg'} alignSelf={'center'}>
                   <Button
                     textColor={'white'}
                     size={'lg'}
