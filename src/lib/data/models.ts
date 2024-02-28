@@ -93,3 +93,30 @@ export interface SelectValuesProps {
   gamesPerYearIndex: boolean
   competitionGamesIndex: boolean
 }
+
+export enum OnboardingPlayerOptions {
+  JOIN_A_CLUB = 'joinClub',
+  CREATE_CLUB = 'createNewClub',
+  GO_TO_PROFILE = 'goToProfile'
+}
+
+interface Stadium {
+  mapsLocation: { lat: number; lng: number }
+  name: string
+  collaborator: boolean
+  pricePerMatch: number
+}
+
+enum GameMode {
+  FOOTBALL_7 = 'football7',
+  FUTSAL = 'futsal'
+}
+
+export interface Club {
+  clubName: string
+  level: number
+  stadium: Stadium
+  otherStadiums: Stadium[]
+  gameMode: GameMode
+  members: string[]
+}

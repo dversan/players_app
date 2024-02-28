@@ -30,6 +30,7 @@ module.exports = {
     'react/prop-types': 'off',
     'space-before-function-paren': 'off',
     indent: 'off',
-    'multiline-ternary': 'off'
+    'multiline-ternary': 'off',
+    'quote-props': 'off'
   }
 }
