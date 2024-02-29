@@ -86,7 +86,7 @@
     "fitness": "Est. Forma",
     "goal": "Hab. Gol",
     "pass": "Hab. Pase",
-    "teamWork": "T. Equipo",
+    "teamWork": "Compromiso",
     "confirmStep": "Confirmar",
     "createPlayerProfile": "Crear jugador"
   },
@@ -94,11 +94,33 @@
     "title": "¡A jugar {{name}}!",
     "description": "Ya puedes inscribirte en partidos o crearlos de manera independiente (Sin club). Además puedes unirte a la plantilla de un club o fundar uno nuevo. \n\nSi por ahora, no vas a estar en ningún club ve a tu perifl. Estas opciones seguirán estando disponibles.",
     "joinClub": "Unirme a un club",
-    "joinClubDescription": "Únete a un club y empieza a participar en sus convocatorias y actividades.",
+    "joinClubModalTopics": {
+      "1": "Entra en convocatorias y recibe las notificaciones",
+      "2": "Juega torneos o partidos amistosos entre clubes",
+      "3": "Capitanea equipos o preside clubs",
+      "4": "Participa en los rankings del club y en el general",
+      "5": "Mejora tus parámetros",
+      "6": "Consigue trofeos e insignias"
+    },
     "createNewClub": "Crear un nuevo club",
-    "createNewClubDescription": "Funda un club, invita a amigos, haz convocatorias, gestiona y juega.",
+    "createNewClubModalTopics": {
+      "1": "Gestiona equipos, convocatorias, notificaciones, fichajes y más",
+      "2": "Cede la presidencia cuando tu decidas con el resto de miembros",
+      "3": "Juega torneos o partidos amistosos entre clubes",
+      "4": "Capitanea equipos",
+      "5": "Participa en los rankings del club y en el general",
+      "6": "Mejora tus parámetros",
+      "7": "Consigue trofeos e insignias"
+    },
     "goToProfile": "Ir a mi Perfil",
-    "goToProfileDescription": "Directo a tu perfil. Crear o entrar en un club lo puedes hacer más adelante."
+    "goToProfileModalTopics": {
+      "1": "Crea partidos amistosos con otros jugadores",
+      "2": "Forma parte de un club o fúndalo cuando tú decidas",
+      "3": "Participa en el ranking general",
+      "4": "Capitanea equipos efímeros",
+      "5": "Ofrécete a equipos como refuerzo",
+      "6": "Mejora tus parámetros"
+    }
   },
   "common": {
     "error": {
@@ -116,7 +138,9 @@
       "cancel": "Cancelar",
       "selectOption": "Selecciona posición",
       "height": "Altura",
-      "weight": "Peso"
+      "weight": "Peso",
+      "continue": "Continuar",
+      "goBack": "Volver"
     }
   }
 }

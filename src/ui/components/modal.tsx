@@ -41,7 +41,7 @@ export default function GSModal(props: GSModalProps) {
     <Center h={300}>
       <Modal {...props}>
         <ModalBackdrop />
-        <ModalContent>
+        <ModalContent bg={colors.backgroundLight500}>
           <ModalHeader>
             <HStackLayout flex={1} justifyContent={'center'}>
               <Text bold color={colors.darkPrimaryText500} size='2xl'>
@@ -61,7 +61,6 @@ export default function GSModal(props: GSModalProps) {
                 <Button
                   flex={1}
                   variant={'outline'}
-                  size={'sm'}
                   action={'secondary'}
                   onPress={props.onClose}
                   textColor={colors.darkPrimaryText300}
@@ -71,7 +70,6 @@ export default function GSModal(props: GSModalProps) {
               )}
               {props.primaryButtonText && (
                 <Button
-                  size={'sm'}
                   action={'primary'}
                   onPress={props.onClickPrimaryButton}
                   flex={1}

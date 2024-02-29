@@ -4,18 +4,19 @@ import ScrollViewLayout from '@ui/layout/scrollview.layout'
 import VStackLayout from '@ui/layout/vstack.layout'
 import ButtonCard from '@ui/components/button-card'
 import { t } from 'i18next'
-import { Center, Image } from '@gluestack-ui/themed'
+import { Center, CheckIcon, Icon, Image } from '@gluestack-ui/themed'
 import Text from '@ui/components/text'
 import { useAuth } from '@lib/auth/auth.context'
 import GSModal from '@ui/components/modal'
 import { OnboardingPlayerOptions } from '@lib/data/models'
-import { customColors } from '@ui/ui-theme.provider'
+import HStackLayout from '@ui/layout/hstack.layout'
+import * as jsonCopies from '../../../lib/translations/es.json'
 
 export default function OnboardingPlayerOptionsScreen({
   route,
   navigation
 }: any) {
-  const [showModalValue, setShowModalValue] = useState<string>('')
+  const [modalTopic, setModalTopic] = useState<string>('')
   const { onboardingLayoutProps } = route.params
   const { user } = useAuth()
 
@@ -25,8 +26,17 @@ export default function OnboardingPlayerOptionsScreen({
     [OnboardingPlayerOptions.CREATE_CLUB]: require('../../../ui/images/createNewClub.png')
   }
 
+  const subTopicsKeyList = () => {
+    let listItemsQty = 0
+    const topicKey = modalTopic + 'ModalTopics'
+    const subtopicsQty = Object.keys(
+      jsonCopies.onboardingPlayerOptions[topicKey]
+    ).length
+    return Array.from({ length: subtopicsQty }, () => (listItemsQty += 1))
+  }
+
   const onClickPrimaryHandler = () => {
-    switch (showModalValue) {
+    switch (modalTopic) {
       case 'goToProfile':
         navigation.navigate('HomeScreen')
         break
@@ -37,7 +47,7 @@ export default function OnboardingPlayerOptionsScreen({
         navigation.navigate('OnboardingClubScreen')
         break
     }
-    setShowModalValue('')
+    setModalTopic('')
   }
 
   return (
@@ -70,37 +80,41 @@ export default function OnboardingPlayerOptionsScreen({
                   title={t(`onboardingPlayerOptions.${value}`)}
                   text={t(`onboardingPlayerOptions.${value}Description`)}
                   imageUrl={cardImage[value]}
-                  onPress={() => setShowModalValue(value)}
+                  onPress={() => setModalTopic(value)}
                 />
               )
             })}
           </VStackLayout>
         </VStackLayout>
-        {showModalValue && (
-          <GSModal
-            size={'lg'}
-            isOpen={!!showModalValue}
-            headerTitle={t(`onboardingPlayerOptions.${showModalValue}`)}
-            hideCloseButton={true}
-            primaryButtonText={t('Continue')}
-            secondaryButtonText={t('Go Back')}
-            onClose={() => setShowModalValue('')}
-            onClickPrimaryButton={onClickPrimaryHandler}
-          >
-            <VStackLayout flex={1} alignItems={'center'} space={'lg'} mt={8}>
-              <Image
-                source={cardImage[showModalValue]}
-                alt={'Player option image'}
-              />
-              <Text color={customColors.darkPrimaryText500}>
-                {'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \n' +
-                  '\n' +
-                  'This text is used to fill spaces where actual content will be placed in the final product, allowing designers and developers to focus on layout and visual presentation without the distraction of meaningful text.'}
-              </Text>
-            </VStackLayout>
-          </GSModal>
-        )}
       </ScrollViewLayout>
+      {modalTopic && (
+        <GSModal
+          size={'lg'}
+          isOpen={!!modalTopic}
+          headerTitle={t(`onboardingPlayerOptions.${modalTopic}`)}
+          hideCloseButton={true}
+          primaryButtonText={t('common.text.continue')}
+          secondaryButtonText={t('common.text.goBack')}
+          onClose={() => setModalTopic('')}
+          onClickPrimaryButton={onClickPrimaryHandler}
+        >
+          <VStackLayout alignItems={'center'} space={'2xl'} my={8} px={16}>
+            <Image source={cardImage[modalTopic]} alt={'Player option image'} />
+            <VStackLayout space={'lg'}>
+              {subTopicsKeyList().map(key => (
+                <HStackLayout key={key} mr={16}>
+                  <Icon as={CheckIcon} mr={8} size={'xl'} />
+                  <Text bold color={'black'} numberOfLines={2}>
+                    {t(
+                      `onboardingPlayerOptions.${modalTopic}ModalTopics.${key}`
+                    )}
+                  </Text>
+                </HStackLayout>
+              ))}
+            </VStackLayout>
+          </VStackLayout>
+        </GSModal>
+      )}
     </ScreenLayout>
   )
 }
