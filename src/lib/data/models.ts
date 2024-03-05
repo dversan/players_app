@@ -30,10 +30,10 @@ export enum GamesPerYearOptions {
 
 export enum CompetitionGamesOptions {
   NONE = 1,
-  QUARTER = 25,
-  HALF = 50,
-  THREE_QUARTERS = 75,
-  ALL = 100
+  QUARTER,
+  HALF,
+  THREE_QUARTERS,
+  ALL
 }
 
 export enum OnboardingSteps {
