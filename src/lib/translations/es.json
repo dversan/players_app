@@ -94,6 +94,7 @@
     "title": "¡A jugar {{name}}!",
     "description": "Ya puedes inscribirte en partidos o crearlos de manera independiente (Sin club). Además puedes unirte a la plantilla de un club o fundar uno nuevo. \n\nSi por ahora, no vas a estar en ningún club ve a tu perifl. Estas opciones seguirán estando disponibles.",
     "joinClub": "Unirme a un club",
+    "joinClubDescription": "Únete a un club y empieza a participar en sus convocatorias y actividades.",
     "joinClubModalTopics": {
       "1": "Entra en convocatorias y recibe las notificaciones",
       "2": "Juega torneos o partidos amistosos entre clubes",
@@ -103,6 +104,7 @@
       "6": "Consigue trofeos e insignias"
     },
     "createNewClub": "Crear un nuevo club",
+    "createNewClubDescription": "Funda un club, invita a amigos, haz convocatorias, gestiona y juega.",
     "createNewClubModalTopics": {
       "1": "Gestiona equipos, convocatorias, notificaciones, fichajes y más",
       "2": "Cede la presidencia cuando tu decidas con el resto de miembros",
@@ -113,6 +115,7 @@
       "7": "Consigue trofeos e insignias"
     },
     "goToProfile": "Ir a mi Perfil",
+    "goToProfileDescription": "Directo a tu perfil. Crear o entrar en un club lo puedes hacer más adelante.",
     "goToProfileModalTopics": {
       "1": "Crea partidos amistosos con otros jugadores",
       "2": "Forma parte de un club o fúndalo cuando tú decidas",

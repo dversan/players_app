@@ -83,10 +83,10 @@
     },
     "attack": "Attack",
     "defense": "Defense",
-    "fitness": "Fitness",
+    "fitness": "Phys. Fitness",
     "goal": "Goal",
     "pass": "Pass",
-    "teamWork": "Work",
+    "teamWork": "Team Work",
     "confirmStep": "Confirm",
     "createPlayerProfile": "Create player"
   },
@@ -105,6 +105,7 @@
       "title": "What would you like to do next?",
       "description": "You can now sign up for matches or create them independently (no club). You can also join a club or start a new club. \n\nIf you are not going to join a club at the moment, go to your profile. These options will still be available.",
       "joinClub": "Join a club",
+      "joinClubDescription": "Join a club and start participating in its match calls and activities.",
       "joinClubModalTopics": {
         "1": "Receive club call-ups and notifications.",
         "2": "Plays tournaments or friendly matches between clubs",
@@ -114,6 +115,7 @@
         "6": "Collect trophies and badges."
       },
       "createNewClub": "Create a new club",
+      "createNewClubDescription": "Start a club, invite friends, make match calls, manage and play.",
       "createNewClubModalTopics": {
         "1": "Receive club call-ups and notifications.",
         "2": "Hand over the presidency when you decide with the rest of the members.",
@@ -124,6 +126,7 @@
         "7": "Collect trophies and badges."
       },
       "goToProfile": "Go to my profile",
+      "goToProfileDescription": "Go straight to your profile. Creating or joining a club can be done later.",
       "goToProfileModalTopics": {
         "1": "Create friendly matches with other players",
         "2": "Join a club or merge it when you decide",
