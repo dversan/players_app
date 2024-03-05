@@ -19,12 +19,16 @@ interface GSInputProps extends PropsWithChildren<TextInputProps> {
   formType?: FormType
   placeholder?: string
   placeholderStyle?: PlaceholderStyleProps
-  readOnly?: boolean
+  isReadOnly?: boolean
 }
 
 export default function Input(props: GSInputProps) {
   return (
-    <FormControl flex={props.flex} isInvalid={props.error !== undefined}>
+    <FormControl
+      flex={props.flex}
+      isInvalid={props.error !== undefined}
+      isReadOnly={props.isReadOnly}
+    >
       {props.label && (
         <FormControlLabelText color={colors.backgroundLight500}>
           {props.label}
