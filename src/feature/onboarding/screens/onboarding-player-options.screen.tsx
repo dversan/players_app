@@ -51,7 +51,7 @@ export default function OnboardingPlayerOptionsScreen({
   }
 
   return (
-    <ScreenLayout>
+    <ScreenLayout hideBackButton>
       <ScrollViewLayout fullHeight>
         <VStackLayout
           p={16}

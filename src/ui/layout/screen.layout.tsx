@@ -11,13 +11,15 @@ interface ScreenProps {
   backgroundColor?: string
   isModal?: boolean
   children: ReactNode
+  hideBackButton?: boolean
 }
 
 export default function ScreenLayout(props: ScreenProps) {
   const {
     fullscreen,
     backgroundColor = customColors.backgroundDark500,
-    children
+    children,
+    hideBackButton
   } = props
   const navigation = useNavigation()
   const [showBack, setShowBack] = useState<boolean>(false)
@@ -45,7 +47,9 @@ export default function ScreenLayout(props: ScreenProps) {
           top={insets.top + 30}
           zIndex={100}
         >
-          {showBack && <HeaderBackButton isModal={props.isModal || false} />}
+          {showBack && !hideBackButton && (
+            <HeaderBackButton isModal={props.isModal || false} />
+          )}
         </BoxLayout>
         {children}
       </BoxLayout>
