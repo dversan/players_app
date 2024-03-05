@@ -3,9 +3,10 @@ import Input from '../../ui/components/input'
 import { t } from 'i18next'
 import { PlayerData } from '../../lib/data/models'
 import VStackLayout from '../../ui/layout/vstack.layout'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Text from '../../ui/components/text'
 import { ValidationFields } from '../../lib/data/helpers'
+import { fitnessParameterInitialCalculation } from '@lib/data/calculators'
 
 interface OnboardingFormParametersProps {
   onSetFormData: (
@@ -13,12 +14,26 @@ interface OnboardingFormParametersProps {
     fieldValue: string | number | Date
   ) => void
   validation: { [key: keyof ValidationFields]: string }
+  parametersData: PlayerData
 }
 
 export default function OnboardingParametersForm({
   onSetFormData,
-  validation
+  validation,
+  parametersData
 }: OnboardingFormParametersProps) {
+  const fitnessValue = fitnessParameterInitialCalculation(
+    parametersData.playerHeight,
+    parametersData.playerWeight,
+    parametersData.birthday,
+    parametersData.gamesPerYearIndex,
+    parametersData.competitionGamesIndex
+  )
+
+  useEffect(() => {
+    onSetFormData('fitness', Number(fitnessValue))
+  }, [parametersData.attack])
+
   return (
     <VStackLayout space={'lg'}>
       <HStackLayout space={'lg'}>
@@ -40,8 +55,9 @@ export default function OnboardingParametersForm({
           label={t('onboardingScreen.fitness')}
           flex={1}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('fitness', Number(value))}
+          value={fitnessValue.toString()}
           error={validation.fitness}
+          isReadOnly
         />
       </HStackLayout>
       <HStackLayout space={'lg'}>

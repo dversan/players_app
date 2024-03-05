@@ -10,8 +10,8 @@ import { Center } from '@gluestack-ui/themed'
 import { t } from 'i18next'
 import { customColors as colors } from '../../../ui/ui-theme.provider'
 import {
-  PlayerData,
   OnboardingSteps,
+  PlayerData,
   SelectValuesProps
 } from '../../../lib/data/models'
 import OnboardingPositionForm from '../../../ui/components/onboarding-position-form'
@@ -90,9 +90,14 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   }
 
   function onSetFormData(fieldName, fieldValue) {
+    const fieldData =
+      fieldName === 'fitness'
+        ? { fitness: Number(fieldValue) }
+        : { [fieldName]: fieldValue }
+
     setFormData(prevState => ({
       ...prevState,
-      [fieldName]: fieldValue
+      ...fieldData
     }))
   }
 
@@ -202,16 +207,17 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                 onSetFormData={onSetFormData}
                 isLoading={isLoading}
                 validation={errors}
+                parametersData={formData}
               />
-                <Button
-                  size={'lg'}
-                  mt={32}
-                  alignSelf={'center'}
-                  isLoading={isLoading}
-                  onPress={() => stepHandler(OnboardingSteps.PARAMETERS)}
-                >
-                  {t('onboardingScreen.confirmStep')}
-                </Button>
+              <Button
+                size={'lg'}
+                mt={32}
+                alignSelf={'center'}
+                isLoading={isLoading}
+                onPress={() => stepHandler(OnboardingSteps.PARAMETERS)}
+              >
+                {t('onboardingScreen.confirmStep')}
+              </Button>
             </AccordionItem>
           </Accordion>
           <Button size={'xl'} disabled={disableSubmitButton} onPress={onSubmit}>
