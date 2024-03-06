@@ -90,14 +90,9 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   }
 
   function onSetFormData(fieldName, fieldValue) {
-    const fieldData =
-      fieldName === 'fitness'
-        ? { fitness: Number(fieldValue) }
-        : { [fieldName]: fieldValue }
-
     setFormData(prevState => ({
       ...prevState,
-      ...fieldData
+      ...{ [fieldName]: fieldValue }
     }))
   }
 
@@ -108,6 +103,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
           p={onboardingLayoutProps.padding}
           pt={onboardingLayoutProps.paddingTop}
           space={onboardingLayoutProps.mainSpacing}
+          style={{ flexGrow: 1 }}
         >
           <Center>
             <Text size={'lg'} bold>
@@ -131,29 +127,24 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               stepsCompleted={stepsCompleted}
               showCheckIcon={stepsCompleted.includes(OnboardingSteps.POSITION)}
             >
-              <>
-                <OnboardingPositionForm
-                  onSetFormData={onSetFormData}
-                  isLoading={isLoading}
-                  hasValue={hasValue}
-                  onSetAccordionToOpen={onSetAccordionToOpen}
-                  validation={errors}
-                />
-                <Button
-                  size={'lg'}
-                  mt={32}
-                  alignSelf={'center'}
-                  isLoading={isLoading}
-                  onPress={() =>
-                    stepHandler(
-                      OnboardingSteps.POSITION,
-                      OnboardingSteps.FITNESS
-                    )
-                  }
-                >
-                  {t('onboardingScreen.confirmStep')}
-                </Button>
-              </>
+              <OnboardingPositionForm
+                onSetFormData={onSetFormData}
+                isLoading={isLoading}
+                hasValue={hasValue}
+                onSetAccordionToOpen={onSetAccordionToOpen}
+                validation={errors}
+              />
+              <Button
+                size={'lg'}
+                mt={32}
+                alignSelf={'center'}
+                isLoading={isLoading}
+                onPress={() =>
+                  stepHandler(OnboardingSteps.POSITION, OnboardingSteps.FITNESS)
+                }
+              >
+                {t('onboardingScreen.confirmStep')}
+              </Button>
             </AccordionItem>
             <AccordionItem
               value={OnboardingSteps.FITNESS}
@@ -220,6 +211,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               </Button>
             </AccordionItem>
           </Accordion>
+          <VStackLayout flex={1} style={{ flexGrow: 1 }} />
           <Button size={'xl'} disabled={disableSubmitButton} onPress={onSubmit}>
             {t('onboardingScreen.createPlayerProfile')}
           </Button>

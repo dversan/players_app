@@ -23,12 +23,10 @@ interface GSTestProps extends PropsWithChildren<ViewProps> {
     | '6xl'
 }
 
-function Text(props: GSTestProps) {
+export default function Text(props: GSTestProps) {
   return (
     <GSText color={'white'} {...props}>
       {props.children}
     </GSText>
   )
 }
-
-export default Text

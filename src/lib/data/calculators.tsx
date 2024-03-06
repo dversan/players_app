@@ -8,7 +8,7 @@ const fitnessParameterCalculation = (
   const coefficients = [0.25, 0.5, 0.75, 1]
 
   const imcCalculation = () => {
-    const imc = (weight / (height * height)).toFixed(0)
+    const imc = (weight / (height * height)) * 10000
 
     if (imc < 18.5) {
       return coefficients[0]
@@ -22,7 +22,9 @@ const fitnessParameterCalculation = (
   }
 
   const ageCalculation = () => {
-    const age = (new Date() - new Date(birthday)) / (3600000 * 24 * 365.25)
+    const age = Math.round(
+      (new Date() - new Date(birthday)) / (3600000 * 24 * 365.25)
+    )
 
     if (age >= 10 && age <= 20) {
       return coefficients[2]
@@ -38,7 +40,7 @@ const fitnessParameterCalculation = (
   }
 
   const matchesCalculation = () => {
-    // matches came from gamesPerYearIndex stored in user.playerData - (1,2,3,4)
+    // matches came from gamesPerYearIndex stored in user.playerData - (1,2,3,4,5)
     // competition came from competitionGamesIndex stored in user.playerData - (1,2,3,4,5)
     if (matches === 1) {
       return 0
@@ -51,12 +53,14 @@ const fitnessParameterCalculation = (
     }
   }
 
-  return (
-    (imcCalculation() * 0.4 +
-      ageCalculation() * 0.2 +
+  const result = Math.round(
+    (imcCalculation() * 0.35 +
+      ageCalculation() * 0.25 +
       matchesCalculation() * 0.4) *
-    100
-  ).toFixed(0)
+      100
+  )
+
+  return result > 100 ? 100 : result
 }
 
 export { fitnessParameterCalculation }

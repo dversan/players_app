@@ -31,7 +31,7 @@ export default function OnboardingParametersForm({
   )
 
   useEffect(() => {
-    onSetFormData('fitness', Number(fitnessValue))
+    onSetFormData('fitness', fitnessValue)
   }, [parametersData.attack])
 
   return (
