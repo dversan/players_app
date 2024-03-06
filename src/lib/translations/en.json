@@ -79,7 +79,7 @@
       "quarter": "Between 1% - 25%",
       "half": "Between 26% - 50%",
       "three_quarters": "Between 51% - 75%",
-      "all": "More than 75%%"
+      "all": "More than 75%"
     },
     "attack": "Attack",
     "defense": "Defense",
