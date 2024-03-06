@@ -43,7 +43,7 @@
   },
   "onboardingScreen": {
     "title": "Create player",
-    "introText": "Complete all the data in the 3 steps below to create your player profile.",
+    "introText": "Complete all the data in the 3 steps below to create your player profile. \n\nYou will be able to edit these data from your profile once it has been created.",
     "firstStepTitle": "Player info",
     "secondStepTitle": "State of fitness",
     "thirdStepTitle": "Parameters",
@@ -83,10 +83,11 @@
     },
     "attack": "Attack",
     "defense": "Defense",
-    "fitness": "Phys. Fitness",
+    "fitness": "Fitness",
     "goal": "Goal",
     "pass": "Pass",
     "teamWork": "Team Work",
+    "fitnessInfo": "Fitness: It has been calculated with the data from the previous step. It is not editable in this step.",
     "confirmStep": "Confirm",
     "createPlayerProfile": "Create player"
   },

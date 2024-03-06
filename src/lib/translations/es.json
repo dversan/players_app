@@ -43,7 +43,7 @@
   },
   "onboardingScreen": {
     "title": "Crear jugador",
-    "introText": "Completa todos los datos de los 3 pasos siguientes para poder crear tu perfil de jugador.",
+    "introText": "Completa todos los datos de los 3 pasos siguientes para poder crear tu perfil de jugador. \n\nEstos datos podrás editarlos desde tu perfil una vez ya esté creado.",
     "firstStepTitle": "Dorsal y Posición",
     "secondStepTitle": "Estado de forma",
     "thirdStepTitle": "Parámetros",
@@ -87,6 +87,7 @@
     "goal": "Hab. Gol",
     "pass": "Hab. Pase",
     "teamWork": "Trabajo",
+    "fitnessInfo": "Est. Forma: Se ha calculado con los datos del paso anterior. No es editable en este paso.",
     "confirmStep": "Confirmar",
     "createPlayerProfile": "Crear jugador"
   },

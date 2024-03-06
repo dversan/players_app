@@ -110,7 +110,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               {t('onboardingScreen.title').toUpperCase()}
             </Text>
           </Center>
-          <Text>{t('onboardingScreen.introText')}</Text>
+          <Text mb={16}>{t('onboardingScreen.introText')}</Text>
           <Accordion
             collapsable={true}
             style={{ maxWidth: 400 }}
