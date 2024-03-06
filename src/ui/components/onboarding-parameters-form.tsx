@@ -6,7 +6,7 @@ import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useEffect } from 'react'
 import Text from '../../ui/components/text'
 import { ValidationFields } from '../../lib/data/helpers'
-import { fitnessParameterInitialCalculation } from '@lib/data/calculators'
+import { fitnessParameterCalculation } from '@lib/data/calculators'
 
 interface OnboardingFormParametersProps {
   onSetFormData: (
@@ -22,7 +22,7 @@ export default function OnboardingParametersForm({
   validation,
   parametersData
 }: OnboardingFormParametersProps) {
-  const fitnessValue = fitnessParameterInitialCalculation(
+  const fitnessValue = fitnessParameterCalculation(
     parametersData.playerHeight,
     parametersData.playerWeight,
     parametersData.birthday,
