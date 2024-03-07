@@ -224,12 +224,12 @@ function OnboardingStepsValidation(formData: PlayerData) {
   const fields = ['attack', 'defense', 'fitness', 'goal', 'pass', 'teamWork']
 
   fields.forEach(field => {
-    if (!isValidNumber(0, 100, Number(formData[field]))) {
+    if (!isValidNumber(10, 100, Number(formData[field]))) {
       thirdStepValidationErrors = {
         ...thirdStepValidationErrors,
         [field]: t('common.error.requiredFieldNumberWithRange', {
           field: t(`onboardingScreen.${field}`),
-          min: t('0'),
+          min: t('10'),
           max: t('100')
         })
       }

@@ -92,7 +92,7 @@ describe('OnboardingPlayerScreen test', () => {
     )
 
     await act(async () => {
-      fireEvent.press(screen.getByText('onboardingScreen.confirmStep'))
+      fireEvent.press(screen.getByTestId('positionStepButton'))
     })
 
     fireEvent.changeText(screen.getByText('onboardingScreen.height'), 170)
@@ -124,24 +124,25 @@ describe('OnboardingPlayerScreen test', () => {
     )
 
     await act(async () => {
-      fireEvent.press(screen.getByText('onboardingScreen.confirmStep'))
+      fireEvent.press(screen.getByTestId('fitnessStepButton'))
     })
 
-    fireEvent.changeText(screen.getByText('onboardingScreen.attack'), 78)
-    fireEvent.changeText(screen.getByText('onboardingScreen.defense'), 78)
-    fireEvent.changeText(screen.getByText('onboardingScreen.fitness'), 78)
-    fireEvent.changeText(screen.getByText('onboardingScreen.goal'), 78)
-    fireEvent.changeText(screen.getByText('onboardingScreen.pass'), 78)
-    fireEvent.changeText(screen.getByText('onboardingScreen.teamWork'), 78)
+    fireEvent.changeText(screen.getByText('onboardingScreen.attack'), 50)
+    fireEvent.changeText(screen.getByText('onboardingScreen.defense'), 50)
+    fireEvent.changeText(screen.getByText('onboardingScreen.goal'), 50)
+    fireEvent.changeText(screen.getByText('onboardingScreen.pass'), 50)
+    fireEvent.changeText(screen.getByText('onboardingScreen.teamWork'), 50)
 
     await act(async () => {
-      fireEvent.press(screen.getByText('onboardingScreen.confirmStep'))
+      fireEvent.press(screen.getByTestId('parametersStepButton'))
     })
 
     await act(async () => {
       fireEvent.press(screen.getByText('onboardingScreen.createPlayerProfile'))
     })
 
-    expect(mockNavigation.navigate).toHaveBeenCalledWith('OnboardingClubScreen')
+    expect(mockNavigation.navigate).toHaveBeenCalledWith(
+      'OnboardingPlayerOptionsScreen'
+    )
   })
 })

@@ -144,6 +144,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                 validation={errors}
               />
               <Button
+                testID={'positionStepButton'}
                 size={'lg'}
                 mt={32}
                 alignSelf={'center'}
@@ -175,6 +176,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                 validation={errors}
               />
               <Button
+                testID={'fitnessStepButton'}
                 size={'lg'}
                 mt={32}
                 alignSelf={'center'}
@@ -210,6 +212,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
                 parametersData={formData}
               />
               <Button
+                testID={'parametersStepButton'}
                 size={'lg'}
                 mt={32}
                 alignSelf={'center'}
