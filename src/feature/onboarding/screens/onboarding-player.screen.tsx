@@ -103,7 +103,6 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
       <ScrollViewLayout fullHeight>
         <VStackLayout
           p={onboardingLayoutProps.padding}
-          pt={onboardingLayoutProps.paddingTop}
           space={onboardingLayoutProps.mainSpacing}
           style={{ flexGrow: 1 }}
         >
@@ -115,10 +114,12 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
               alt={'players logo'}
             />
           </Center>
-          <Text size={'2xl'} bold alignSelf={'center'}>
-            {t('onboardingScreen.title').toUpperCase()}
-          </Text>
-          <Text mb={16}>{t('onboardingScreen.introText')}</Text>
+          <VStackLayout space={'lg'} alignItems={'center'}>
+            <Text size={'2xl'} bold>
+              {t('onboardingScreen.title').toUpperCase()}
+            </Text>
+            <Text>{t('onboardingScreen.introText')}</Text>
+          </VStackLayout>
           <Accordion
             collapsable={true}
             style={{ maxWidth: 400 }}
