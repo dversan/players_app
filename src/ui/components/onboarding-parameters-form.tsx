@@ -6,7 +6,7 @@ import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useEffect } from 'react'
 import Text from '../../ui/components/text'
 import { ValidationFields } from '../../lib/data/helpers'
-import { fitnessParameterCalculation } from '@lib/data/calculators'
+import { calculateFitnessParameter } from '@lib/data/calculators'
 import { customColors as colors } from '@ui/ui-theme.provider'
 
 interface OnboardingFormParametersProps {
@@ -23,7 +23,7 @@ export default function OnboardingParametersForm({
   validation,
   parametersData
 }: OnboardingFormParametersProps) {
-  const fitnessValue = fitnessParameterCalculation(
+  const fitnessValue = calculateFitnessParameter(
     parametersData.playerHeight,
     parametersData.playerWeight,
     parametersData.birthday,

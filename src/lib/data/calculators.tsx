@@ -1,66 +1,57 @@
-const fitnessParameterCalculation = (
-  height,
-  weight,
+const calculateFitnessParameter = (
+  heightInCm,
+  weightInKg,
   birthday,
-  matches,
-  competition
+  matchesPlayed,
+  competitionLevel
 ) => {
+  const imc = (weightInKg / (heightInCm * heightInCm)) * 10000
+  const age = Math.round(
+    (new Date() - new Date(birthday)) / (3600000 * 24 * 365.25)
+  )
+
   const coefficients = [0.25, 0.5, 0.75, 1]
 
-  const imcCalculation = () => {
-    const imc = (weight / (height * height)) * 10000
+  const imcCoefficient =
+    imc < 18.5
+      ? coefficients[0]
+      : imc <= 24.9
+      ? coefficients[3]
+      : imc <= 29.9
+      ? coefficients[1]
+      : 0
 
-    if (imc < 18.5) {
-      return coefficients[0]
-    } else if (imc >= 18.5 && imc <= 24.9) {
-      return coefficients[3]
-    } else if (imc >= 25 && imc <= 29.9) {
-      return coefficients[1]
-    } else if (imc > 30) {
-      return 0
-    }
-  }
+  const ageCoefficient =
+    age <= 10
+      ? coefficients[0]
+      : age <= 15
+      ? coefficients[1]
+      : age <= 20
+      ? coefficients[2]
+      : age <= 35
+      ? coefficients[3]
+      : age <= 55
+      ? coefficients[1]
+      : age <= 65
+      ? coefficients[0]
+      : 0
 
-  const ageCalculation = () => {
-    const age = Math.round(
-      (new Date() - new Date(birthday)) / (3600000 * 24 * 365.25)
-    )
-
-    if (age >= 10 && age <= 20) {
-      return coefficients[2]
-    } else if (age >= 20 && age <= 35) {
-      return coefficients[3]
-    } else if (age >= 35 && age <= 55) {
-      return coefficients[1]
-    } else if (age >= 55 && age <= 65) {
-      return coefficients[0]
-    } else if (age > 65) {
-      return 0
-    }
-  }
-
-  const matchesCalculation = () => {
-    // matches came from gamesPerYearIndex stored in user.playerData - (1,2,3,4,5)
-    // competition came from competitionGamesIndex stored in user.playerData - (1,2,3,4,5)
-    if (matches === 1) {
-      return 0
-    }
-
-    if (competition === 1) {
-      return matches / 8
-    } else {
-      return (matches / 20) * competition
-    }
+  let matchesCoefficient
+  if (matchesPlayed === 1) {
+    matchesCoefficient = 0
+  } else {
+    matchesCoefficient =
+      competitionLevel === 1
+        ? matchesPlayed / 8
+        : (matchesPlayed / 20) * competitionLevel
   }
 
   const result = Math.round(
-    (imcCalculation() * 0.35 +
-      ageCalculation() * 0.25 +
-      matchesCalculation() * 0.4) *
+    (imcCoefficient * 0.35 + ageCoefficient * 0.25 + matchesCoefficient * 0.4) *
       100
   )
 
-  return result > 100 ? 100 : result
+  return Math.min(result, 100)
 }
 
-export { fitnessParameterCalculation }
+export { calculateFitnessParameter }
