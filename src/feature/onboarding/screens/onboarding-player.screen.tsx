@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import ScreenLayout from '../../../ui/layout/screen.layout'
-import Text from '../../../ui/components/text'
-import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
-import VStackLayout from '../../../ui/layout/vstack.layout'
-import Button from '../../../ui/components/button'
-import Accordion from '../../../ui/components/accordion'
-import AccordionItem from '../../../ui/components/accordion-item'
+import ScreenLayout from '@ui/layout/screen.layout'
+import Text from '@ui/components/text'
+import ScrollViewLayout from '@ui/layout/scrollview.layout'
+import VStackLayout from '@ui/layout/vstack.layout'
+import Button from '@ui/components/button'
+import Accordion from '@ui/components/accordion'
+import AccordionItem from '@ui/components/accordion-item'
 import { Center, Image } from '@gluestack-ui/themed'
 import { t } from 'i18next'
 import { customColors as colors } from '../../../ui/ui-theme.provider'
@@ -13,16 +13,14 @@ import {
   OnboardingSteps,
   PlayerData,
   SelectValuesProps
-} from '../../../lib/data/models'
-import OnboardingPositionForm from '../../../ui/components/onboarding-position-form'
-import OnboardingFitnessForm from '../../../ui/components/onboarding-fitness-form'
-import OnboardingParametersForm from '../../../ui/components/onboarding-parameters-form'
-import {
-  OnboardingStepsValidation,
-  ValidationFields
-} from '../../../lib/data/helpers'
-import { savePlayerData } from '../../../lib/api/users.api'
-import { useAuth } from '../../../lib/auth/auth.context'
+} from '@lib/data/models'
+import OnboardingPositionForm from '@ui/components/onboarding-position-form'
+import OnboardingFitnessForm from '@ui/components/onboarding-fitness-form'
+import OnboardingParametersForm from '@ui/components/onboarding-parameters-form'
+import { OnboardingStepsValidation, ValidationFields } from '@lib/data/helpers'
+import { savePlayerData } from '@lib/api/users.api'
+import { useAuth } from '@lib/auth/auth.context'
+import Alert from '@ui/components/alert'
 
 export default function OnboardingPlayerScreen({ route, navigation }: any) {
   const [formData, setFormData] = useState<PlayerData>({
@@ -69,7 +67,11 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
         navigation.navigate('OnboardingPlayerOptionsScreen')
         setIsLoading(false)
       })
-      .catch(e => console.log(e))
+      .catch(e => (
+        <Alert action={'error'} variant={'solid'}>
+          {e.message}
+        </Alert>
+      ))
   }
 
   function onSetAccordionToOpen(itemToOpen) {

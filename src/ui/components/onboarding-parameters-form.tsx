@@ -1,11 +1,11 @@
-import HStackLayout from '../../ui/layout/hstack.layout'
-import Input from '../../ui/components/input'
+import HStackLayout from '@ui/layout/hstack.layout'
+import Input from '@ui/components/input'
 import { t } from 'i18next'
-import { PlayerData } from '../../lib/data/models'
-import VStackLayout from '../../ui/layout/vstack.layout'
+import { PlayerData } from '@lib/data/models'
+import VStackLayout from '@ui/layout/vstack.layout'
 import React, { useEffect } from 'react'
-import Text from '../../ui/components/text'
-import { ValidationFields } from '../../lib/data/helpers'
+import Text from '@ui/components/text'
+import { ValidationFields } from '@lib/data/helpers'
 import { calculateFitnessParameter } from '@lib/data/calculators'
 
 interface OnboardingFormParametersProps {
