@@ -81,13 +81,14 @@
       "three_quarters": "Entre 51% - 75%",
       "all": "Más del 75%"
     },
+    "totalParametersInfo": "Est. Forma se ha calculado con los datos del paso anterior y no es editable. \n\nTienes 250 puntos para repartir entre los 5 parámetros restantes.",
     "attack": "Ataque",
     "defense": "Defensa",
     "fitness": "Est. Forma",
     "goal": "Hab. Gol",
     "pass": "Hab. Pase",
     "teamWork": "Trabajo",
-    "fitnessInfo": "Est. Forma: Se ha calculado con los datos del paso anterior. No es editable en este paso.",
+    "parametersExceededError": "La suma de los valores que has asignado a los 5 parámetros no puede superar los 250.",
     "confirmStep": "Confirmar",
     "createPlayerProfile": "Crear jugador"
   },

@@ -9,6 +9,7 @@ export interface ValidationFields extends PlayerData, User {
   password: string
   confirmPassword: string
   requiredFields: string
+  generalError: string
 }
 
 type ValidationErrors = {
@@ -77,10 +78,10 @@ function loginFormValidation(formData) {
   }
 }
 
-function resetPasswordFormValidation(formData) {
+function resetPasswordFormValidation(email: string) {
   let validationErrors: ValidationErrors = {}
 
-  if (formData.email.trim().length === 0) {
+  if (email.trim().length === 0) {
     validationErrors = {
       ...validationErrors,
       email: t('common.error.requiredField', {
@@ -95,7 +96,7 @@ function resetPasswordFormValidation(formData) {
   }
 }
 
-function OnboardingStepsValidation(formData) {
+function OnboardingStepsValidation(formData: PlayerData) {
   let firstStepValidationErrors: ValidationErrors = {}
   let secondStepValidationErrors: ValidationErrors = {}
   let thirdStepValidationErrors: ValidationErrors = {}
@@ -191,7 +192,7 @@ function OnboardingStepsValidation(formData) {
     }
   }
 
-  if (formData.birthday.length === 0) {
+  if (formData.birthday.toString().length === 0) {
     secondStepValidationErrors = {
       ...secondStepValidationErrors,
       birthday: t('common.error.requiredField', {
@@ -223,18 +224,31 @@ function OnboardingStepsValidation(formData) {
   const fields = ['attack', 'defense', 'fitness', 'goal', 'pass', 'teamWork']
 
   fields.forEach(field => {
-    if (!isValidNumber(10, 100, Number(formData[field]))) {
+    if (!isValidNumber(0, 100, Number(formData[field]))) {
       thirdStepValidationErrors = {
         ...thirdStepValidationErrors,
         [field]: t('common.error.requiredFieldNumberWithRange', {
           field: t(`onboardingScreen.${field}`),
-          min: t('10'),
+          min: t('0'),
           max: t('100')
         })
       }
     }
   })
 
+  const paramsTotalValue =
+    formData.attack +
+    formData.defense +
+    formData.goal +
+    formData.pass +
+    formData.teamWork
+
+  if (paramsTotalValue > 250) {
+    thirdStepValidationErrors = {
+      ...thirdStepValidationErrors,
+      generalError: t('onboardingScreen.parametersExceededError')
+    }
+  }
   // ############ Onboarding Form Validations Outputs ##################
 
   return {

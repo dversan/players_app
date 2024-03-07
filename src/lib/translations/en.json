@@ -81,13 +81,14 @@
       "three_quarters": "Between 51% - 75%",
       "all": "More than 75%"
     },
+    "totalParametersInfo": "Phys. Fitness has been calculated with the data from the previous step and is not editable. \n\nYou have 250 points to distribute among the remaining 5 parameters.",
     "attack": "Attack",
     "defense": "Defense",
     "fitness": "Fitness",
     "goal": "Goal",
     "pass": "Pass",
     "teamWork": "Team Work",
-    "fitnessInfo": "Fitness: It has been calculated with the data from the previous step. It is not editable in this step.",
+    "parametersExceededError": "The sum of the values assigned to the 5 parameters cannot exceed 250.",
     "confirmStep": "Confirm",
     "createPlayerProfile": "Create player"
   },

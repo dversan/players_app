@@ -7,7 +7,6 @@ import React, { useEffect } from 'react'
 import Text from '../../ui/components/text'
 import { ValidationFields } from '../../lib/data/helpers'
 import { calculateFitnessParameter } from '@lib/data/calculators'
-import { customColors as colors } from '@ui/ui-theme.provider'
 
 interface OnboardingFormParametersProps {
   onSetFormData: (
@@ -37,6 +36,7 @@ export default function OnboardingParametersForm({
 
   return (
     <VStackLayout space={'lg'}>
+      <Text>{t('onboardingScreen.totalParametersInfo')}</Text>
       <HStackLayout space={'lg'}>
         <Input
           label={t('onboardingScreen.attack')}
@@ -84,9 +84,6 @@ export default function OnboardingParametersForm({
           error={validation.teamWork}
         />
       </HStackLayout>
-      <Text color={colors.lightSecondaryText300}>
-        {t('onboardingScreen.fitnessInfo')}
-      </Text>
       {Object.keys(validation).length > 0 && (
         <Text color={'red'}>{Object.values(validation)[0]}</Text>
       )}
