@@ -6,7 +6,7 @@ import VStackLayout from '../../../ui/layout/vstack.layout'
 import Button from '../../../ui/components/button'
 import Accordion from '../../../ui/components/accordion'
 import AccordionItem from '../../../ui/components/accordion-item'
-import { Center } from '@gluestack-ui/themed'
+import { Center, Image } from '@gluestack-ui/themed'
 import { t } from 'i18next'
 import { customColors as colors } from '../../../ui/ui-theme.provider'
 import {
@@ -106,10 +106,16 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
           style={{ flexGrow: 1 }}
         >
           <Center>
-            <Text size={'lg'} bold>
-              {t('onboardingScreen.title').toUpperCase()}
-            </Text>
+            <Image
+              height={onboardingLayoutProps.logoH}
+              width={onboardingLayoutProps.logoW}
+              source={require('../../../ui/images/players_logo.jpeg')}
+              alt={'players logo'}
+            />
           </Center>
+          <Text size={'2xl'} bold alignSelf={'center'}>
+            {t('onboardingScreen.title').toUpperCase()}
+          </Text>
           <Text mb={16}>{t('onboardingScreen.introText')}</Text>
           <Accordion
             collapsable={true}
