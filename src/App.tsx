@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import MainNavigator from './navigator/main.navigator'
+import MainNavigator from './navigation/main.navigator'
 import { GluestackUIProvider } from '@gluestack-ui/themed'
 import AuthProvider from './lib/auth/auth.context'
 import gluestackCustomUIConfig from './ui/ui-theme.provider'

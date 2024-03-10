@@ -10,7 +10,7 @@ import {
 import { CheckCircle } from 'lucide-react-native'
 import React, { PropsWithChildren } from 'react'
 import { ViewProps } from 'react-native'
-import { OnboardingSteps } from '../../lib/data/models'
+import { OnboardingSteps } from '@lib/data/models'
 import Text from '../../ui/components/text'
 import { customColors as colors } from '../../ui/ui-theme.provider'
 
@@ -35,7 +35,7 @@ export default function AccordionItem(props: GSAccordionProps) {
   const stepsName = Object.values(OnboardingSteps)
 
   return (
-    <GSAccordionItem {...props} shadowColor={'transparent'} sx={props.margin}>
+    <GSAccordionItem {...props} bg={colors.backgroundDark700} sx={props.margin}>
       <AccordionHeader>
         <AccordionTrigger>
           <>

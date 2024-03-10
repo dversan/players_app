@@ -1,6 +1,7 @@
 import { Accordion as GSAccordion } from '@gluestack-ui/themed'
 import React, { PropsWithChildren } from 'react'
 import { ViewProps } from 'react-native'
+import { customColors as colors } from '@ui/ui-theme.provider'
 
 interface GSAccordionProps extends PropsWithChildren<ViewProps> {
   size?: 'sm' | 'md' | 'lg' | 'xl'
@@ -11,5 +12,9 @@ interface GSAccordionProps extends PropsWithChildren<ViewProps> {
 }
 
 export default function Accordion(props: GSAccordionProps) {
-  return <GSAccordion {...props}>{props.children}</GSAccordion>
+  return (
+    <GSAccordion bg={colors.backgroundDark500} {...props}>
+      {props.children}
+    </GSAccordion>
+  )
 }

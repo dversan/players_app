@@ -9,7 +9,7 @@ import {
 import { act, fireEvent, screen, waitFor } from '@testing-library/react-native'
 import { render } from '../../../../../__tests__/__utils__/test-utils'
 import * as Auth from '../../../../lib/auth/auth.context'
-import MainNavigator from '../../../../navigator/main.navigator'
+import MainNavigator from '../../../../navigation/main.navigator'
 import { NavigationContainer } from '@react-navigation/native'
 import * as React from 'react'
 import sinon from 'sinon'
