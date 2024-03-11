@@ -122,12 +122,10 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
           </VStackLayout>
           <Accordion
             collapsable={true}
-            style={{ maxWidth: 400 }}
             value={stepToShow || ''}
           >
             <AccordionItem
               value={OnboardingSteps.POSITION}
-              backgroundColor={colors.backgroundDark800}
               headerTitle={`${t(
                 `onboardingScreen.${OnboardingSteps.POSITION}Title`
               )}`.toUpperCase()}
