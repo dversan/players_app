@@ -92,6 +92,41 @@
     "confirmStep": "Confirm",
     "createPlayerProfile": "Create player"
   },
+  "onboardingPlayerOptions": {
+    "title": "Let's play {{name}}!",
+    "description": "You can now sign up for matches or create them independently (no club). You can also join a club or start a new club. \n\nIf you are not going to be in a club at the moment, go to the home screen. These options will still be available.",
+    "joinClub": "Join a club",
+    "joinClubDescription": "Join a club and start participating in its meetings and activities.",
+    "joinClubModalTopics": {
+      "1": "Receive call-ups for matches and the notifications",
+      "2": "Plays tournaments or friendly matches between clubs",
+      "3": "Be a team captain or a club chairman",
+      "4": "Participate in club and general rankings",
+      "5": "Improve your parameters",
+      "6": "Get trophies and badges"
+    },
+    "createNewClub": "Create a new club",
+    "createNewClubDescription": "Create a club, invite friends, make call-ups, manage and play",
+    "createNewClubModalTopics": {
+      "1": "Manage teams, call-ups, notifications, transfers and more",
+      "2": "Hand over the presidency when you decide with the rest of the members",
+      "3": "Play tournaments or friendly matches between clubs",
+      "4": "Be a team captain",
+      "5": "Participate in club and general rankings",
+      "6": "Improve your parameters",
+      "7": "Get trophies and badges"
+    },
+    "goToProfile": "Go to home screen",
+    "goToProfileDescription": "Straight to the home screen. Create or join clubs later.",
+    "goToProfileModalTopics": {
+      "1": "Create friendly matches with other players",
+      "2": "Join a club or create it when you decide",
+      "3": "Participate in the general ranking",
+      "4": "Be a team captain",
+      "5": "Offer yourself to teams as a reinforcement",
+      "6": "Improve your parameters"
+    }
+  },
   "common": {
     "error": {
       "generic": "Something went wrong, please review your data or try again later.",

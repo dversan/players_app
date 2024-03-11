@@ -94,7 +94,7 @@
   },
   "onboardingPlayerOptions": {
     "title": "¡A jugar {{name}}!",
-    "description": "Ya puedes inscribirte en partidos o crearlos de manera independiente (Sin club). Además puedes unirte a la plantilla de un club o fundar uno nuevo. \n\nSi por ahora, no vas a estar en ningún club ve a tu perifl. Estas opciones seguirán estando disponibles.",
+    "description": "Ya puedes inscribirte en partidos o crearlos de manera independiente (Sin club). Además puedes unirte a la plantilla de un club o fundar uno nuevo. \n\nSi por ahora, no vas a estar en ningún club ve a la pantalla principal. Estas opciones seguirán estando disponibles.",
     "joinClub": "Unirme a un club",
     "joinClubDescription": "Únete a un club y empieza a participar en sus convocatorias y actividades.",
     "joinClubModalTopics": {
@@ -116,8 +116,8 @@
       "6": "Mejora tus parámetros",
       "7": "Consigue trofeos e insignias"
     },
-    "goToProfile": "Ir a mi Perfil",
-    "goToProfileDescription": "Directo a tu perfil. Crear o entrar en un club lo puedes hacer más adelante.",
+    "goToProfile": "Ir a la pantalla de inicio",
+    "goToProfileDescription": "Directo a la pantalla de inicio. Crea o ingresa en clubs más adelante.",
     "goToProfileModalTopics": {
       "1": "Crea partidos amistosos con otros jugadores",
       "2": "Forma parte de un club o fúndalo cuando tú decidas",
