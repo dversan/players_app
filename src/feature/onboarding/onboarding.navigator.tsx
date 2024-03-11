@@ -16,7 +16,7 @@ interface OnboardingLayoutProps {
 export default function OnboardingNavigator() {
   const onboardingLayoutProps: OnboardingLayoutProps = {
     padding: 16,
-    mainSpacing: 'xl',
+    mainSpacing: '4xl',
     logoH: 55,
     logoW: 55
   }

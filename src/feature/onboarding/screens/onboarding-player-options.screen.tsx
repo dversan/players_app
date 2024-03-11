@@ -53,7 +53,10 @@ export default function OnboardingPlayerOptionsScreen({
   return (
     <ScreenLayout hideBackButton>
       <ScrollViewLayout fullHeight>
-        <VStackLayout p={onboardingLayoutProps.padding} space={'4xl'}>
+        <VStackLayout
+          p={onboardingLayoutProps.padding}
+          space={onboardingLayoutProps.mainSpacing}
+        >
           <Center>
             <Image
               height={onboardingLayoutProps.logoH}
