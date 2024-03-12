@@ -2,12 +2,15 @@ import HStackLayout from '../../ui/layout/hstack.layout'
 import Input, { inputStyle } from '../../ui/components/input'
 import { t } from 'i18next'
 import Select from '../../ui/components/select'
-import { OnboardingSteps, Positions, SelectValuesProps } from '@lib/data/models'
+import { OnboardingSteps, PositionFormData, Positions } from '@lib/data/models'
 import SelectItem from '../../ui/components/select-item'
 import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useRef, useState } from 'react'
 import Text from '../../ui/components/text'
-import { ValidationFields } from '@lib/data/helpers'
+import {
+  OnboardingPositionStepValidation,
+  ValidationFields
+} from '@lib/data/helpers'
 import Button from '@ui/components/button'
 
 interface OnboardingFormDorsalProps {
@@ -16,20 +19,10 @@ interface OnboardingFormDorsalProps {
     step: OnboardingSteps,
     stepToOpen?: OnboardingSteps
   ) => void
-  hasValue: SelectValuesProps
-  validation: { [key: keyof ValidationFields]: string }
-}
-
-interface PositionFormData {
-  playerNumber: number
-  playerNickname: string
-  mainPosition: Positions | ''
-  secondPosition: Positions | ''
 }
 
 const OnboardingPositionForm = ({
-  onSetFormData,
-  validation
+  onSetFormData
 }: OnboardingFormDorsalProps) => {
   const [focusPositionSelect, setFocusPositionSelect] = useState<boolean>(false)
   const [focusSecondPosSelect, setFocusSecondPosSelect] =
@@ -45,26 +38,39 @@ const OnboardingPositionForm = ({
     secondPosition: ''
   })
 
-  const confirmStepButtonHandler = (fieldName, fieldValue) => {
+  const hasValue = {
+    inMainPosition: !!positionFormDataRef.current.mainPosition,
+    inSecondPosition: !!positionFormDataRef.current.secondPosition
+  }
+
+  const setFormDataRef = (fieldName, fieldValue) => {
     positionFormDataRef.current = {
       ...positionFormDataRef.current,
       [fieldName]: fieldValue
     }
   }
 
-  console.log(
-    'inMainPosition: ',
-    !!positionFormDataRef.current.mainPosition,
-    'inSecondPosition: ',
-    !!positionFormDataRef.current.secondPosition
-  )
+  const confirmStepButtonHandler = () => {
+    if (
+      OnboardingPositionStepValidation(positionFormDataRef.current)[
+        `${OnboardingSteps.POSITION}ValidationOk`
+      ]
+    ) {
+      setErrors({})
+    } else {
+      setErrors(
+        OnboardingPositionStepValidation(positionFormDataRef.current)[
+          `${OnboardingSteps.POSITION}ValidationErrors`
+        ]
+      )
+    }
 
-  const hasValue = {
-    inMainPosition: !!positionFormDataRef.current.mainPosition,
-    inSecondPosition: !!positionFormDataRef.current.secondPosition
+    onSetFormData(
+      positionFormDataRef.current,
+      OnboardingSteps.POSITION,
+      OnboardingSteps.FITNESS
+    )
   }
-
-  console.log('formData: ', positionFormDataRef.current)
 
   return (
     <VStackLayout space={'lg'}>
@@ -73,19 +79,15 @@ const OnboardingPositionForm = ({
           label={t('onboardingScreen.playerNumber')}
           flex={2}
           formType={'onboarding'}
-          onChangeText={value =>
-            confirmStepButtonHandler('playerNumber', Number(value))
-          }
-          error={validation.playerNumber?.toString()}
+          onChangeText={value => setFormDataRef('playerNumber', Number(value))}
+          error={errors?.playerNumber?.toString()}
         />
         <Input
           label={t('onboardingScreen.playerNickname')}
           flex={6}
           formType={'onboarding'}
-          onChangeText={value =>
-            confirmStepButtonHandler('playerNickname', value.trim())
-          }
-          error={validation.playerNickname}
+          onChangeText={value => setFormDataRef('playerNickname', value.trim())}
+          error={errors?.playerNickname?.toString()}
         />
       </HStackLayout>
       <HStackLayout w={'100%'}>
@@ -94,7 +96,7 @@ const OnboardingPositionForm = ({
           variant={'outline'}
           formType={'onboarding'}
           size={'xl'}
-          isInvalid={Object.entries(validation).some(
+          isInvalid={Object.entries(errors).some(
             ([key, value]) => key === 'mainPosition' && value !== ''
           )}
           placeholder={t('common.text.selectOption')}
@@ -106,9 +108,7 @@ const OnboardingPositionForm = ({
           isFocused={focusPositionSelect}
           onOpen={() => setFocusPositionSelect(true)}
           onClose={() => setFocusPositionSelect(false)}
-          onValueChange={value =>
-            confirmStepButtonHandler('mainPosition', value.trim())
-          }
+          onValueChange={value => setFormDataRef('mainPosition', value.trim())}
         >
           {Object.values(Positions).map(position => (
             <SelectItem
@@ -125,7 +125,7 @@ const OnboardingPositionForm = ({
           variant={'outline'}
           formType={'onboarding'}
           size={'xl'}
-          isInvalid={Object.entries(validation).some(
+          isInvalid={Object.entries(errors).some(
             ([key, value]) => key === 'secondPosition' && value !== ''
           )}
           placeholder={t('common.text.selectOption')}
@@ -138,7 +138,7 @@ const OnboardingPositionForm = ({
           onOpen={() => setFocusSecondPosSelect(true)}
           onClose={() => setFocusSecondPosSelect(false)}
           onValueChange={value =>
-            confirmStepButtonHandler('secondPosition', value.trim())
+            setFormDataRef('secondPosition', value.trim())
           }
         >
           {Object.values(Positions).map(position => (
@@ -150,21 +150,15 @@ const OnboardingPositionForm = ({
           ))}
         </Select>
       </HStackLayout>
-      {Object.keys(validation).length > 0 && (
-        <Text color={'red'}>{Object.values(validation)[0]}</Text>
+      {Object.keys(errors).length > 0 && (
+        <Text color={'red'}>{Object.values(errors)[0]}</Text>
       )}
       <Button
         testID={'positionStepButton'}
         size={'lg'}
         mt={32}
         alignSelf={'center'}
-        onPress={() =>
-          onSetFormData(
-            positionFormDataRef.current,
-            OnboardingSteps.POSITION,
-            OnboardingSteps.FITNESS
-          )
-        }
+        onPress={confirmStepButtonHandler}
       >
         {t('onboardingScreen.confirmStep')}
       </Button>
