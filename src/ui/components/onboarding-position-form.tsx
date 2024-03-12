@@ -2,7 +2,7 @@ import HStackLayout from '../../ui/layout/hstack.layout'
 import Input, { inputStyle } from '../../ui/components/input'
 import { t } from 'i18next'
 import Select from '../../ui/components/select'
-import { Positions, SelectValuesProps } from '../../lib/data/models'
+import { Positions, SelectValuesProps } from '@lib/data/models'
 import SelectItem from '../../ui/components/select-item'
 import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useState } from 'react'
@@ -15,11 +15,11 @@ interface OnboardingFormDorsalProps {
   validation: { [key: keyof ValidationFields]: string }
 }
 
-export default function OnboardingPositionForm({
+const OnboardingPositionForm = ({
   onSetFormData,
   hasValue,
   validation
-}: OnboardingFormDorsalProps) {
+}: OnboardingFormDorsalProps) => {
   const [focusPositionSelect, setFocusPositionSelect] = useState<boolean>(false)
   const [focusSecondPosSelect, setFocusSecondPosSelect] =
     useState<boolean>(false)
@@ -106,3 +106,5 @@ export default function OnboardingPositionForm({
     </VStackLayout>
   )
 }
+
+export default OnboardingPositionForm

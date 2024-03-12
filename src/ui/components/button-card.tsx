@@ -13,7 +13,7 @@ interface CardProps extends PropsWithChildren<ViewProps> {
   onPress?: () => void
 }
 
-export default function ButtonCard(props: CardProps) {
+const ButtonCard = (props: CardProps) => {
   return (
     <Pressable
       onPress={props.onPress}
@@ -43,3 +43,5 @@ export default function ButtonCard(props: CardProps) {
     </Pressable>
   )
 }
+
+export default ButtonCard

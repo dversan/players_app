@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useAuth } from '../../../lib/auth/auth.context'
+import { useAuth } from '@lib/auth/auth.context'
 import ScreenLayout from '../../../ui/layout/screen.layout'
 import VStackLayout from '../../../ui/layout/vstack.layout'
 import Text from '../../../ui/components/text'
@@ -10,16 +10,16 @@ import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
 import Button from '../../../ui/components/button'
 import { Center, Image } from '@gluestack-ui/themed'
 import { t } from 'i18next'
-import { loginFormValidation } from '../../../lib/data/helpers'
+import { loginFormValidation } from '@lib/data/helpers'
 
-export default function LoginScreen({ route, navigation }: any) {
+const LoginScreen = ({ route, navigation }: any) => {
   const { signInWithEmail } = useAuth()
   const [formData, setFormData] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState<{ [id: string]: string }>({})
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { authLayoutProps } = route.params
 
-  function onSubmit() {
+  const onSubmit = () => {
     if (loginFormValidation(formData).validationOk) {
       setIsLoading(true)
       const { email, password } = formData
@@ -95,3 +95,5 @@ export default function LoginScreen({ route, navigation }: any) {
     </ScreenLayout>
   )
 }
+
+export default LoginScreen

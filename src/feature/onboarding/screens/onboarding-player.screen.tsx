@@ -22,7 +22,7 @@ import { savePlayerData } from '@lib/api/users.api'
 import { useAuth } from '@lib/auth/auth.context'
 import Alert from '@ui/components/alert'
 
-export default function OnboardingPlayerScreen({ route, navigation }: any) {
+const OnboardingPlayerScreen = ({ route, navigation }: any) => {
   const [formData, setFormData] = useState<PlayerData>({
     playerNumber: 0,
     playerNickname: '',
@@ -60,7 +60,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
   const { onboardingLayoutProps } = route.params
   const firebaseUser = useAuth().user
 
-  function onSubmit() {
+  const onSubmit = () => {
     setIsLoading(true)
     savePlayerData(firebaseUser.id, formData)
       .then(() => {
@@ -74,11 +74,11 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
       ))
   }
 
-  function onSetAccordionToOpen(itemToOpen) {
+  const onSetAccordionToOpen = itemToOpen => {
     setStepToShow(itemToOpen)
   }
 
-  function stepHandler(step: OnboardingSteps, stepToOpen?: OnboardingSteps) {
+  const stepHandler = (step: OnboardingSteps, stepToOpen?: OnboardingSteps) => {
     if (OnboardingStepsValidation(formData)[`${step}ValidationOk`]) {
       if (!stepsCompleted.includes(step)) {
         const currentStepsCompleted = stepsCompleted.concat(step)
@@ -91,7 +91,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     }
   }
 
-  function onSetFormData(fieldName, fieldValue) {
+  const onSetFormData = (fieldName, fieldValue) => {
     setFormData(prevState => ({
       ...prevState,
       ...{ [fieldName]: fieldValue }
@@ -120,10 +120,7 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
             </Text>
             <Text>{t('onboardingScreen.introText')}</Text>
           </VStackLayout>
-          <Accordion
-            collapsable={true}
-            value={stepToShow || ''}
-          >
+          <Accordion collapsable={true} value={stepToShow || ''}>
             <AccordionItem
               value={OnboardingSteps.POSITION}
               headerTitle={`${t(
@@ -230,3 +227,5 @@ export default function OnboardingPlayerScreen({ route, navigation }: any) {
     </ScreenLayout>
   )
 }
+
+export default OnboardingPlayerScreen

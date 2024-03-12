@@ -8,7 +8,7 @@ import {
 } from '@gluestack-ui/themed'
 import { TextInputProps } from 'react-native'
 import { customColors as colors } from '../ui-theme.provider'
-import { FormType } from '../../lib/data/models'
+import { FormType } from '@lib/data/models'
 import { PlaceholderStyleProps } from '@ui/components/select'
 
 interface GSInputProps extends PropsWithChildren<TextInputProps> {
@@ -22,7 +22,7 @@ interface GSInputProps extends PropsWithChildren<TextInputProps> {
   isReadOnly?: boolean
 }
 
-export default function Input(props: GSInputProps) {
+const Input = (props: GSInputProps) => {
   return (
     <FormControl
       flex={props.flex}
@@ -98,3 +98,5 @@ export const inputStyle = {
     }
   }
 }
+
+export default Input

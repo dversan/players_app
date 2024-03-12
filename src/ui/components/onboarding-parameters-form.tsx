@@ -17,11 +17,11 @@ interface OnboardingFormParametersProps {
   parametersData: PlayerData
 }
 
-export default function OnboardingParametersForm({
+const OnboardingParametersForm = ({
   onSetFormData,
   validation,
   parametersData
-}: OnboardingFormParametersProps) {
+}: OnboardingFormParametersProps) => {
   const fitnessValue = calculateFitnessParameter(
     parametersData.playerHeight,
     parametersData.playerWeight,
@@ -90,3 +90,5 @@ export default function OnboardingParametersForm({
     </VStackLayout>
   )
 }
+
+export default OnboardingParametersForm

@@ -17,7 +17,7 @@ import { Linking } from 'react-native'
 import { links } from '../../../lib/data/links.data'
 import { RegisterFormFields } from '@lib/data/models'
 
-export default function RegisterScreen({ route, navigation }) {
+const RegisterScreen = ({ route, navigation }) => {
   const { signUp } = useAuth()
   const [formData, setFormData] = useState<RegisterFormFields>({
     email: '',
@@ -30,7 +30,7 @@ export default function RegisterScreen({ route, navigation }) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { authLayoutProps } = route.params
 
-  function onSubmit() {
+  const onSubmit = () => {
     if (registerFormValidation(formData).validationOk) {
       setIsLoading(true)
       const { email, name, lastName, password } = formData
@@ -153,3 +153,5 @@ export default function RegisterScreen({ route, navigation }) {
     </ScreenLayout>
   )
 }
+
+export default RegisterScreen

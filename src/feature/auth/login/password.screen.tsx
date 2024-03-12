@@ -18,8 +18,8 @@ const PasswordScreen = ({ route, navigation }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { authLayoutProps } = route.params
 
-  function onSubmit() {
-    if (resetPasswordFormValidation(formData).validationOk) {
+  const onSubmit = () => {
+    if (resetPasswordFormValidation(formData.email).validationOk) {
       setIsLoading(true)
       const { email } = formData
       recoverPassword(email)
@@ -36,7 +36,7 @@ const PasswordScreen = ({ route, navigation }) => {
           setErrors({ email: reason })
         })
     } else {
-      setErrors(resetPasswordFormValidation(formData).validationErrors)
+      setErrors(resetPasswordFormValidation(formData.email).validationErrors)
     }
   }
 

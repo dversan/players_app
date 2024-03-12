@@ -4,7 +4,7 @@ import Text from '../../../ui/components/text'
 import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
 import VStackLayout from '../../../ui/layout/vstack.layout'
 
-export default function HomeScreen({ route }: any) {
+const HomeScreen = ({ route }: any) => {
   const { onboardingLayoutProps } = route.params
 
   return (
@@ -15,9 +15,11 @@ export default function HomeScreen({ route }: any) {
           pt={onboardingLayoutProps.paddingTop}
           space={onboardingLayoutProps.mainSpacing}
         >
-            <Text>{'HOME SCREEN'}</Text>
+          <Text>{'HOME SCREEN'}</Text>
         </VStackLayout>
       </ScrollViewLayout>
     </ScreenLayout>
   )
 }
+
+export default HomeScreen

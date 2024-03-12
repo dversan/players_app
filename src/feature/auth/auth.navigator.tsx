@@ -15,7 +15,7 @@ interface AuthLayoutProps {
   logoW: number
 }
 
-export default function AuthNavigator() {
+const AuthNavigator = () => {
   const authLayoutProps: AuthLayoutProps = {
     padding: 24,
     paddingTop: 8,
@@ -45,3 +45,5 @@ export default function AuthNavigator() {
     </AuthStack.Navigator>
   )
 }
+
+export default AuthNavigator

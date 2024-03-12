@@ -7,6 +7,8 @@ interface SelectItemProps extends PropsWithChildren<PressableProps> {
   value: any
 }
 
-export default function SelectItem(props: SelectItemProps) {
+const SelectItem = (props: SelectItemProps) => {
   return <GSSelectItem {...props} sx={{ _text: { fontSize: 20 } }} />
 }
+
+export default SelectItem

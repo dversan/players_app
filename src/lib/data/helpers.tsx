@@ -1,7 +1,7 @@
 import { t } from 'i18next'
 import { PlayerData, RegisterFormFields, User } from '../data/models'
 
-function isValidNumber(min, max, value) {
+const isValidNumber = (min, max, value) => {
   return /^\d{1,2}$/ && parseInt(value) >= min && parseInt(value) <= max
 }
 
@@ -16,7 +16,7 @@ type ValidationErrors = {
   [key: keyof ValidationFields]: string
 }
 
-function registerFormValidation(formData) {
+const registerFormValidation = formData => {
   let validationErrors: ValidationErrors = {}
 
   const requiredFields = Object.keys(formData) as (keyof RegisterFormFields)[]
@@ -51,7 +51,7 @@ function registerFormValidation(formData) {
   }
 }
 
-function loginFormValidation(formData) {
+const loginFormValidation = formData => {
   let validationErrors: ValidationErrors = {}
 
   if (formData.email.trim().length === 0) {
@@ -78,7 +78,7 @@ function loginFormValidation(formData) {
   }
 }
 
-function resetPasswordFormValidation(email: string) {
+const resetPasswordFormValidation = (email: string) => {
   let validationErrors: ValidationErrors = {}
 
   if (email.trim().length === 0) {
@@ -96,7 +96,7 @@ function resetPasswordFormValidation(email: string) {
   }
 }
 
-function OnboardingStepsValidation(formData: PlayerData) {
+const OnboardingStepsValidation = (formData: PlayerData) => {
   let firstStepValidationErrors: ValidationErrors = {}
   let secondStepValidationErrors: ValidationErrors = {}
   let thirdStepValidationErrors: ValidationErrors = {}
@@ -262,7 +262,7 @@ function OnboardingStepsValidation(formData: PlayerData) {
   }
 }
 
-function createNumericEnumKeys(myEnum: any) {
+const createNumericEnumKeys = (myEnum: any) => {
   return Object.keys(myEnum)
     .map(key => ({
       label: myEnum[key as keyof typeof myEnum],

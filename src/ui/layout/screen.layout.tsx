@@ -14,7 +14,7 @@ interface ScreenProps {
   hideBackButton?: boolean
 }
 
-export default function ScreenLayout(props: ScreenProps) {
+const ScreenLayout = (props: ScreenProps) => {
   const {
     fullscreen,
     backgroundColor = customColors.backgroundDark500,
@@ -56,3 +56,5 @@ export default function ScreenLayout(props: ScreenProps) {
     </>
   )
 }
+
+export default ScreenLayout

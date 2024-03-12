@@ -13,7 +13,7 @@ interface OnboardingLayoutProps {
   logoW: number
 }
 
-export default function OnboardingNavigator() {
+const OnboardingNavigator = () => {
   const onboardingLayoutProps: OnboardingLayoutProps = {
     padding: 16,
     mainSpacing: '4xl',
@@ -41,3 +41,5 @@ export default function OnboardingNavigator() {
     </Onboarding.Navigator>
   )
 }
+
+export default OnboardingNavigator

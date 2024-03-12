@@ -8,7 +8,7 @@ import TabNavigator from '../feature/tab.navigator'
 
 const MainStack = createNativeStackNavigator()
 
-function MainNavigator() {
+const MainNavigator = () => {
   const { user, initializing } = useAuth()
 
   if (initializing) {

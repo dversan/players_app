@@ -7,15 +7,12 @@ import { t } from 'i18next'
 import { Center, CheckIcon, Icon, Image } from '@gluestack-ui/themed'
 import Text from '@ui/components/text'
 import { useAuth } from '@lib/auth/auth.context'
-import GSModal from '@ui/components/modal'
+import Modal from '@ui/components/modal'
 import { OnboardingPlayerOptions } from '@lib/data/models'
 import HStackLayout from '@ui/layout/hstack.layout'
 import * as jsonCopies from '../../../lib/translations/es.json'
 
-export default function OnboardingPlayerOptionsScreen({
-  route,
-  navigation
-}: any) {
+const OnboardingPlayerOptionsScreen = ({ route, navigation }: any) => {
   const [modalTopic, setModalTopic] = useState<string>('')
   const { onboardingLayoutProps } = route.params
   const { user } = useAuth()
@@ -87,7 +84,7 @@ export default function OnboardingPlayerOptionsScreen({
         </VStackLayout>
       </ScrollViewLayout>
       {modalTopic && (
-        <GSModal
+        <Modal
           size={'lg'}
           isOpen={!!modalTopic}
           headerTitle={t(`onboardingPlayerOptions.${modalTopic}`)}
@@ -112,8 +109,10 @@ export default function OnboardingPlayerOptionsScreen({
               ))}
             </VStackLayout>
           </VStackLayout>
-        </GSModal>
+        </Modal>
       )}
     </ScreenLayout>
   )
 }
+
+export default OnboardingPlayerOptionsScreen

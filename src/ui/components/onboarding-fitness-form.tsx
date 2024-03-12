@@ -7,12 +7,12 @@ import {
   GamesPerYearOptions,
   PlayerData,
   SelectValuesProps
-} from '../../lib/data/models'
+} from '@lib/data/models'
 import SelectItem from '../../ui/components/select-item'
 import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useState } from 'react'
 import Text from '../../ui/components/text'
-import { createNumericEnumKeys, ValidationFields } from '../../lib/data/helpers'
+import { createNumericEnumKeys, ValidationFields } from '@lib/data/helpers'
 import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native'
 import DatePicker from '../../ui/components/datepicker'
 import Button from '../../ui/components/button'
@@ -29,11 +29,11 @@ interface OnboardingFormFitnessProps {
   validation: { [key: keyof ValidationFields]: string }
 }
 
-export default function OnboardingFitnessForm({
+const OnboardingFitnessForm = ({
   onSetFormData,
   hasValue,
   validation
-}: OnboardingFormFitnessProps) {
+}: OnboardingFormFitnessProps) => {
   const [focusPositionSelect, setFocusPositionSelect] = useState<boolean>(false)
   const [focusSecondPosSelect, setFocusSecondPosSelect] =
     useState<boolean>(false)
@@ -226,3 +226,5 @@ const iOSDatePickerContainerStyle = {
   borderTopRightRadius: 0,
   borderTopLeftRadius: 0
 }
+
+export default OnboardingFitnessForm

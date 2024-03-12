@@ -4,6 +4,8 @@ import { ViewProps } from 'react-native'
 
 export interface BoxProps extends PropsWithChildren<ViewProps> {}
 
-export default function BoxLayout(props: BoxProps) {
+const BoxLayout = (props: BoxProps) => {
   return <GSBox {...props}>{props.children}</GSBox>
 }
+
+export default BoxLayout

@@ -2,7 +2,7 @@ import React from 'react'
 import { KeyboardAvoidingView as GSKeyboardAvoidingView } from '@gluestack-ui/themed'
 import { Platform } from 'react-native'
 
-export default function KeyboardAvoidingView(props) {
+const KeyboardAvoidingView = props => {
   return (
     <GSKeyboardAvoidingView
       {...props}
@@ -11,3 +11,5 @@ export default function KeyboardAvoidingView(props) {
     />
   )
 }
+
+export default KeyboardAvoidingView

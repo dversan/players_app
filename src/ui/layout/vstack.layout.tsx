@@ -6,6 +6,8 @@ interface GSVStackProps extends ViewProps {
   space?: string
 }
 
-export default function VStackLayout(props: GSVStackProps) {
+const VStackLayout = (props: GSVStackProps) => {
   return <GSVStack {...props}>{props.children}</GSVStack>
 }
+
+export default VStackLayout

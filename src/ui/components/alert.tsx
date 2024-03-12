@@ -12,7 +12,7 @@ interface GSAlertProps extends PropsWithChildren<ViewProps> {
   variant: 'solid' | 'outline' | 'accent'
 }
 
-export default function Alert(props: GSAlertProps) {
+const Alert = (props: GSAlertProps) => {
   return (
     <GSAlert {...props}>
       <AlertIcon as={InfoIcon} mr={8} />
@@ -20,3 +20,5 @@ export default function Alert(props: GSAlertProps) {
     </GSAlert>
   )
 }
+
+export default Alert

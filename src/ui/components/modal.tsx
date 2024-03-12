@@ -2,7 +2,7 @@ import {
   Center,
   CloseIcon,
   Icon,
-  Modal,
+  Modal as GSModal,
   ModalBackdrop,
   ModalBody,
   ModalCloseButton,
@@ -36,10 +36,10 @@ interface GSModalProps extends ViewProps {
   hideCloseButton?: boolean
 }
 
-export default function GSModal(props: GSModalProps) {
+const Modal = (props: GSModalProps) => {
   return (
     <Center h={300}>
-      <Modal {...props}>
+      <GSModal {...props}>
         <ModalBackdrop />
         <ModalContent bg={colors.backgroundLight500}>
           <ModalHeader>
@@ -80,7 +80,9 @@ export default function GSModal(props: GSModalProps) {
             </HStackLayout>
           </ModalFooter>
         </ModalContent>
-      </Modal>
+      </GSModal>
     </Center>
   )
 }
+
+export default Modal

@@ -16,8 +16,8 @@ import {
 import { ViewProps } from 'react-native'
 import React, { PropsWithChildren } from 'react'
 import { customColors as colors } from '../../ui/ui-theme.provider'
-import { inputStyle } from '../../ui/components/input'
-import { FormType } from '../../lib/data/models'
+import { inputStyle } from '@ui/components/input'
+import { FormType } from '@lib/data/models'
 
 export interface PlaceholderStyleProps {
   textAlign?: string
@@ -40,7 +40,7 @@ interface GSSelectProps extends PropsWithChildren<ViewProps> {
   isInvalid?: boolean
 }
 
-export default function Select(props: GSSelectProps) {
+const Select = (props: GSSelectProps) => {
   return (
     <FormControl isRequired w={'100%'}>
       <FormControlLabelText color={colors.backgroundLight500}>
@@ -82,3 +82,5 @@ export default function Select(props: GSSelectProps) {
     </FormControl>
   )
 }
+
+export default Select

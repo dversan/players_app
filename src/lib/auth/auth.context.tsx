@@ -20,7 +20,7 @@ interface Auth {
 
 const AuthContext = createContext<Auth>({} as Auth)
 
-function useFirebaseAuth() {
+const useFirebaseAuth = () => {
   const [initializing, setInitializing] = useState(true)
   const [user, setUser] = useState<User | null>(null)
 
@@ -28,9 +28,9 @@ function useFirebaseAuth() {
     return auth().onAuthStateChanged(onAuthStateChanged)
   }, [])
 
-  async function onAuthStateChanged(
+  const onAuthStateChanged = async (
     firebaseUser: FirebaseAuthTypes.User | null
-  ) {
+  ) => {
     if (firebaseUser) {
       const userData = await userApi.getUser(firebaseUser.uid)
       setUser(userData)
@@ -42,18 +42,18 @@ function useFirebaseAuth() {
     }
   }
 
-  function signUp(
+  const signUp = (
     email: string,
     name: string,
     lastName: string,
     password: string
-  ): Promise<any> {
+  ): Promise<any> => {
     return auth()
       .createUserWithEmailAndPassword(email, password)
       .then(credential => userApi.createUser(credential.user, name, lastName))
   }
 
-  function signInWithEmail(email: string, password: string) {
+  const signInWithEmail = (email: string, password: string) => {
     return auth()
       .signInWithEmailAndPassword(email, password)
       .catch(({ message }) => {
@@ -67,7 +67,7 @@ function useFirebaseAuth() {
       })
   }
 
-  function recoverPassword(email: string) {
+  const recoverPassword = (email: string) => {
     return auth()
       .sendPasswordResetEmail(email)
       .catch(({ message }) => {
@@ -81,7 +81,7 @@ function useFirebaseAuth() {
       })
   }
 
-  function signOut() {
+  const signOut = () => {
     return userApi.savePushToken(user!.id, null).then(() => auth().signOut())
   }
 
@@ -99,9 +99,11 @@ export const useAuth = () => {
   return useContext(AuthContext)
 }
 
-export default function AuthProvider({ children }: any) {
+const AuthProvider = ({ children }: any) => {
   const firebaseAuth = useFirebaseAuth()
   return (
     <AuthContext.Provider value={firebaseAuth}>{children}</AuthContext.Provider>
   )
 }
+
+export default AuthProvider

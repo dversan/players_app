@@ -8,7 +8,7 @@ interface OnboardingHeaderIconProps extends ViewProps {
   iconColor?: string
 }
 
-export default function OnboardingHeaderIcon(props: OnboardingHeaderIconProps) {
+const OnboardingHeaderIcon = (props: OnboardingHeaderIconProps) => {
   return (
     <Center {...props} style={{ ...props.style, ...componentStyle }}>
       <Icon as={props.children} size={props.iconSize} color={props.iconColor} />
@@ -24,3 +24,5 @@ const componentStyle = {
   borderWidth: 1,
   marginRight: 8
 }
+
+export default OnboardingHeaderIcon

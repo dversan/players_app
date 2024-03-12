@@ -9,6 +9,8 @@ interface DatePickerProps
   extends AndroidNativeProps,
     IOSNativeProps,
     BaseProps {}
-export default function DatePicker(props: DatePickerProps) {
+const DatePicker = (props: DatePickerProps) => {
   return <DateTimePicker {...props} />
 }
+
+export default DatePicker

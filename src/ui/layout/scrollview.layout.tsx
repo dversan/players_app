@@ -6,7 +6,7 @@ interface GSScrollViewProps extends PropsWithChildren<ScrollViewProps> {
   fullHeight?: boolean
 }
 
-export default function ScrollViewLayout(props: GSScrollViewProps) {
+const ScrollViewLayout = (props: GSScrollViewProps) => {
   return (
     <GSScrollView
       contentContainerStyle={{ flexGrow: props.fullHeight ? 1 : 0 }}
@@ -16,3 +16,5 @@ export default function ScrollViewLayout(props: GSScrollViewProps) {
     </GSScrollView>
   )
 }
+
+export default ScrollViewLayout

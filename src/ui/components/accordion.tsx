@@ -11,10 +11,12 @@ interface GSAccordionProps extends PropsWithChildren<ViewProps> {
   defaultValue?: string
 }
 
-export default function Accordion(props: GSAccordionProps) {
+const Accordion = (props: GSAccordionProps) => {
   return (
     <GSAccordion bg={colors.backgroundDark500} {...props}>
       {props.children}
     </GSAccordion>
   )
 }
+
+export default Accordion

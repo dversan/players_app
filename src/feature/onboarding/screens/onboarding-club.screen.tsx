@@ -4,7 +4,7 @@ import Text from '../../../ui/components/text'
 import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
 import VStackLayout from '../../../ui/layout/vstack.layout'
 
-export default function OnboardingClubScreen({ route }: any) {
+const OnboardingClubScreen = ({ route }: any) => {
   const { onboardingLayoutProps } = route.params
 
   return (
@@ -21,3 +21,5 @@ export default function OnboardingClubScreen({ route }: any) {
     </ScreenLayout>
   )
 }
+
+export default OnboardingClubScreen

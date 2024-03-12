@@ -13,7 +13,7 @@ interface Props {
   isModal?: boolean
 }
 
-export default function HeaderBackButton(props: Props) {
+const HeaderBackButton = (props: Props) => {
   const navigation = useNavigation()
   return (
     <Pressable onPress={() => navigation.goBack()}>
@@ -31,3 +31,5 @@ export default function HeaderBackButton(props: Props) {
     </Pressable>
   )
 }
+
+export default HeaderBackButton

@@ -7,7 +7,7 @@ interface GSLinkProps extends PropsWithChildren<PressableProps> {
   size?: 'sm' | 'md' | 'lg' | 'xl'
 }
 
-export default function Link(props: GSLinkProps) {
+const Link = (props: GSLinkProps) => {
   return (
     <GSLink {...props}>
       <LinkText color={props.textColor || 'white'} size={props.size}>
@@ -16,3 +16,5 @@ export default function Link(props: GSLinkProps) {
     </GSLink>
   )
 }
+
+export default Link

@@ -31,7 +31,7 @@ interface GSAccordionProps extends PropsWithChildren<ViewProps> {
     | number
 }
 
-export default function AccordionItem(props: GSAccordionProps) {
+const AccordionItem = (props: GSAccordionProps) => {
   const stepsName = Object.values(OnboardingSteps)
 
   return (
@@ -63,3 +63,5 @@ export default function AccordionItem(props: GSAccordionProps) {
     </GSAccordionItem>
   )
 }
+
+export default AccordionItem

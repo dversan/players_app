@@ -5,7 +5,7 @@ import { GluestackUIProvider } from '@gluestack-ui/themed'
 import AuthProvider from './lib/auth/auth.context'
 import gluestackCustomUIConfig from './ui/ui-theme.provider'
 
-function App() {
+const App = () => {
   return (
     <AuthProvider>
       <GluestackUIProvider config={gluestackCustomUIConfig}>

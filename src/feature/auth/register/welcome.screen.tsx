@@ -6,7 +6,7 @@ import Button from '../../../ui/components/button'
 import Text from '../../../ui/components/text'
 import { t } from 'i18next'
 
-export default function WelcomeScreen({ navigation }) {
+const WelcomeScreen = ({ navigation }) => {
   return (
     <ScreenLayout>
       <VStackLayout
@@ -47,3 +47,5 @@ export default function WelcomeScreen({ navigation }) {
     </ScreenLayout>
   )
 }
+
+export default WelcomeScreen

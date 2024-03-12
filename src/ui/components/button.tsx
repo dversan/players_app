@@ -14,7 +14,7 @@ interface GSButtonProps extends PropsWithChildren<PressableProps> {
   textColor?: string
 }
 
-export default function Button(props: GSButtonProps) {
+const Button = (props: GSButtonProps) => {
   return (
     <GSButton
       {...props}
@@ -33,3 +33,5 @@ export default function Button(props: GSButtonProps) {
     </GSButton>
   )
 }
+
+export default Button
