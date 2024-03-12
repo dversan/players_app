@@ -37,21 +37,27 @@ export enum CompetitionGamesOptions {
 }
 
 export enum OnboardingSteps {
-  POSITION = 'firstStep',
-  FITNESS = 'secondStep',
-  PARAMETERS = 'thirdStep'
+  POSITION = 'positionStep',
+  FITNESS = 'fitnessStep',
+  PARAMETERS = 'parametersStep'
 }
 
-export interface PlayerData {
+export interface PositionFormData {
   playerNumber: number
   playerNickname: string
   mainPosition: Positions | ''
   secondPosition: Positions | ''
+}
+
+export interface FitnessFormData {
   playerHeight: number
   playerWeight: number
   birthday: Date | string
   gamesPerYearIndex: GamesPerYearOptions
   competitionGamesIndex: CompetitionGamesOptions
+}
+
+export interface ParametersFormData {
   attack: number
   defense: number
   fitness: number
@@ -59,6 +65,11 @@ export interface PlayerData {
   pass: number
   teamWork: number
 }
+
+export interface PlayerData
+  extends PositionFormData,
+    FitnessFormData,
+    ParametersFormData {}
 
 export interface User {
   id: string

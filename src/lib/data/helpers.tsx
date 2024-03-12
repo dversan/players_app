@@ -1,5 +1,12 @@
 import { t } from 'i18next'
-import { PlayerData, RegisterFormFields, User } from '../data/models'
+import {
+  FitnessFormData,
+  ParametersFormData,
+  PlayerData,
+  PositionFormData,
+  RegisterFormFields,
+  User
+} from '../data/models'
 
 const isValidNumber = (min, max, value) => {
   return /^\d{1,2}$/ && parseInt(value) >= min && parseInt(value) <= max
@@ -96,27 +103,25 @@ const resetPasswordFormValidation = (email: string) => {
   }
 }
 
-const OnboardingStepsValidation = (formData: PlayerData) => {
-  let firstStepValidationErrors: ValidationErrors = {}
-  let secondStepValidationErrors: ValidationErrors = {}
-  let thirdStepValidationErrors: ValidationErrors = {}
+// ############ First Step Validations ##################
 
-  // ############ First Step Validations ##################
+const OnboardingPositionStepValidation = (formData: PositionFormData) => {
+  let positionStepValidationErrors: ValidationErrors = {}
 
   if (formData.playerNumber === 0) {
-    firstStepValidationErrors = {
-      ...firstStepValidationErrors,
+    positionStepValidationErrors = {
+      ...positionStepValidationErrors,
       playerNumber: t('common.error.requiredField', {
-        field: t('onboardingScreen.playerNumberField')
+        field: t('onboardingScreen.playerNumber')
       })
     }
   }
 
   if (!isValidNumber(0, 99, Number(formData.playerNumber))) {
-    firstStepValidationErrors = {
-      ...firstStepValidationErrors,
+    positionStepValidationErrors = {
+      ...positionStepValidationErrors,
       playerNumber: t('common.error.requiredFieldNumberWithRange', {
-        field: t('onboardingScreen.playerNumberField'),
+        field: t('onboardingScreen.playerNumber'),
         min: t('0'),
         max: t('99')
       })
@@ -124,8 +129,8 @@ const OnboardingStepsValidation = (formData: PlayerData) => {
   }
 
   if (formData.playerNickname.trim().length === 0) {
-    firstStepValidationErrors = {
-      ...firstStepValidationErrors,
+    positionStepValidationErrors = {
+      ...positionStepValidationErrors,
       playerNickname: t('common.error.requiredField', {
         field: t('registerScreen.form.name')
       })
@@ -133,8 +138,8 @@ const OnboardingStepsValidation = (formData: PlayerData) => {
   }
 
   if (formData.mainPosition.trim().length === 0) {
-    firstStepValidationErrors = {
-      ...firstStepValidationErrors,
+    positionStepValidationErrors = {
+      ...positionStepValidationErrors,
       mainPosition: t('common.error.requiredField', {
         field: t('onboardingScreen.mainPosition')
       })
@@ -142,19 +147,28 @@ const OnboardingStepsValidation = (formData: PlayerData) => {
   }
 
   if (formData.secondPosition.trim().length === 0) {
-    firstStepValidationErrors = {
-      ...firstStepValidationErrors,
+    positionStepValidationErrors = {
+      ...positionStepValidationErrors,
       secondPosition: t('common.error.requiredField', {
         field: t('onboardingScreen.secondPosition')
       })
     }
   }
 
-  // ############ Second Step Validations ##################
+  return {
+    positionStepValidationOk:
+      Object.keys(positionStepValidationErrors).length === 0,
+    positionStepValidationErrors
+  }
+}
+// ############ Second Step Validations ##################
+
+const OnboardingFitnessStepValidation = (formData: FitnessFormData) => {
+  let fitnessStepValidationErrors: ValidationErrors = {}
 
   if (formData.playerHeight === 0) {
-    secondStepValidationErrors = {
-      ...secondStepValidationErrors,
+    fitnessStepValidationErrors = {
+      ...fitnessStepValidationErrors,
       playerHeight: t('common.error.requiredField', {
         field: t('common.text.height')
       })
@@ -162,8 +176,8 @@ const OnboardingStepsValidation = (formData: PlayerData) => {
   }
 
   if (!isValidNumber(100, 300, Number(formData.playerHeight))) {
-    secondStepValidationErrors = {
-      ...secondStepValidationErrors,
+    fitnessStepValidationErrors = {
+      ...fitnessStepValidationErrors,
       playerHeight: t('common.error.requiredFieldNumberWithRange', {
         field: t('common.text.height'),
         min: t('100'),
@@ -173,8 +187,8 @@ const OnboardingStepsValidation = (formData: PlayerData) => {
   }
 
   if (formData.playerWeight === 0) {
-    secondStepValidationErrors = {
-      ...secondStepValidationErrors,
+    fitnessStepValidationErrors = {
+      ...fitnessStepValidationErrors,
       playerWeight: t('common.error.requiredField', {
         field: t('common.text.weight')
       })
@@ -182,8 +196,8 @@ const OnboardingStepsValidation = (formData: PlayerData) => {
   }
 
   if (!isValidNumber(25, 200, Number(formData.playerWeight))) {
-    secondStepValidationErrors = {
-      ...secondStepValidationErrors,
+    fitnessStepValidationErrors = {
+      ...fitnessStepValidationErrors,
       playerWeight: t('common.error.requiredFieldNumberWithRange', {
         field: t('common.text.weight'),
         min: t('25'),
@@ -192,9 +206,9 @@ const OnboardingStepsValidation = (formData: PlayerData) => {
     }
   }
 
-  if (formData.birthday.toString().length === 0) {
-    secondStepValidationErrors = {
-      ...secondStepValidationErrors,
+  if (formData.birthday?.toString().length === 0) {
+    fitnessStepValidationErrors = {
+      ...fitnessStepValidationErrors,
       birthday: t('common.error.requiredField', {
         field: t('onboardingScreen.birthdayLabel')
       })
@@ -202,8 +216,8 @@ const OnboardingStepsValidation = (formData: PlayerData) => {
   }
 
   if (formData.gamesPerYearIndex === 0) {
-    secondStepValidationErrors = {
-      ...secondStepValidationErrors,
+    fitnessStepValidationErrors = {
+      ...fitnessStepValidationErrors,
       gamesPerYearIndex: t('common.error.requiredField', {
         field: t('onboardingScreen.gamesLabel')
       })
@@ -211,22 +225,32 @@ const OnboardingStepsValidation = (formData: PlayerData) => {
   }
 
   if (formData.competitionGamesIndex === 0) {
-    secondStepValidationErrors = {
-      ...secondStepValidationErrors,
+    fitnessStepValidationErrors = {
+      ...fitnessStepValidationErrors,
       competitionGamesIndex: t('common.error.requiredField', {
         field: t('onboardingScreen.competitionGamesLabel')
       })
     }
   }
 
-  // ############ Third Step Validations ##################
+  return {
+    fitnessStepValidationOk:
+      Object.keys(fitnessStepValidationErrors).length === 0,
+    fitnessStepValidationErrors
+  }
+}
+
+// ############ Third Step Validations ##################
+
+const OnboardingParametersStepValidation = (formData: ParametersFormData) => {
+  let parametersStepValidationErrors: ValidationErrors = {}
 
   const fields = ['attack', 'defense', 'fitness', 'goal', 'pass', 'teamWork']
 
   fields.forEach(field => {
     if (!isValidNumber(10, 100, Number(formData[field]))) {
-      thirdStepValidationErrors = {
-        ...thirdStepValidationErrors,
+      parametersStepValidationErrors = {
+        ...parametersStepValidationErrors,
         [field]: t('common.error.requiredFieldNumberWithRange', {
           field: t(`onboardingScreen.${field}`),
           min: t('10'),
@@ -244,21 +268,16 @@ const OnboardingStepsValidation = (formData: PlayerData) => {
     formData.teamWork
 
   if (paramsTotalValue > 250) {
-    thirdStepValidationErrors = {
-      ...thirdStepValidationErrors,
+    parametersStepValidationErrors = {
+      ...parametersStepValidationErrors,
       generalError: t('onboardingScreen.parametersExceededError')
     }
   }
-  // ############ Onboarding Form Validations Outputs ##################
 
   return {
-    firstStepValidationOk: Object.keys(firstStepValidationErrors).length === 0,
-    secondStepValidationOk:
-      Object.keys(secondStepValidationErrors).length === 0,
-    thirdStepValidationOk: Object.keys(thirdStepValidationErrors).length === 0,
-    firstStepValidationErrors,
-    secondStepValidationErrors,
-    thirdStepValidationErrors
+    parametersStepValidationOk:
+      Object.keys(parametersStepValidationErrors).length === 0,
+    parametersStepValidationErrors
   }
 }
 
@@ -274,7 +293,9 @@ const createNumericEnumKeys = (myEnum: any) => {
 export {
   registerFormValidation,
   loginFormValidation,
-  OnboardingStepsValidation,
+  OnboardingPositionStepValidation,
+  OnboardingFitnessStepValidation,
+  OnboardingParametersStepValidation,
   createNumericEnumKeys,
   resetPasswordFormValidation
 }
