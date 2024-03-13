@@ -4,15 +4,19 @@ import { t } from 'i18next'
 import Select from '../../ui/components/select'
 import {
   CompetitionGamesOptions,
+  FitnessFormData,
   GamesPerYearOptions,
-  PlayerData,
-  SelectValuesProps
+  OnboardingSteps
 } from '@lib/data/models'
 import SelectItem from '../../ui/components/select-item'
 import VStackLayout from '../../ui/layout/vstack.layout'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Text from '../../ui/components/text'
-import { createNumericEnumKeys, ValidationFields } from '@lib/data/helpers'
+import {
+  createNumericEnumKeys,
+  OnboardingFitnessStepValidation,
+  ValidationFields
+} from '@lib/data/helpers'
 import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native'
 import DatePicker from '../../ui/components/datepicker'
 import Button from '../../ui/components/button'
@@ -22,24 +26,45 @@ import { DateTimePickerEvent } from '@react-native-community/datetimepicker'
 
 interface OnboardingFormFitnessProps {
   onSetFormData: (
-    fieldName: keyof PlayerData,
-    fieldValue: string | number | Date
+    formData,
+    step: OnboardingSteps,
+    stepToOpen?: OnboardingSteps
   ) => void
-  hasValue: SelectValuesProps
-  validation: { [key: keyof ValidationFields]: string }
 }
 
 const OnboardingFitnessForm = ({
-  onSetFormData,
-  hasValue,
-  validation
+  onSetFormData
 }: OnboardingFormFitnessProps) => {
   const [focusPositionSelect, setFocusPositionSelect] = useState<boolean>(false)
   const [focusSecondPosSelect, setFocusSecondPosSelect] =
     useState<boolean>(false)
+  const [errors, setErrors] = useState<{
+    [key: keyof ValidationFields]: string
+  }>({})
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false)
   const [date, setDate] = useState<Date | undefined>()
   const [previousDate, setPreviousDate] = useState<Date | undefined>()
+
+  const fitnessFormDataRef = useRef<FitnessFormData>({
+    playerHeight: 0,
+    playerWeight: 0,
+    birthday: '',
+    gamesPerYearIndex: 0,
+    competitionGamesIndex: 0
+  })
+
+  const hasValue = {
+    birthday: !!fitnessFormDataRef.current.birthday,
+    gamesPerYearIndex: !!fitnessFormDataRef.current.gamesPerYearIndex,
+    competitionGamesIndex: !!fitnessFormDataRef.current.competitionGamesIndex
+  }
+
+  const setFormDataRef = (fieldName, fieldValue) => {
+    fitnessFormDataRef.current = {
+      ...fitnessFormDataRef.current,
+      [fieldName]: fieldValue
+    }
+  }
 
   const iosDatePickerButtonsHandler = (type: 'ok' | 'cancel') => {
     setShowDatePicker(false)
@@ -47,7 +72,7 @@ const OnboardingFitnessForm = ({
 
     type === 'cancel'
       ? setDate(previousDate)
-      : onSetFormData('birthday', date || '')
+      : setFormDataRef('birthday', date || '')
   }
 
   const datePickerOnChangeHandler = (
@@ -57,12 +82,33 @@ const OnboardingFitnessForm = ({
     if (Platform.OS === 'android' && (e.type === 'dismissed' || 'set')) {
       setShowDatePicker(false)
       setDate(selectedDate)
-      onSetFormData(
+      setFormDataRef(
         'birthday',
         selectedDate ? selectedDate.toLocaleDateString() : ''
       )
     }
     setDate(selectedDate)
+  }
+
+  const confirmStepButtonHandler = () => {
+    if (
+      OnboardingFitnessStepValidation(fitnessFormDataRef.current)[
+        `${OnboardingSteps.FITNESS}ValidationOk`
+      ]
+    ) {
+      onSetFormData(
+        fitnessFormDataRef.current,
+        OnboardingSteps.FITNESS,
+        OnboardingSteps.PARAMETERS
+      )
+      setErrors({})
+    } else {
+      setErrors(
+        OnboardingFitnessStepValidation(fitnessFormDataRef.current)[
+          `${OnboardingSteps.FITNESS}ValidationErrors`
+        ]
+      )
+    }
   }
 
   return (
@@ -72,15 +118,15 @@ const OnboardingFitnessForm = ({
           label={t('onboardingScreen.height')}
           flex={1}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('playerHeight', Number(value))}
-          error={validation.playerHeight?.toString()}
+          onChangeText={value => setFormDataRef('playerHeight', Number(value))}
+          error={errors.playerHeight?.toString()}
         />
         <Input
           label={t('onboardingScreen.weight')}
           flex={1}
           formType={'onboarding'}
-          onChangeText={value => onSetFormData('playerWeight', Number(value))}
-          error={validation.playerWeight?.toString()}
+          onChangeText={value => setFormDataRef('playerWeight', Number(value))}
+          error={errors.playerWeight?.toString()}
         />
       </HStackLayout>
       <HStackLayout w={'100%'}>
@@ -103,7 +149,7 @@ const OnboardingFitnessForm = ({
               caretHidden
               value={date && new Date(date).toLocaleDateString()}
               pb={!hasValue.birthday && Platform.OS === 'ios' ? 6 : 0}
-              error={validation.birthday}
+              error={errors.birthday}
             />
           </TouchableWithoutFeedback>
           {showDatePicker && (
@@ -149,7 +195,7 @@ const OnboardingFitnessForm = ({
           variant={'outline'}
           formType={'onboarding'}
           size={'xl'}
-          isInvalid={Object.entries(validation).some(
+          isInvalid={Object.entries(errors).some(
             ([key, value]) => key === 'gamesPerYearIndex' && value !== ''
           )}
           placeholder={t('onboardingScreen.gamesPlaceholder')}
@@ -162,7 +208,7 @@ const OnboardingFitnessForm = ({
           onOpen={() => setFocusPositionSelect(true)}
           onClose={() => setFocusPositionSelect(false)}
           onValueChange={value =>
-            onSetFormData('gamesPerYearIndex', Number(value))
+            setFormDataRef('gamesPerYearIndex', Number(value))
           }
         >
           {createNumericEnumKeys(GamesPerYearOptions).map(range => (
@@ -182,7 +228,7 @@ const OnboardingFitnessForm = ({
           variant={'outline'}
           formType={'onboarding'}
           size={'xl'}
-          isInvalid={Object.entries(validation).some(
+          isInvalid={Object.entries(errors).some(
             ([key, value]) =>
               key === 'competitionGamesIndex' && value.toString() !== ''
           )}
@@ -196,7 +242,7 @@ const OnboardingFitnessForm = ({
           onOpen={() => setFocusSecondPosSelect(true)}
           onClose={() => setFocusSecondPosSelect(false)}
           onValueChange={value =>
-            onSetFormData('competitionGamesIndex', Number(value))
+            setFormDataRef('competitionGamesIndex', Number(value))
           }
         >
           {createNumericEnumKeys(CompetitionGamesOptions).map(range => (
@@ -210,9 +256,18 @@ const OnboardingFitnessForm = ({
           ))}
         </Select>
       </HStackLayout>
-      {Object.keys(validation).length > 0 && (
-        <Text color={'red'}>{Object.values(validation)[0]}</Text>
+      {Object.keys(errors).length > 0 && (
+        <Text color={'red'}>{Object.values(errors)[0]}</Text>
       )}
+      <Button
+        testID={'fitnessStepButton'}
+        size={'lg'}
+        mt={32}
+        alignSelf={'center'}
+        onPress={confirmStepButtonHandler}
+      >
+        {t('onboardingScreen.confirmStep')}
+      </Button>
     </VStackLayout>
   )
 }
