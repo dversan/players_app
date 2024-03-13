@@ -56,6 +56,11 @@ const OnboardingPositionForm = ({
         `${OnboardingSteps.POSITION}ValidationOk`
       ]
     ) {
+      onSetFormData(
+        positionFormDataRef.current,
+        OnboardingSteps.POSITION,
+        OnboardingSteps.FITNESS
+      )
       setErrors({})
     } else {
       setErrors(
@@ -64,12 +69,6 @@ const OnboardingPositionForm = ({
         ]
       )
     }
-
-    onSetFormData(
-      positionFormDataRef.current,
-      OnboardingSteps.POSITION,
-      OnboardingSteps.FITNESS
-    )
   }
 
   return (
