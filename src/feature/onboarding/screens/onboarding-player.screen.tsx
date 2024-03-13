@@ -8,16 +8,16 @@ import Accordion from '@ui/components/accordion'
 import AccordionItem from '@ui/components/accordion-item'
 import { Center, Image } from '@gluestack-ui/themed'
 import { t } from 'i18next'
-import { customColors as colors } from '../../../ui/ui-theme.provider'
 import {
-  OnboardingSteps,
   PlayerData,
-  SelectValuesProps
+  PositionFormData,
+  FitnessFormData,
+  ParametersFormData,
+  OnboardingSteps
 } from '@lib/data/models'
 import OnboardingPositionForm from '@ui/components/onboarding-position-form'
 import OnboardingFitnessForm from '@ui/components/onboarding-fitness-form'
 import OnboardingParametersForm from '@ui/components/onboarding-parameters-form'
-import { OnboardingStepsValidation, ValidationFields } from '@lib/data/helpers'
 import { savePlayerData } from '@lib/api/users.api'
 import { useAuth } from '@lib/auth/auth.context'
 import Alert from '@ui/components/alert'
@@ -41,22 +41,12 @@ const OnboardingPlayerScreen = ({ route, navigation }: any) => {
     teamWork: 0
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [errors, setErrors] = useState<{
-    [key: keyof ValidationFields]: string
-  }>({})
   const [stepToShow, setStepToShow] = useState<OnboardingSteps | ''>(
     OnboardingSteps.POSITION
   )
   const [stepsCompleted, setStepsCompleted] = useState<string[]>([])
   const disableSubmitButton =
     stepsCompleted.length !== Object.keys(OnboardingSteps).length
-  const hasValue: SelectValuesProps = {
-    inMainPosition: !!formData.mainPosition,
-    inSecondPosition: !!formData.secondPosition,
-    birthday: !!formData.birthday,
-    gamesPerYearIndex: !!formData.gamesPerYearIndex,
-    competitionGamesIndex: !!formData.competitionGamesIndex
-  }
   const { onboardingLayoutProps } = route.params
   const firebaseUser = useAuth().user
 
@@ -78,28 +68,22 @@ const OnboardingPlayerScreen = ({ route, navigation }: any) => {
     setStepToShow(itemToOpen)
   }
 
-  const stepHandler = (step: OnboardingSteps, stepToOpen?: OnboardingSteps) => {
-    if (OnboardingStepsValidation(formData)[`${step}ValidationOk`]) {
-      if (!stepsCompleted.includes(step)) {
-        const currentStepsCompleted = stepsCompleted.concat(step)
-        setStepsCompleted(currentStepsCompleted)
-      }
-      setErrors({})
-      setStepToShow(stepToOpen || '')
-    } else {
-      setErrors(OnboardingStepsValidation(formData)[`${step}ValidationErrors`])
-    }
-  }
-
-  const onSetFormData = (nestedFormData, step, stepToOpen) => {
+  const confirmStepHandler = async (
+    childFormData: PositionFormData | FitnessFormData | ParametersFormData,
+    step: OnboardingSteps,
+    stepToOpen: OnboardingSteps | null
+  ) => {
     setFormData(prevState => ({
       ...prevState,
-      ...nestedFormData
+      ...childFormData
     }))
-    stepHandler(step, stepToOpen)
-  }
 
-  console.log('formData: ', formData)
+    if (!stepsCompleted.includes(step)) {
+      const currentStepsCompleted = stepsCompleted.concat(step)
+      setStepsCompleted(currentStepsCompleted)
+    }
+    setStepToShow(stepToOpen || '')
+  }
 
   return (
     <ScreenLayout>
@@ -135,82 +119,52 @@ const OnboardingPlayerScreen = ({ route, navigation }: any) => {
               showCheckIcon={stepsCompleted.includes(OnboardingSteps.POSITION)}
             >
               <OnboardingPositionForm
-                onSetFormData={onSetFormData}
-                isLoading={isLoading}
-                hasValue={hasValue}
+                onSetFormData={confirmStepHandler}
                 onSetAccordionToOpen={onSetAccordionToOpen}
-                validation={errors}
               />
             </AccordionItem>
-            {/*<AccordionItem*/}
-            {/*  value={OnboardingSteps.FITNESS}*/}
-            {/*  margin={{ mt: 24 }}*/}
-            {/*  backgroundColor={colors.backgroundDark800}*/}
-            {/*  headerTitle={`${t(*/}
-            {/*    `onboardingScreen.${OnboardingSteps.FITNESS}Title`*/}
-            {/*  )}`.toUpperCase()}*/}
-            {/*  titleColor={'white'}*/}
-            {/*  borderRadius={8}*/}
-            {/*  stepsCompleted={stepsCompleted}*/}
-            {/*  showCheckIcon={stepsCompleted.includes(OnboardingSteps.FITNESS)}*/}
-            {/*>*/}
-            {/*  <OnboardingFitnessForm*/}
-            {/*    onSetFormData={onSetFormData}*/}
-            {/*    isLoading={isLoading}*/}
-            {/*    hasValue={hasValue}*/}
-            {/*    onSetAccordionToOpen={onSetAccordionToOpen}*/}
-            {/*    validation={errors}*/}
-            {/*  />*/}
-            {/*  <Button*/}
-            {/*    testID={'fitnessStepButton'}*/}
-            {/*    size={'lg'}*/}
-            {/*    mt={32}*/}
-            {/*    alignSelf={'center'}*/}
-            {/*    isLoading={isLoading}*/}
-            {/*    onPress={() =>*/}
-            {/*      stepHandler(*/}
-            {/*        OnboardingSteps.FITNESS,*/}
-            {/*        OnboardingSteps.PARAMETERS*/}
-            {/*      )*/}
-            {/*    }*/}
-            {/*  >*/}
-            {/*    {t('onboardingScreen.confirmStep')}*/}
-            {/*  </Button>*/}
-            {/*</AccordionItem>*/}
-            {/*<AccordionItem*/}
-            {/*  value={OnboardingSteps.PARAMETERS}*/}
-            {/*  margin={{ mt: 24 }}*/}
-            {/*  backgroundColor={colors.backgroundDark800}*/}
-            {/*  headerTitle={`${t(*/}
-            {/*    `onboardingScreen.${OnboardingSteps.PARAMETERS}Title`*/}
-            {/*  )}`.toUpperCase()}*/}
-            {/*  titleColor={'white'}*/}
-            {/*  borderRadius={8}*/}
-            {/*  stepsCompleted={stepsCompleted}*/}
-            {/*  showCheckIcon={stepsCompleted.includes(*/}
-            {/*    OnboardingSteps.PARAMETERS*/}
-            {/*  )}*/}
-            {/*>*/}
-            {/*  <OnboardingParametersForm*/}
-            {/*    onSetFormData={onSetFormData}*/}
-            {/*    isLoading={isLoading}*/}
-            {/*    validation={errors}*/}
-            {/*    parametersData={formData}*/}
-            {/*  />*/}
-            {/*  <Button*/}
-            {/*    testID={'parametersStepButton'}*/}
-            {/*    size={'lg'}*/}
-            {/*    mt={32}*/}
-            {/*    alignSelf={'center'}*/}
-            {/*    isLoading={isLoading}*/}
-            {/*    onPress={() => stepHandler(OnboardingSteps.PARAMETERS)}*/}
-            {/*  >*/}
-            {/*    {t('onboardingScreen.confirmStep')}*/}
-            {/*  </Button>*/}
-            {/*</AccordionItem>*/}
+            <AccordionItem
+              value={OnboardingSteps.FITNESS}
+              mt={24}
+              headerTitle={`${t(
+                `onboardingScreen.${OnboardingSteps.FITNESS}Title`
+              )}`.toUpperCase()}
+              titleColor={'white'}
+              borderRadius={8}
+              stepsCompleted={stepsCompleted}
+              showCheckIcon={stepsCompleted.includes(OnboardingSteps.FITNESS)}
+            >
+              <OnboardingFitnessForm
+                onSetFormData={confirmStepHandler}
+                onSetAccordionToOpen={onSetAccordionToOpen}
+              />
+            </AccordionItem>
+            <AccordionItem
+              value={OnboardingSteps.PARAMETERS}
+              mt={24}
+              headerTitle={`${t(
+                `onboardingScreen.${OnboardingSteps.PARAMETERS}Title`
+              )}`.toUpperCase()}
+              titleColor={'white'}
+              borderRadius={8}
+              stepsCompleted={stepsCompleted}
+              showCheckIcon={stepsCompleted.includes(
+                OnboardingSteps.PARAMETERS
+              )}
+            >
+              <OnboardingParametersForm
+                calculationInputs={formData}
+                onSetFormData={confirmStepHandler}
+              />
+            </AccordionItem>
           </Accordion>
           <VStackLayout flex={1} style={{ flexGrow: 1 }} />
-          <Button size={'xl'} disabled={disableSubmitButton} onPress={onSubmit}>
+          <Button
+            size={'xl'}
+            disabled={disableSubmitButton}
+            onPress={onSubmit}
+            isLoading={isLoading}
+          >
             {t('onboardingScreen.createPlayerProfile')}
           </Button>
         </VStackLayout>
