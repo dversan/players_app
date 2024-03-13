@@ -23,7 +23,7 @@ import { useAuth } from '@lib/auth/auth.context'
 import Alert from '@ui/components/alert'
 
 const OnboardingPlayerScreen = ({ route, navigation }: any) => {
-  const [formData, setFormData] = useState<PlayerData>({
+  const [onboardingFormData, setOnboardingFormData] = useState<PlayerData>({
     playerNumber: 0,
     playerNickname: '',
     mainPosition: '',
@@ -52,7 +52,7 @@ const OnboardingPlayerScreen = ({ route, navigation }: any) => {
 
   const onSubmit = () => {
     setIsLoading(true)
-    savePlayerData(firebaseUser.id, formData)
+    savePlayerData(firebaseUser.id, onboardingFormData)
       .then(() => {
         navigation.navigate('OnboardingPlayerOptionsScreen')
         setIsLoading(false)
@@ -69,13 +69,16 @@ const OnboardingPlayerScreen = ({ route, navigation }: any) => {
   }
 
   const confirmStepHandler = async (
-    childFormData: PositionFormData | FitnessFormData | ParametersFormData,
+    onboardingStepFormData:
+      | PositionFormData
+      | FitnessFormData
+      | ParametersFormData,
     step: OnboardingSteps,
     stepToOpen: OnboardingSteps | null
   ) => {
-    setFormData(prevState => ({
+    setOnboardingFormData(prevState => ({
       ...prevState,
-      ...childFormData
+      ...onboardingStepFormData
     }))
 
     if (!stepsCompleted.includes(step)) {
@@ -153,7 +156,7 @@ const OnboardingPlayerScreen = ({ route, navigation }: any) => {
               )}
             >
               <OnboardingParametersForm
-                calculationInputs={formData}
+                calculationInputs={onboardingFormData}
                 onSetFormData={confirmStepHandler}
               />
             </AccordionItem>
