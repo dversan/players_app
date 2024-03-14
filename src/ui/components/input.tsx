@@ -37,7 +37,6 @@ const Input = (props: GSInputProps) => {
       <GSInput
         {...props}
         isInvalid={props.error !== undefined}
-        isReadOnly={props.readOnly}
         borderRadius={4}
         size={'xl'}
         sx={
@@ -93,7 +92,6 @@ export const inputStyle = {
     text: {
       textAlign: 'center',
       fontSize: 24,
-      fontWeight: 'semibold',
       color: 'white'
     }
   }

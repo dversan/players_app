@@ -20,22 +20,13 @@ interface GSAccordionProps extends PropsWithChildren<ViewProps> {
   showCheckIcon?: boolean
   value?: OnboardingSteps
   isDisabled?: boolean
-  backgroundColor?: string
-  margin?:
-    | {
-        mt?: 8 | 16 | 24
-        mb?: 8 | 16 | 24
-        ml?: 8 | 16 | 24
-        mr?: 8 | 16 | 24
-      }
-    | number
 }
 
 const AccordionItem = (props: GSAccordionProps) => {
   const stepsName = Object.values(OnboardingSteps)
 
   return (
-    <GSAccordionItem {...props} bg={colors.backgroundDark700} sx={props.margin}>
+    <GSAccordionItem {...props} bg={colors.backgroundDark800}>
       <AccordionHeader>
         <AccordionTrigger>
           <>
