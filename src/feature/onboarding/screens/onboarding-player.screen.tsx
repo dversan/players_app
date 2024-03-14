@@ -41,7 +41,7 @@ const OnboardingPlayerScreen = ({ route, navigation }: any) => {
     teamWork: 0
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [stepToShow, setStepToShow] = useState<OnboardingSteps | ''>(
+  const [stepToShow, setStepToShow] = useState<OnboardingSteps | null>(
     OnboardingSteps.POSITION
   )
   const [stepsCompleted, setStepsCompleted] = useState<string[]>([])
@@ -85,7 +85,7 @@ const OnboardingPlayerScreen = ({ route, navigation }: any) => {
       const currentStepsCompleted = stepsCompleted.concat(step)
       setStepsCompleted(currentStepsCompleted)
     }
-    setStepToShow(stepToOpen || '')
+    setStepToShow(stepToOpen)
   }
 
   return (
