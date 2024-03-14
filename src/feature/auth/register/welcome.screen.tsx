@@ -31,7 +31,7 @@ const WelcomeScreen = ({ navigation }) => {
             <Text size={'2xl'} bold>
               {t('welcomeScreen.title')}
             </Text>
-            <Text size={'md'} textAlign={'center'}>
+            <Text textAlign={'center'}>
               {t('welcomeScreen.appDescription')}
             </Text>
           </VStackLayout>

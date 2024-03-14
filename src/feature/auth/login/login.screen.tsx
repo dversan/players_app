@@ -85,7 +85,7 @@ const LoginScreen = ({ route, navigation }: any) => {
             </Button>
           </VStackLayout>
           <HStackLayout alignSelf={'center'} flexWrap={'wrap'}>
-            <Text size={'md'}>{t('loginScreen.noAccount')}</Text>
+            <Text>{t('loginScreen.noAccount')}</Text>
             <Link onPress={() => navigation.navigate('RegisterScreen')}>
               {t('loginScreen.signUp')}
             </Link>
