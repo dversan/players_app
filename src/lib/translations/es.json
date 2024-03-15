@@ -88,7 +88,8 @@
     "goal": "Hab. Gol",
     "pass": "Hab. Pase",
     "teamWork": "Trabajo",
-    "parametersExceededError": "La suma de los valores que has asignado a los 5 parámetros no puede superar los 250.",
+    "paramsTooHighError": "Se han sobrepasado en {{paramsDif}} puntos el total de 250. Por favor, resta estos puntos a tus parámetros.",
+    "paramsTooLowError": "Faltan por asignar {{paramsDif}} puntos a los parámetros para completar los 250. Por favor, asigna los puntos que te faltan.",
     "confirmStep": "Confirmar",
     "createPlayerProfile": "Crear jugador"
   },

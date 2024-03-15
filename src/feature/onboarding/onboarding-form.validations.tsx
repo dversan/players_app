@@ -171,10 +171,19 @@ const OnboardingParametersStepValidation = (formData: ParametersFormData) => {
     formData.pass +
     formData.teamWork
 
-  if (paramsTotalValue > 250) {
+  const paramsTotalValueDif: number = paramsTotalValue - 250
+
+  if (paramsTotalValue !== 250) {
     parametersStepValidationErrors = {
       ...parametersStepValidationErrors,
-      generalError: t('onboardingScreen.parametersExceededError')
+      generalError:
+        paramsTotalValueDif > 0
+          ? t('onboardingScreen.paramsTooHighError', {
+              paramsDif: paramsTotalValueDif
+            })
+          : t('onboardingScreen.paramsTooLowError', {
+              paramsDif: Math.abs(paramsTotalValueDif)
+            })
     }
   }
 

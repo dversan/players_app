@@ -88,7 +88,8 @@
     "goal": "Goal",
     "pass": "Pass",
     "teamWork": "Team Work",
-    "parametersExceededError": "The sum of the values assigned to the 5 parameters cannot exceed 250.",
+    "paramsTooHighError": "The total of 250 points has been exceeded by {{paramsDif}} points. Please subtract these points from your parameters.",
+    "paramsTooLowError": "There are still {{paramsDif}} points to be assigned to the parameters to complete the 250. Please assign the missing points.",
     "confirmStep": "Confirm",
     "createPlayerProfile": "Create player"
   },
