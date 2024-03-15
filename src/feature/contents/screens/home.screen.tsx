@@ -8,7 +8,7 @@ const HomeScreen = ({ route }: any) => {
   const { onboardingLayoutProps } = route.params
 
   return (
-    <ScreenLayout>
+    <ScreenLayout >
       <ScrollViewLayout fullHeight>
         <VStackLayout
           p={onboardingLayoutProps.padding}
