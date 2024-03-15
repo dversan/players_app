@@ -6,23 +6,21 @@ import {
   CompetitionGamesOptions,
   FitnessFormData,
   GamesPerYearOptions,
-  OnboardingSteps
+  OnboardingSteps,
+  ValidationFields
 } from '@lib/data/models'
 import SelectItem from '../../ui/components/select-item'
 import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useRef, useState } from 'react'
 import Text from '../../ui/components/text'
-import {
-  createNumericEnumKeys,
-  OnboardingFitnessStepValidation,
-  ValidationFields
-} from '@lib/data/helpers'
+import { createNumericEnumKeys } from '@lib/data/helpers'
 import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native'
 import DatePicker from '../../ui/components/datepicker'
 import Button from '../../ui/components/button'
 import BoxLayout from '../../ui/layout/box.layout'
 import { customColors as colors } from '../../ui/ui-theme.provider'
 import { DateTimePickerEvent } from '@react-native-community/datetimepicker'
+import { OnboardingFitnessStepValidation } from 'src/feature/onboarding/onboarding-form.validations'
 
 interface OnboardingFormFitnessProps {
   onSetFormData: (

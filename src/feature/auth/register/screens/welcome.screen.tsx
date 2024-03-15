@@ -1,9 +1,9 @@
 import * as React from 'react'
-import ScreenLayout from '../../../ui/layout/screen.layout'
-import VStackLayout from '../../../ui/layout/vstack.layout'
+import ScreenLayout from '@ui/layout/screen.layout'
+import VStackLayout from '@ui/layout/vstack.layout'
 import { Image } from '@gluestack-ui/themed'
-import Button from '../../../ui/components/button'
-import Text from '../../../ui/components/text'
+import Button from '@ui/components/button'
+import Text from '@ui/components/text'
 import { t } from 'i18next'
 
 const WelcomeScreen = ({ navigation }) => {
@@ -24,7 +24,7 @@ const WelcomeScreen = ({ navigation }) => {
           <Image
             height={185}
             width={185}
-            source={require('../../../ui/images/players_logo.jpeg')}
+            source={require('@ui/images/players_logo.jpeg')}
             alt={'players logo'}
           />
           <VStackLayout flex={1} alignItems={'center'} space={'xl'} px={16}>

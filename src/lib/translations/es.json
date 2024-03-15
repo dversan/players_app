@@ -136,7 +136,8 @@
       "minLengthField": "Debe contener al menos {{number}} caracteres.",
       "notSamePassword": "Las contraseñas no coinciden.",
       "invalidMail": "El formato del email no es correcto.",
-      "userNotFound": "No existe ningún usuario con esta dirección de email o la contraseña es incorrecta."
+      "userNotFound": "No existe ningún usuario con esta dirección de email o la contraseña es incorrecta.",
+      "emailAlreadyUsed": "La dirección de email ya está siendo usada por otro usuario."
     },
     "text": {
       "ok": "Ok",

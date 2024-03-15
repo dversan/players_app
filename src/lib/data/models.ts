@@ -105,6 +105,17 @@ export interface SelectValuesProps {
   competitionGamesIndex: boolean
 }
 
+export interface ValidationFields extends PlayerData, User {
+  password: string
+  confirmPassword: string
+  requiredFields: string
+  generalError: string
+}
+
+export type ValidationErrors = {
+  [key: keyof ValidationFields]: string
+}
+
 export enum OnboardingPlayerOptions {
   JOIN_A_CLUB = 'joinClub',
   CREATE_CLUB = 'createNewClub',

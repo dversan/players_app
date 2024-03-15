@@ -1,21 +1,21 @@
 import * as React from 'react'
 import { useState } from 'react'
-import ScreenLayout from '../../../ui/layout/screen.layout'
-import KeyboardAvoidingView from '../../../ui/components/keyboard-avoiding-view'
-import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
-import VStackLayout from '../../../ui/layout/vstack.layout'
+import ScreenLayout from '@ui/layout/screen.layout'
+import KeyboardAvoidingView from '@ui/components/keyboard-avoiding-view'
+import ScrollViewLayout from '@ui/layout/scrollview.layout'
+import VStackLayout from '@ui/layout/vstack.layout'
 import { Center, Image } from '@gluestack-ui/themed'
-import Text from '../../../ui/components/text'
-import Input from '../../../ui/components/input'
-import HStackLayout from '../../../ui/layout/hstack.layout'
-import Link from '../../../ui/components/link'
-import Button from '../../../ui/components/button'
-import { registerFormValidation } from '../../../lib/data/helpers'
-import { useAuth } from '../../../lib/auth/auth.context'
+import Text from '@ui/components/text'
+import Input from '@ui/components/input'
+import HStackLayout from '@ui/layout/hstack.layout'
+import Link from '@ui/components/link'
+import Button from '@ui/components/button'
+import { useAuth } from '@lib/auth/auth.context'
 import { t } from 'i18next'
 import { Linking } from 'react-native'
-import { links } from '../../../lib/data/links.data'
+import { links } from '@lib/data/links.data'
 import { RegisterFormFields } from '@lib/data/models'
+import { registerFormValidation } from 'src/feature/auth/register/register-form.validations'
 
 const RegisterScreen = ({ route, navigation }) => {
   const { signUp } = useAuth()
@@ -36,7 +36,9 @@ const RegisterScreen = ({ route, navigation }) => {
       const { email, name, lastName, password } = formData
       signUp(email, name, lastName, password).catch(reason => {
         setIsLoading(false)
-        setErrors({ email: reason.message })
+        setErrors(
+          registerFormValidation(formData, reason.message).validationErrors
+        )
       })
     } else {
       setErrors(registerFormValidation(formData).validationErrors)
@@ -56,7 +58,7 @@ const RegisterScreen = ({ route, navigation }) => {
               <Image
                 height={authLayoutProps.logoH}
                 width={authLayoutProps.logoW}
-                source={require('../../../ui/images/players_logo.jpeg')}
+                source={require('@ui/images/players_logo.jpeg')}
                 alt={'players logo'}
               />
             </Center>

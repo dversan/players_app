@@ -2,16 +2,18 @@ import HStackLayout from '../../ui/layout/hstack.layout'
 import Input, { inputStyle } from '../../ui/components/input'
 import { t } from 'i18next'
 import Select from '../../ui/components/select'
-import { OnboardingSteps, PositionFormData, Positions } from '@lib/data/models'
+import {
+  OnboardingSteps,
+  PositionFormData,
+  Positions,
+  ValidationFields
+} from '@lib/data/models'
 import SelectItem from '../../ui/components/select-item'
 import VStackLayout from '../../ui/layout/vstack.layout'
 import React, { useRef, useState } from 'react'
 import Text from '../../ui/components/text'
-import {
-  OnboardingPositionStepValidation,
-  ValidationFields
-} from '@lib/data/helpers'
 import Button from '@ui/components/button'
+import { OnboardingPositionStepValidation } from 'src/feature/onboarding/onboarding-form.validations'
 
 interface OnboardingFormDorsalProps {
   onSetFormData: (

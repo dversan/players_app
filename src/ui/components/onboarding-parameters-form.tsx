@@ -4,17 +4,15 @@ import { t } from 'i18next'
 import {
   OnboardingSteps,
   ParametersFormData,
-  PlayerData
+  PlayerData,
+  ValidationFields
 } from '@lib/data/models'
 import VStackLayout from '@ui/layout/vstack.layout'
 import React, { useRef, useState } from 'react'
 import Text from '@ui/components/text'
-import {
-  OnboardingParametersStepValidation,
-  ValidationFields
-} from '@lib/data/helpers'
 import { calculateFitnessParameter } from '@lib/data/calculators'
 import Button from '@ui/components/button'
+import { OnboardingParametersStepValidation } from 'src/feature/onboarding/onboarding-form.validations'
 
 interface OnboardingFormParametersProps {
   onSetFormData: (formData, step: OnboardingSteps, stepToOpen: null) => void
