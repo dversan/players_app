@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { useAuth } from '@lib/auth/auth.context'
-import ScreenLayout from '../../../ui/layout/screen.layout'
-import VStackLayout from '../../../ui/layout/vstack.layout'
-import Text from '../../../ui/components/text'
-import Link from '../../../ui/components/link'
-import Input from '../../../ui/components/input'
-import HStackLayout from '../../../ui/layout/hstack.layout'
-import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
-import Button from '../../../ui/components/button'
+import ScreenLayout from '@ui/layout/screen.layout'
+import VStackLayout from '@ui/layout/vstack.layout'
+import Text from '@ui/components/text'
+import Link from '@ui/components/link'
+import Input from '@ui/components/input'
+import HStackLayout from '@ui/layout/hstack.layout'
+import ScrollViewLayout from '@ui/layout/scrollview.layout'
+import Button from '@ui/components/button'
 import { Center, Image } from '@gluestack-ui/themed'
 import { t } from 'i18next'
-import { loginFormValidation } from '@lib/data/helpers'
+import { loginFormValidation } from '../login-form.validations'
 
 const LoginScreen = ({ route, navigation }: any) => {
   const { signInWithEmail } = useAuth()
@@ -44,7 +44,7 @@ const LoginScreen = ({ route, navigation }: any) => {
             <Image
               height={authLayoutProps.logoH}
               width={authLayoutProps.logoW}
-              source={require('../../../ui/images/players_logo.jpeg')}
+              source={require('@ui/images/players_logo.jpeg')}
               alt={'players logo'}
             />
           </Center>

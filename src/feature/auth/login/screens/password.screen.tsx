@@ -1,15 +1,15 @@
-import Text from '../../../ui/components/text'
+import Text from '@ui/components/text'
 import { Center, Image } from '@gluestack-ui/themed'
-import Input from '../../../ui/components/input'
+import Input from '@ui/components/input'
 import React, { useState } from 'react'
-import ScreenLayout from '../../../ui/layout/screen.layout'
-import ScrollViewLayout from '../../../ui/layout/scrollview.layout'
-import VStackLayout from '../../../ui/layout/vstack.layout'
+import ScreenLayout from '@ui/layout/screen.layout'
+import ScrollViewLayout from '@ui/layout/scrollview.layout'
+import VStackLayout from '@ui/layout/vstack.layout'
 import { t } from 'i18next'
-import { useAuth } from '../../../lib/auth/auth.context'
+import { useAuth } from '@lib/auth/auth.context'
 import { Alert } from 'react-native'
-import Button from '../../../ui/components/button'
-import { resetPasswordFormValidation } from '../../../lib/data/helpers'
+import Button from '@ui/components/button'
+import { resetPasswordFormValidation } from '../login-form.validations'
 
 const PasswordScreen = ({ route, navigation }) => {
   const { recoverPassword } = useAuth()
@@ -52,7 +52,7 @@ const PasswordScreen = ({ route, navigation }) => {
             <Image
               height={authLayoutProps.logoH}
               width={authLayoutProps.logoW}
-              source={require('../../../ui/images/players_logo.jpeg')}
+              source={require('@ui/images/players_logo.jpeg')}
               alt={'players logo'}
             />
           </Center>
