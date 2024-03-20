@@ -13,7 +13,9 @@ import HStackLayout from '@ui/layout/hstack.layout'
 import * as jsonCopies from '../../../lib/translations/es.json'
 
 const OnboardingPlayerOptionsScreen = ({ route, navigation }: any) => {
-  const [modalTopic, setModalTopic] = useState<string>('')
+  const [modalTopic, setModalTopic] = useState<OnboardingPlayerOptions | null>(
+    null
+  )
   const { onboardingLayoutProps } = route.params
   const { user } = useAuth()
 
@@ -34,8 +36,8 @@ const OnboardingPlayerOptionsScreen = ({ route, navigation }: any) => {
 
   const onClickPrimaryHandler = () => {
     switch (modalTopic) {
-      case 'goToProfile':
-        navigation.navigate('HomeScreen')
+      case 'playerProfile':
+        navigation.navigate('Main')
         break
       case 'joinClub':
         navigation.navigate('OnboardingOptionSelectClubScreen')
@@ -44,7 +46,7 @@ const OnboardingPlayerOptionsScreen = ({ route, navigation }: any) => {
         navigation.navigate('OnboardingClubScreen')
         break
     }
-    setModalTopic('')
+    setModalTopic(null)
   }
 
   return (
@@ -76,7 +78,9 @@ const OnboardingPlayerOptionsScreen = ({ route, navigation }: any) => {
                   title={t(`onboardingPlayerOptions.${value}`)}
                   text={t(`onboardingPlayerOptions.${value}Description`)}
                   imageUrl={cardImage[value]}
-                  onPress={() => setModalTopic(value)}
+                  onPress={() =>
+                    setModalTopic(value as OnboardingPlayerOptions)
+                  }
                 />
               )
             })}
@@ -91,7 +95,7 @@ const OnboardingPlayerOptionsScreen = ({ route, navigation }: any) => {
           hideCloseButton={true}
           primaryButtonText={t('common.text.continue')}
           secondaryButtonText={t('common.text.goBack')}
-          onClose={() => setModalTopic('')}
+          onClose={() => setModalTopic(null)}
           onClickPrimaryButton={onClickPrimaryHandler}
         >
           <VStackLayout alignItems={'center'} space={'2xl'} my={8} px={16}>

@@ -155,7 +155,10 @@
       "height": "Altura",
       "weight": "Peso",
       "continue": "Continuar",
-      "goBack": "Volver"
+      "goBack": "Volver",
+      "home": "Inicio",
+      "notifications": "Notificaciones",
+      "profile": "Perfil"
     }
   }
 }

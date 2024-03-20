@@ -189,8 +189,11 @@
       "selectOption": "Select position",
       "height": "Height",
       "weight": "Weight",
-      "continue": "Continuar",
-      "goBack": "Volver"
+      "continue": "Continue",
+      "goBack": "Back",
+      "home": "Home",
+      "notifications": "Notifications",
+      "profile": "Profile"
     }
   }
 }

@@ -5,6 +5,7 @@ import NotificationsNavigator from './notifications/notifications.navigator'
 import ProfileNavigator from './profile/profile.navigator'
 import { customColors as colors } from '@ui/ui-theme.provider'
 import { BellIcon, HomeIcon, UserIcon } from 'lucide-react-native'
+import { t } from 'i18next'
 
 const Tab = createBottomTabNavigator()
 
@@ -26,7 +27,7 @@ const TabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name={'Home'}
+        name={t('common.text.home')}
         component={ContentsNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -35,7 +36,7 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name={'Notifications'}
+        name={t('common.text.notifications')}
         component={NotificationsNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -44,7 +45,7 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name={'Profile'}
+        name={t('common.text.profile')}
         component={ProfileNavigator}
         options={{
           tabBarIcon: ({ color, size }) => (

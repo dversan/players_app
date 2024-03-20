@@ -11,7 +11,7 @@ interface ContentsLayoutProps {
   logoW: number
 }
 
-export default function ContentsNavigator() {
+const ContentsNavigator = () => {
   const contentsLayoutProps: ContentsLayoutProps = {
     padding: 16,
     mainSpacing: '4xl',
@@ -29,3 +29,5 @@ export default function ContentsNavigator() {
     </Contents.Navigator>
   )
 }
+
+export default ContentsNavigator

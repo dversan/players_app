@@ -18,23 +18,26 @@ const MainNavigator = () => {
   SplashScreen.hide()
 
   return (
-    <MainStack.Navigator screenOptions={{ headerShown: false }}>
-      {user?.playerData?.playerNickname ? (
-        <>
-          <MainStack.Screen name={'Main'} component={TabNavigator} />
-        </>
+    <MainStack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName={
+        user?.playerData?.teamWork ? 'Main' : user ? 'Onboarding' : 'Auth'
+      }
+    >
+      {user?.playerData?.teamWork ? (
+        <MainStack.Screen name={'Main'} component={TabNavigator} />
       ) : (
         <>
           {user?.email ? (
-            <MainStack.Screen
-              name={'OnboardindNavigator'}
-              component={OnboardingNavigator}
-            />
+            <>
+              <MainStack.Screen
+                name={'Onboarding'}
+                component={OnboardingNavigator}
+              />
+              <MainStack.Screen name={'Main'} component={TabNavigator} />
+            </>
           ) : (
-            <MainStack.Screen
-              name={'AuthNavigator'}
-              component={AuthNavigator}
-            />
+            <MainStack.Screen name={'Auth'} component={AuthNavigator} />
           )}
         </>
       )}
