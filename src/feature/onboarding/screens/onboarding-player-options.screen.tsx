@@ -18,7 +18,7 @@ const OnboardingPlayerOptionsScreen = ({ route, navigation }: any) => {
   const { user } = useAuth()
 
   const cardImage: { [id: OnboardingPlayerOptions]: string } = {
-    [OnboardingPlayerOptions.GO_TO_PROFILE]: require('../../../ui/images/goToProfile.png'),
+    [OnboardingPlayerOptions.GO_TO_PROFILE]: require('../../../ui/images/playerProfile.png'),
     [OnboardingPlayerOptions.JOIN_A_CLUB]: require('../../../ui/images/joinClub.png'),
     [OnboardingPlayerOptions.CREATE_CLUB]: require('../../../ui/images/createNewClub.png')
   }

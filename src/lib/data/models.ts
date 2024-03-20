@@ -119,7 +119,7 @@ export type ValidationErrors = {
 export enum OnboardingPlayerOptions {
   JOIN_A_CLUB = 'joinClub',
   CREATE_CLUB = 'createNewClub',
-  GO_TO_PROFILE = 'goToProfile'
+  GO_TO_PROFILE = 'playerProfile'
 }
 
 interface Stadium {

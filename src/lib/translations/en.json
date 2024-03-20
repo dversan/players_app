@@ -117,9 +117,9 @@
       "6": "Improve your parameters",
       "7": "Get trophies and badges"
     },
-    "goToProfile": "Go to home screen",
-    "goToProfileDescription": "Straight to the home screen. Create or join clubs later.",
-    "goToProfileModalTopics": {
+    "playerProfile": "Go to home screen",
+    "playerProfileDescription": "Straight to the home screen. Create or join clubs later.",
+    "playerProfileModalTopics": {
       "1": "Create friendly matches with other players",
       "2": "Join a club or create it when you decide",
       "3": "Participate in the general ranking",

@@ -117,9 +117,9 @@
       "6": "Mejora tus parámetros",
       "7": "Consigue trofeos e insignias"
     },
-    "goToProfile": "Ir a la pantalla de inicio",
-    "goToProfileDescription": "Directo a la pantalla de inicio. Crea o ingresa en clubs más adelante.",
-    "goToProfileModalTopics": {
+    "playerProfile": "Ir a la pantalla de inicio",
+    "playerProfileDescription": "Directo a la pantalla de inicio. Crea o ingresa en clubs más adelante.",
+    "playerProfileModalTopics": {
       "1": "Crea partidos amistosos con otros jugadores",
       "2": "Forma parte de un club o fúndalo cuando tú decidas",
       "3": "Participa en el ranking general",
