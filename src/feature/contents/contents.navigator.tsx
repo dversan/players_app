@@ -1,6 +1,7 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HomeScreen from './screens/home.screen'
+import PlayerProfileScreen from 'src/feature/contents/screens/player.screen'
 
 const Contents = createNativeStackNavigator()
 
@@ -24,6 +25,11 @@ const ContentsNavigator = () => {
       <Contents.Screen
         name={'HomeScreen'}
         component={HomeScreen}
+        initialParams={{ contentsLayoutProps }}
+      />
+      <Contents.Screen
+        name={'PlayerProfileScreen'}
+        component={PlayerProfileScreen}
         initialParams={{ contentsLayoutProps }}
       />
     </Contents.Navigator>

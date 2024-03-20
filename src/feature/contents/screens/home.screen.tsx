@@ -8,7 +8,7 @@ import { t } from 'i18next'
 
 type HomeScreenOptions = 'playerProfile' | 'matches' | 'trophies' | 'parameters'
 
-const HomeScreen = ({ route }: any) => {
+const HomeScreen = ({ route, navigation }: any) => {
   const { contentsLayoutProps } = route.params
   const homeScreenOptions: HomeScreenOptions[] = [
     'playerProfile',
@@ -24,6 +24,13 @@ const HomeScreen = ({ route }: any) => {
     parameters: require('../../../ui/images/parameters.png')
   }
 
+  const buttonCardPressHandler = screenToNavigate => {
+    switch (screenToNavigate) {
+      case 'playerProfile':
+        navigation.navigate('PlayerProfileScreen')
+        break
+    }
+  }
   return (
     <ScreenLayout>
       <ScrollViewLayout fullHeight>
@@ -46,7 +53,7 @@ const HomeScreen = ({ route }: any) => {
                   key={option}
                   title={t(`homeScreen.options.${option}`)}
                   imageUrl={cardImage[option]}
-                  // onPress={() => setModalTopic(value)}
+                  onPress={() => buttonCardPressHandler(option)}
                 />
               )
             })}
