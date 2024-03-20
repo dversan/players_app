@@ -26,7 +26,7 @@ const ButtonCard = (props: CardProps) => {
         <Center>
           <Image source={props.imageUrl} alt={'Button card image'} />
         </Center>
-        <VStackLayout space={'xs'} justifyContent={'center'}>
+        <VStackLayout flex={1} space={'xs'} justifyContent={'center'}>
           <Text size={props.text ? 'lg' : '2xl'} bold>
             {props.title}
           </Text>
