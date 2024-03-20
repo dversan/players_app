@@ -41,7 +41,6 @@ const HomeScreen = ({ route }: any) => {
           </Center>
           <VStackLayout flex={1} space={'lg'}>
             {homeScreenOptions.map(option => {
-              console.log(option)
               return (
                 <ButtonCard
                   key={option}
