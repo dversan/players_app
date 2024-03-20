@@ -193,7 +193,8 @@
       "goBack": "Back",
       "home": "Home",
       "notifications": "Notifications",
-      "profile": "Profile"
+      "profile": "Profile",
+      "player": "Player"
     }
   }
 }
