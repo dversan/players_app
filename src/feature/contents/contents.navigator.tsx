@@ -4,7 +4,7 @@ import HomeScreen from './screens/home.screen'
 
 const Contents = createNativeStackNavigator()
 
-interface OnboardingLayoutProps {
+interface ContentsLayoutProps {
   padding: number
   mainSpacing: string
   logoH: number
@@ -12,7 +12,7 @@ interface OnboardingLayoutProps {
 }
 
 export default function ContentsNavigator() {
-  const onboardingLayoutProps: OnboardingLayoutProps = {
+  const contentsLayoutProps: ContentsLayoutProps = {
     padding: 16,
     mainSpacing: '4xl',
     logoH: 55,
@@ -24,7 +24,7 @@ export default function ContentsNavigator() {
       <Contents.Screen
         name={'HomeScreen'}
         component={HomeScreen}
-        initialParams={{ onboardingLayoutProps }}
+        initialParams={{ contentsLayoutProps }}
       />
     </Contents.Navigator>
   )

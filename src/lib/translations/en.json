@@ -128,6 +128,14 @@
       "6": "Improve your parameters"
     }
   },
+  "homeScreen": {
+    "options": {
+      "playerProfile": "Player",
+      "matches": "Matches",
+      "trophies": "Trophies and Medals",
+      "parameters": "Set parameters"
+    }
+  },
   "common": {
     "error": {
       "generic": "Something went wrong, please review your data or try again later.",
