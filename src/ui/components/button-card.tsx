@@ -8,7 +8,7 @@ import { customColors as colors } from '../../ui/ui-theme.provider'
 
 interface CardProps extends PropsWithChildren<ViewProps> {
   title: string
-  text: string
+  text?: string
   imageUrl: string
   onPress?: () => void
 }
@@ -24,20 +24,22 @@ const ButtonCard = (props: CardProps) => {
     >
       <HStackLayout space={'md'}>
         <Center>
-          <Image source={props.imageUrl} alt={'player option card img'} />
+          <Image source={props.imageUrl} alt={'Button card image'} />
         </Center>
-        <VStackLayout flex={1} space={'xs'}>
-          <Text size={'lg'} bold>
+        <VStackLayout space={'xs'} justifyContent={'center'}>
+          <Text size={props.text ? 'lg' : '2xl'} bold>
             {props.title}
           </Text>
-          <Text
-            numberOfLines={3}
-            isTruncated
-            lineHeight={20}
-            color={colors.lightSecondaryText300}
-          >
-            {props.text}
-          </Text>
+          {props.text && (
+            <Text
+              numberOfLines={3}
+              isTruncated
+              lineHeight={20}
+              color={colors.lightSecondaryText300}
+            >
+              {props.text}
+            </Text>
+          )}
         </VStackLayout>
       </HStackLayout>
     </Pressable>
