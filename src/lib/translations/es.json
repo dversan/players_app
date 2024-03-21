@@ -54,9 +54,9 @@
     "positions": {
       "goalkeeper": "Portero",
       "defender": "Defensa",
-      "winger_right": "Banda Derecha",
-      "winger_left": "Banda Izquierda",
-      "midfielder": "Centrocampista",
+      "winger_right": "Banda Dcha.",
+      "winger_left": "Banda Izq.",
+      "midfielder": "Medio",
       "striker": "Delantero"
     },
     "height": "Altura (cm)",
@@ -149,17 +149,18 @@
       "emailAlreadyUsed": "La dirección de email ya está siendo usada por otro usuario."
     },
     "text": {
-      "ok": "Ok",
+      "age": "Edad",
       "cancel": "Cancelar",
-      "selectOption": "Selecciona posición",
-      "height": "Altura",
-      "weight": "Peso",
       "continue": "Continuar",
       "goBack": "Volver",
+      "height": "Altura",
       "home": "Inicio",
       "notifications": "Notificaciones",
+      "ok": "Ok",
+      "player": "Jugador",
       "profile": "Perfil",
-      "player": "Jugador"
+      "selectOption": "Selecciona posición",
+      "weight": "Peso"
     }
   }
 }
