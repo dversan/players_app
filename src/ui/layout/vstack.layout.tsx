@@ -3,7 +3,8 @@ import { ViewProps } from 'react-native'
 
 interface GSVStackProps extends ViewProps {
   alignItems?: 'left' | 'center' | 'right'
-  space?: string
+  justifyContent?: 'top' | 'center' | 'bottom'
+  space?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
 }
 
 const VStackLayout = (props: GSVStackProps) => {
